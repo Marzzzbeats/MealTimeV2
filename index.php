@@ -17,7 +17,8 @@
         status=userErr2 : Impossible de récuperer le user avec l'id $id
         status=userErr3 : Impossible de créer le user
         status=userErr4 : Impossible de supprimer le user avec l'id $id
-        */
+        status=userErr5 : Impossible de modifier le user avec l'id $id
+            */
     ?>
 </body>
 </html>

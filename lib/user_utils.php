@@ -19,4 +19,5 @@
         $res=password_verify($pass, $ashed_pass);
         return $res;
     }
+
 ?>
