@@ -4,23 +4,28 @@
  */
 $debeug=True ; 
 
-function addRecettes($conn, $owner, $image, $saison, $price_ind, $health_ind, $titre, $description, $upvote, $ingredients){
-	$sql="INSERT INTO `recettes` (`owner`, `image`, `saison`, `price_ind`, `health_ind`, `titre`, `description`, `upvote`, `ingredients` ) VALUES ( '$owner', '$image', '$saison', '$price_ind', '$health_ind', '$titre', '$description', '$upvote', '$ingredients')" ; 
+function addRecettes($conn, $owner, $image, $saison, $price_ind, $health_ind, $titre, $description, $upvote, $ingredients,  $quantite){
+	$sql="INSERT INTO recettes (`owner`, `image`, `saison`, `price_ind`, `health_ind`, `titre`, `description`, `upvote`, `ingredients`, `quantite` ) VALUES ( $owner, '$image', '$saison', $price_ind, $health_ind, '$titre', '$description', $upvote, '$ingredients', '$quantite')" ; 
+	global $debeug;
+	if($debeug){
+        echo($sql); 
+    }
+	$res=mysqli_query($conn, $sql);
+    echo($res);
+	return $res ; 
+}
+
+
+function updateRecettes($conn, $owner, $image, $saison, $price_ind, $health_ind, $titre, $description, $upvote, $ingredients,  $quantite){
+    $id = "SELECT id FROM `recettes` WHERE titre = '$titre'";
+    $sql="UPDATE `recettes` SET `owner`='$owner',`image`='$image', `saison`='$saison', `price_ind`='$price_ind', `health_ind`='$health_ind', `titre`='$titre', `description`='$description', `ingredients`='$ingredients', `quantite`='$quantite'  WHERE id = $id"; 
 	global $debeug ;
 	if($debeug) echo $sql ; 
 	$res=mysqli_query($conn, $sql) ; 
 	return $res ; 
 }
 
-function updateRecettes($conn, $id, $nom, $prenom, $pays, $rang){
-	$sql="UPDATE `joueur` SET `nom`='$nom',`prenom`='$prenom', `pays`='$pays', `rang`='$rang'  WHERE id = $id" ; 
-	global $debeug ;
-	if($debeug) echo $sql ; 
-	$res=mysqli_query($conn, $sql) ; 
-	return $res ; 
-}
-
-function deleteRecettes($conn, $id){
+function delete_etudiant($conn, $id){
 	$sql="DELETE FROM `joueur` WHERE id=$id" ; 
 	global $debeug ;
 	if($debeug) echo $sql ; 
@@ -29,7 +34,7 @@ function deleteRecettes($conn, $id){
 }
 
 
-function selectEtudiant($conn, $id){
+function select_etudiant($conn, $id){
 	$sql="SELECT * FROM `joueur` WHERE id=$id" ; 
 	global $debeug ;
 	if($debeug) echo $sql ; 
@@ -38,7 +43,7 @@ function selectEtudiant($conn, $id){
 	return $tab[0] ;
 }
 
-function listEtudiant($conn){
+function list_etudiant($conn){
 	$sql="SELECT * FROM `joueur`"; 
 	global $debeug ;
 	if($debeug) echo $sql ; 
@@ -47,6 +52,7 @@ function listEtudiant($conn){
 }
 
 ?>
+
 
 
 
