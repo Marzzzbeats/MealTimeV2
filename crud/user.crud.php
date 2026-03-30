@@ -180,5 +180,18 @@
         return $result;
     }
 
+    function getUserByEmail($conn, $id){
+        //Réucupère un utilisateur en conftion de son id
+        if(!$conn){
+            header('Location: index.php?status=connError');
+        }
+        $sql="SELECT * FROM user WHERE email = $email";
+        $result = mysqli_query($conn, $sql);
+        if(!$result){
+            header('Location: public/login.php?status=userNull'); //Gestion d'erreur de requêtre SQL (se referer à la section gestion d'erreurs de login.php)
+        }
+        return rsToAssoc($result);
+    }
+
 
 ?>
