@@ -193,5 +193,19 @@
         return rsToAssoc($result);
     }
 
+    function getRole($conn, $id){
+        //récupère le rôle du client
+        if(!$conn){
+            header('Location: index.php?status=connError');
+        }
+        $sql="SELECT `role` FROM user WHERE id=$id";
+        $result = mysqli_query($conn, $sql);
+        if(!$result){
+            header('Location: public/login.php?status=userNull'); //Gestion d'erreur de requêtre SQL (se referer à la section gestion d'erreurs de login.php)
+        }
+        return rsToAssoc($result);
+    }
+    
+
 
 ?>
