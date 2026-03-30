@@ -1,6 +1,10 @@
 ## MEALTIME
+<<<<<<< HEAD
 Groupe 9
 
+=======
+Groupe 9 
+>>>>>>> origin/dev_simon
 MARZIN Simon
 MANGALA Louciane
 PERIVOLAS Baptiste
