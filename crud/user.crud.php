@@ -66,4 +66,31 @@
         }
         return $result;
     }
+
+    function getAbo($conn, $id){
+        //Récupère les id des abonnements du client
+        if(!$conn){
+            header('Location: index.php?status=connError');
+        }
+        $sql = "SELECT id_abo FROM user WHERE id = $id";
+        $result = mysqli_query($conn, $sql);
+        if(!$result){
+            header('Location: index.php?status=userErr6'); //Gestion d'erreur de requêtre SQL (se referer à la section gestion d'erreurs de index.php)
+        }
+        return $result;
+    }
+
+    function addAbo($conn, $id_abo, $id){
+        //Ajoute un id aux abonnements du client
+        $str_abo = getAbo($conn, $id);
+        $nsrt_abo = newAbo($str_abo, "$id_abo");
+        $sql = "UPDATE user SET `id_abo`=$nsrt_abo WHERE id=$id";
+        $result = mysqli_query($conn, $sql);
+        if(!$result){
+            header('Location: index.php?status=userErr7'); //Gestion d'erreur de requêtre SQL (se referer à la section gestion d'erreurs de index.php)
+        }
+        return $result;
+    }
+
+    
 ?>

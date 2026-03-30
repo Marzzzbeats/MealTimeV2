@@ -1,5 +1,6 @@
 <?php
     include './db/db_connect';
+    include './lib/user_utils.php';
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +19,11 @@
         status=userErr3 : Impossible de créer le user
         status=userErr4 : Impossible de supprimer le user avec l'id $id
         status=userErr5 : Impossible de modifier le user avec l'id $id
-            */
+        */
+    ?>
+    <?php
+        echo('<p>ok</p>');
+        print_r(strAboToList("1 2 4 5 9"));
     ?>
 </body>
 </html>
