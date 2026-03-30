@@ -21,10 +21,6 @@
         status=userErr5 : Impossible de modifier le user avec l'id $id
         */
     ?>
-    <?php
-        echo('<p>ok</p>');
-        print_r(strAboToList("1 2 4 5 9"));
-    ?>
 </body>
 </html>
 <?php

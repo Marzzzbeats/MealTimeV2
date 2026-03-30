@@ -68,7 +68,7 @@
     }
 
     function getAbo($conn, $id){
-        //Récupère les id des abonnements du client
+        //Récupère les id des abonnements du client sous forme de tableau
         if(!$conn){
             header('Location: index.php?status=connError');
         }
@@ -77,13 +77,17 @@
         if(!$result){
             header('Location: index.php?status=userErr6'); //Gestion d'erreur de requêtre SQL (se referer à la section gestion d'erreurs de index.php)
         }
-        return $result;
+        $res=rsToAssoc($result)
+        return strAboToList($res['id_abo']);
     }
 
-    function addAbo($conn, $id_abo, $id){
+    function addAbo($conn, $id_nabo, $id){
         //Ajoute un id aux abonnements du client
-        $str_abo = getAbo($conn, $id);
-        $nsrt_abo = newAbo($str_abo, "$id_abo");
+        if(!$conn){
+            header('Location: index.php?status=connError');
+        }
+        $str_abo = listToStr(getAbo($conn, $id));
+        $nsrt_abo = newAbo($str_abo, "$id_nabo");
         $sql = "UPDATE user SET `id_abo`=$nsrt_abo WHERE id=$id";
         $result = mysqli_query($conn, $sql);
         if(!$result){
@@ -92,5 +96,89 @@
         return $result;
     }
 
-    
+    function getPreferences($conn, $id){
+        //Récupère les preferences d'un client
+        if(!$conn){
+            header('Location: index.php?status=connError');
+        }
+        $sql = "SELECT preferences FROM user WHERE id = $id";
+        $result = mysqli_query($conn, $sql);
+        if(!$result){
+            header('Location: index.php?status=userErr8'); //Gestion d'erreur de requêtre SQL (se referer à la section gestion d'erreurs de index.php)
+        }
+        $res=rsToAssoc($result);
+        return strAboToList($res['preferences']);
+    }
+
+    function addPreferences($conn, $id, $npref){
+        //Ajoute un e preference aux preferences du client
+        if(!$conn){
+            header('Location: index.php?status=connError');
+        }
+        $str_pref = listToStr(getPreferences($conn, $id));
+        $nsrt_pref = newAbo($str_pref, "$npref");
+        $sql = "UPDATE user SET `preferences`=$nstrpref WHERE id=$id";
+        $result = mysqli_query($conn, $sql);
+        if(!$result){
+            header('Location: index.php?status=userErr9'); //Gestion d'erreur de requêtre SQL (se referer à la section gestion d'erreurs de index.php)
+        }
+        return $result;
+    }
+
+    function getAllergies($conn, $id){
+        //Récupère les allergies d'un client
+        if(!$conn){
+            header('Location: index.php?status=connError');
+        }
+        $sql = "SELECT allergies FROM user WHERE id = $id";
+        $result = mysqli_query($conn, $sql);
+        if(!$result){
+            header('Location: index.php?status=userErr8'); //Gestion d'erreur de requêtre SQL (se referer à la section gestion d'erreurs de index.php)
+        }
+        $res=rsToAssoc($result);
+        return strAboToList($res['allergies']);
+    }
+
+    function addAllergies($conn, $id, $nallergie){
+        //Ajoute une allergie au client
+        if(!$conn){
+            header('Location: index.php?status=connError');
+        }
+        $str_allergie = listToStr(getPreferences($conn, $id));
+        $nstr_allergie = newAbo($str_allergie, "$nallergie");
+        $sql = "UPDATE user SET `allergies`=$nstr_allergie WHERE id=$id";
+        $result = mysqli_query($conn, $sql);
+        if(!$result){
+            header('Location: index.php?status=userErr9'); //Gestion d'erreur de requêtre SQL (se referer à la section gestion d'erreurs de index.php)
+        }
+        return $result;
+    }
+
+    function setUserActive($conn, $id){
+        //Set l'user à active
+        if(!$conn){
+            header('Location: index.php?status=connError');
+        }
+        $sql="UPDATE user SET `active`=1 WHERE id=$id";
+        $result = mysqli_query($conn, $sql);
+        if(!$result){
+            header('Location: index.php?status=userErr10'); //Gestion d'erreur de requêtre SQL (se referer à la section gestion d'erreurs de index.php)
+        }
+        return $result;
+    }
+
+    function setUserInactive($conn, $id){
+        //Set l'user à active
+        if(!$conn){
+            header('Location: index.php?status=connError');
+        }
+        $sql="UPDATE user SET `active`=0 WHERE id=$id";
+        $result = mysqli_query($conn, $sql);
+        if(!$result){
+            header('Location: index.php?status=userErr11'); //Gestion d'erreur de requêtre SQL (se referer à la section gestion d'erreurs de index.php)
+        }
+        return $result;
+    }
+
+
 ?>

@@ -39,4 +39,12 @@
         return $list_abo;
     }
 
+    function listToStr($list){
+        $str_elt=""
+        foreach($list as $elt){
+            $str_elt.=" $elt";
+        }
+        return $str_elt;
+    }
+
 ?>
