@@ -206,6 +206,21 @@
         return rsToAssoc($result);
     }
     
-
+    function isAcive($conn, $id){
+        if(!$conn){
+            header('Location: index.php?status=connError');
+        }
+        $sql = "SELECT `active` FROM user WHERE id=$id";
+        $result = mysqli_query($conn, $sql);
+        $tab_res = rsToAssoc($result);
+        $res = false;
+        if(!$result){
+            header('Location: public/login.php?status=userDisconnected'); //Gestion d'erreur de requêtre SQL (se referer à la section gestion d'erreurs de login.php)
+        }
+        if($tab_res[0] == 1){
+            $res = true;
+        }
+        return $res;
+    }
 
 ?>

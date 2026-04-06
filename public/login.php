@@ -8,7 +8,16 @@
 
 <?php
     //Contrôleurs GET
-
+    if(isset($_GET['status']){
+        $status = $_GET['status'];
+        if($status == 'bddErr'){
+            echo("<div class='alert'><p>Erreur dans la base de donnée, veuillez réeessayer ulterieurement</p></div>");
+        }else if($status == 'userNull'){
+            echo("<div class='alert'><p>Cet utilisateur n'existe pas</p></div>");
+        }else if($status == 'pwdFalse'){
+            echo("<div class='alert'><p>Mauvais mot de passe</p></div>");
+        }
+    })
 ?>
 
 <!DOCTYPE html>
@@ -19,10 +28,7 @@
     <title>Login</title>
 </head>
 <body>
-    <?php
-       $form = htmlLoginForm();
-       echo($form); 
-    ?>
+    <div id='login_form'></div>
     <?php
         //Controleur POST
 
@@ -31,7 +37,7 @@
             if($action == 'login'){
                 $email = $_POST['email'];
                 $password = $_POST['password'];
-                $is_user = checkUser($conn, $email, $password);
+                $is_user = isUser($conn, $email, $password);
                 if($is_user){
                     $user = getUserByEmail($conn, $email);
                     $id = $user['id'];
@@ -43,7 +49,7 @@
                     if($res){
                         header("Loccation: index.php?status=loginSuccess");
                     }else{
-                        header("Location: login.php?status=bddEfr");
+                        header("Location: login.php?status=bddErr");
                     }
                 }
             }
@@ -58,3 +64,5 @@
 <?php
     include '../db/db_disconnect.php';
 ?>
+<script src="./js/login.js"></script>
+<link rel="stylesheet" href="./css/style.css">
