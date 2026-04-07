@@ -7,7 +7,7 @@ function createLoginForm(){
     const total_email = document.createElement('div');
     const text_email = document.createTextNode('Email : ');
     const email = document.createElement('input');
-    email.setAttribute('type', 'text');
+    email.setAttribute('type', 'email');
     email.setAttribute('required', 'required');
     email.setAttribute('placeholder', 'example@blablamail.com');
     email.setAttribute('name', 'email');
