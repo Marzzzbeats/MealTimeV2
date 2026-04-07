@@ -1,10 +1,10 @@
 <?php
-    include './db/db_connect';
+    include './db/db_connect.php';
     include './lib/user_utils.php';
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,5 +24,5 @@
 </body>
 </html>
 <?php
-    include './db/db_disconnect';
+    include './db/db_disconnect.php';
 ?>

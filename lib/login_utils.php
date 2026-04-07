@@ -1,6 +1,6 @@
 <?php
-    include '../crud/user.crud.php';
-    include './user_utils.php';
+    require_once('../crud/user.crud.php');
+    require_once '../lib/user_utils.php';
 
     function ashPassword($clear_password){
         //Chiffre le mot de passe afin de ne pas le stocker en clair dans la bdd
@@ -16,7 +16,7 @@
     
     function isUser($conn, $email, $password){
         //Vérifie si un user existe bien
-        $res=false
+        $res=false;
         $user = getUserById($conn, $email);
 
         if($user == []){

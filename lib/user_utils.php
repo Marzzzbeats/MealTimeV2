@@ -3,7 +3,7 @@
         //Change un résultSet en tableau associatif
         $tab=[] ; 
         while($row=mysqli_fetch_assoc($rs)){
-            $tab[]=$row ;	
+            $tab[]=$row;	
         }
         return $tab;
     }
@@ -28,7 +28,7 @@
     }
 
     function listToStr($list){
-        $str_elt=""
+        $str_elt="";
         foreach($list as $elt){
             $str_elt.=" $elt";
         }

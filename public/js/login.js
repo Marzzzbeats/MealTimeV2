@@ -27,6 +27,8 @@ function createLoginForm(){
     form.appendChild(total_pword);
     const submit = document.createElement('button');
     submit.setAttribute('type', 'submit');
+    const text_btn = document.createTextNode('Se connecter');
+    submit.appendChild(text_btn);
     form.appendChild(submit);
     div_form.appendChild(form);
 }

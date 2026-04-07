@@ -1,5 +1,5 @@
 <?php
-    include './lib/user_utils.php';
+    require_once '../lib/user_utils.php';
 
     function getUsers($conn){
         //Récupère tous les utilisateurs
@@ -32,7 +32,7 @@
         if(!$conn){
             header('Location: index.php?status=connError');
         }
-        $ashed = $ashPassword($password);
+        $ashed = ashPassword($password);
         $sql="INSERT INTO user (`email`, `nom`, `prenom`, `password`, `profile_pic`, `id_abo`, `preferences`, `allergies`, `role`) VALUES ('$email', '$nom', '$prenom', '$ashed', $profile_pic, $id_abo, $preferences, $allergies, 'user')";
         $result=mysqli_query($conn, $sql);
         if(!$result){
@@ -77,7 +77,7 @@
         if(!$result){
             header('Location: index.php?status=userErr6'); //Gestion d'erreur de requêtre SQL (se referer à la section gestion d'erreurs de index.php)
         }
-        $res=rsToAssoc($result)
+        $res=rsToAssoc($result);
         return strAboToList($res['id_abo']);
     }
 
@@ -117,7 +117,7 @@
         }
         $str_pref = listToStr(getPreferences($conn, $id));
         $nsrt_pref = newAbo($str_pref, "$npref");
-        $sql = "UPDATE user SET `preferences`=$nstrpref WHERE id=$id";
+        $sql = "UPDATE user SET `preferences`=$nstr_pref WHERE id=$id";
         $result = mysqli_query($conn, $sql);
         if(!$result){
             header('Location: index.php?status=userErr9'); //Gestion d'erreur de requêtre SQL (se referer à la section gestion d'erreurs de index.php)
@@ -144,7 +144,7 @@
         if(!$conn){
             header('Location: index.php?status=connError');
         }
-        $str_allergie = listToStr(getPreferences($conn, $id));
+        $str_allergie = listToStr(getAllergies($conn, $id));
         $nstr_allergie = newAbo($str_allergie, "$nallergie");
         $sql = "UPDATE user SET `allergies`=$nstr_allergie WHERE id=$id";
         $result = mysqli_query($conn, $sql);
@@ -180,12 +180,12 @@
         return $result;
     }
 
-    function getUserByEmail($conn, $id){
+    function getUserByEmail($conn, $email){
         //Réucupère un utilisateur en conftion de son id
         if(!$conn){
             header('Location: index.php?status=connError');
         }
-        $sql="SELECT * FROM user WHERE email = $email";
+        $sql="SELECT * FROM user WHERE email = '$email'";
         $result = mysqli_query($conn, $sql);
         if(!$result){
             header('Location: public/login.php?status=userNull'); //Gestion d'erreur de requêtre SQL (se referer à la section gestion d'erreurs de login.php)
@@ -217,7 +217,7 @@
         if(!$result){
             header('Location: public/login.php?status=userDisconnected'); //Gestion d'erreur de requêtre SQL (se referer à la section gestion d'erreurs de login.php)
         }
-        if($tab_res[0] == 1){
+        if($tab_res['active'] == 1){
             $res = true;
         }
         return $res;

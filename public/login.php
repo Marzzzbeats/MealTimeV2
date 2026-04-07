@@ -1,14 +1,16 @@
 <?php
     session_start();
+    error_reporting(E_ALL);
+    ini_set('display_errors', '1');
     include '../db/db_connect.php';
-    include '../crud/user.crud.php';
-    include '../lib/login_utils.php';
-    include '../lib/user_utils.php';
+    require_once('../crud/user.crud.php');
+    require_once '../lib/login_utils.php';
+    require_once '../lib/user_utils.php';
 ?>
 
 <?php
     //Contrôleurs GET
-    if(isset($_GET['status']){
+    if(isset($_GET['status'])){
         $status = $_GET['status'];
         if($status == 'bddErr'){
             echo("<div class='alert'><p>Erreur dans la base de donnée, veuillez réeessayer ulterieurement</p></div>");
@@ -17,7 +19,7 @@
         }else if($status == 'pwdFalse'){
             echo("<div class='alert'><p>Mauvais mot de passe</p></div>");
         }
-    })
+    }
 ?>
 
 <!DOCTYPE html>
@@ -47,7 +49,7 @@
                     $_SESSION['role']=$role;
                     $res=setUserActive($conn, $id);
                     if($res){
-                        header("Loccation: index.php?status=loginSuccess");
+                        header("Location: index.php?status=loginSuccess");
                     }else{
                         header("Location: login.php?status=bddErr");
                     }
