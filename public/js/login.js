@@ -25,6 +25,12 @@ function createLoginForm(){
     total_pword.appendChild(pword);
     form.appendChild(total_email);
     form.appendChild(total_pword);
+    const action = document.createElement('input');
+    action.setAttribute('type', 'hidden');
+    action.setAttribute('name', 'action');
+    action.setAttribute('id', 'action');
+    action.setAttribute('value', 'login');
+    form.appendChild(action);
     const submit = document.createElement('button');
     submit.setAttribute('type', 'submit');
     const text_btn = document.createTextNode('Se connecter');

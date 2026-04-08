@@ -18,6 +18,8 @@
             echo("<div class='alert'><p>Cet utilisateur n'existe pas</p></div>");
         }else if($status == 'pwdFalse'){
             echo("<div class='alert'><p>Mauvais mot de passe</p></div>");
+        }else if($status == 'success'){
+            echo('<div class="alert"><p>Utilisateur enregistré avec succès. Connectez vous dès à présent</p></div>');
         }
     }
 ?>

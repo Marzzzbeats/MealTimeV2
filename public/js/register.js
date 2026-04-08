@@ -93,6 +93,13 @@ function registerFormHtml(){
     total_cgu.appendChild(text2);
     total_cgu.appendChild(cgu);
     div_form.appendChild(total_cgu); 
+    //Action
+    const action = document.createElement('input');
+    action.setAttribute('type', 'hidden');
+    action.setAttribute('name', 'action');
+    action.setAttribute('id', 'action');
+    action.setAttribute('value', 'login');
+    form.appendChild(action);
     //Bouton de submit
     const submit_btn = document.createElement('button');
     submit_btn.setAttribute('type', 'submit');
