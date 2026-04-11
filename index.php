@@ -1,10 +1,26 @@
 <?php
-    include './db/db_connect';
-    include './lib/user_utils.php';
+    session_start();
+    error_reporting(E_ALL);
+    ini_set('display_errors', '1');
+    include __DIR__ . '/db/db_connect.php';
+    include __DIR__ . '/lib/auth_utils.php';
 ?>
 
+<?php
+
+    if(isset($_GET['action'])){
+        $action = $_GET['action'];
+        if($action == 'disconnect'){
+            logout($conn);
+            header('Location: ./index.php');
+        }
+    }
+
+?>
+
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,12 +37,15 @@
         status=userErr5 : Impossible de modifier le user avec l'id $id
         */
     ?>
-    <?php
-        echo('<p>ok</p>');
-        print_r(strAboToList("1 2 4 5 9"));
-    ?>
+    <ul>
+        <li><a href="./public/login.php" id="login">Se connecter</a></li>
+        <li><a href="./public/register.php" id="register">S'inscrire</a></li>
+        <li><button id="logout" class="hidden"><a href="./index.php?action=disconnect">Se déconnecter</a></button></li>
+    </ul>
 </body>
 </html>
+<script src="./public/js/script_index.js"></script>
+<link rel="stylesheet" href="./public/css/style.css"/>
 <?php
-    include './db/db_disconnect';
+    include './db/db_disconnect.php';
 ?>
