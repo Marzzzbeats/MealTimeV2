@@ -1,6 +1,6 @@
 <?php
-    require_once('../crud/user.crud.php');
-    require_once '../lib/user_utils.php';
+    require_once(__DIR__ . '/../crud/user.crud.php');
+    require_once(__DIR__ . '/user_utils.php');
 
     function ashPassword($clear_password){
         //Chiffre le mot de passe afin de ne pas le stocker en clair dans la bdd
@@ -20,7 +20,7 @@
         $user = getUserById($conn, $email);
 
         if($user == []){
-            header('Location: public/login.php?status=userNull');
+            header('Location: login.php?status=userNull');
         }else{
             $pwd_ok = checkPassword($password, $user['password']);
 
@@ -32,6 +32,5 @@
         }
         return $res;
     }
-
 
 ?>

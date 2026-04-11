@@ -1,10 +1,13 @@
 <?php
     session_start();
-    include '../db/db_connect.php';
-    include '../db/db_connect.php';
-    require_once '../crud/user.crud.php';
-    require_once '../lib/login_utils.php';
-    require_once '../lib/user_utils.php';
+    error_reporting(E_ALL);
+    ini_set('display_errors', '1');
+    include __DIR__ . '/../db/db_connect.php';
+    include __DIR__ . '/../db/db_connect.php';
+    require_once __DIR__ . '/../crud/user.crud.php';
+    require_once __DIR__ . '/../lib/login_utils.php';
+    require_once __DIR__ . '/../lib/user_utils.php';
+    require_once __DIR__ . '/../lib/register_utils.php';
 ?>
 
 <?php
@@ -35,15 +38,20 @@
             $nom = $_POST['nom'];
             $prenom = $_POST['prenom'];
             $email = $_POST['email'];
-            $profile_pic = $_POST['profile_pic'];
             $password1 = $_POST['password1'];
             $password2 = $_POST['password2'];
+            $profile_pic = ""; // Valeur par défaut (vide)
+            if (isset($_FILES['profile_pic']) && $_FILES['profile_pic']['error'] === UPLOAD_ERR_OK) {
+                // L'utilisateur a uploadé une image !
+                // (Ici vous mettriez votre code pour déplacer le fichier avec move_uploaded_file)
+                $profile_pic = $_FILES['profile_pic']['name']; 
+            }
             if(!pwordOk($password1, $password2)){
                 header('Location: ./register.php?status=pwordNok');
             }else{
-                $res = addUser($conn, $email, $nom, $prenom, $password1, $profile_pic, null, null, null);
+                $res = addUser($conn, $email, $nom, $prenom, $password1, $profile_pic);
                 if(!$res){
-                    header('Location: ./register.php?status=bddErr');
+                    //header('Location: ./register.php?status=bddErr');
                 }else{
                     header('Location: ./login.php?status=success');
                 }

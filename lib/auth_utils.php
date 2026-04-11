@@ -1,9 +1,9 @@
 <?php
-    session_sart();
-    require_once('../crud/user.crud.php');
-    require_once('../db/db_connect.php');
+    require_once(__DIR__ . '/../crud/user.crud.php');
+    error_reporting(E_ALL);
+    ini_set('display_errors', '1');
 
-    function logout(){
+    function logout($conn){
         setUserInactive($conn, $_SESSION['id']);
         unset($_SESSION['time']);
         unset($_SESSION['id']);
@@ -22,6 +22,6 @@
         return $res;
     }
 
-
+    echo("<p>ok</p>");
 
 ?>

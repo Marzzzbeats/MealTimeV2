@@ -2,10 +2,10 @@
     session_start();
     error_reporting(E_ALL);
     ini_set('display_errors', '1');
-    include '../db/db_connect.php';
-    require_once('../crud/user.crud.php');
-    require_once '../lib/login_utils.php';
-    require_once '../lib/user_utils.php';
+    include __DIR__ . '/../db/db_connect.php';
+    require_once(__DIR__ . '/../crud/user.crud.php');
+    require_once __DIR__ . '/../lib/login_utils.php';
+    require_once __DIR__ . '/../lib/user_utils.php';
 ?>
 
 <?php

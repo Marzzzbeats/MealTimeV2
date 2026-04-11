@@ -17,7 +17,7 @@ function registerFormHtml(){
     nom.setAttribute('id', 'nom');
     total_nom.appendChild(text_nom);
     total_nom.appendChild(nom);
-    div_form.appendChild(total_nom);
+    form.appendChild(total_nom);
     //Prenom
     const total_prenom = document.createElement('div');
     const text_prenom = document.createTextNode('Prénom* : ');
@@ -28,7 +28,7 @@ function registerFormHtml(){
     prenom.setAttribute('id', 'prenom');
     total_prenom.appendChild(text_prenom);
     total_prenom.appendChild(prenom);
-    div_form.appendChild(total_prenom);
+    form.appendChild(total_prenom);
     //Email
     const total_email = document.createElement('div');
     const text_email = document.createTextNode('Email* : ');
@@ -40,7 +40,7 @@ function registerFormHtml(){
     email.setAttribute('id', 'email');
     total_email.appendChild(text_email);
     total_email.appendChild(email);
-    div_form.appendChild(total_email);
+    form.appendChild(total_email);
     //Photo de profil
     const total_profile_pic = document.createElement('div');
     const text_profile_pic = document.createTextNode('Photo de profil : ');
@@ -50,7 +50,7 @@ function registerFormHtml(){
     profile_pic.setAttribute('id', 'profile_pic');
     total_profile_pic.appendChild(text_profile_pic);
     total_profile_pic.appendChild(profile_pic);
-    div_form.appendChild(total_profile_pic);
+    form.appendChild(total_profile_pic);
     //Password
     const total_pword1 = document.createElement('div');
     const text_pword1 = document.createTextNode('Mot de passe* : ');
@@ -61,7 +61,7 @@ function registerFormHtml(){
     pword1.setAttribute('id', 'password1');
     total_pword1.appendChild(text_pword1);
     total_pword1.appendChild(pword1);
-    div_form.appendChild(total_pword1);
+    form.appendChild(total_pword1);
     //Password confirmation
     const total_pword2 = document.createElement('div');
     const text_pword2 = document.createTextNode('Confirmation du mot de passe* : ');
@@ -72,7 +72,7 @@ function registerFormHtml(){
     pword2.setAttribute('id', 'password1');
     total_pword2.appendChild(text_pword2);
     total_pword2.appendChild(pword2);
-    div_form.appendChild(total_pword2);
+    form.appendChild(total_pword2);
     //CGU
     const total_cgu = document.createElement('div');
     const text_cgu = document.createTextNode('Accepter les ');
@@ -92,7 +92,7 @@ function registerFormHtml(){
     total_cgu.appendChild(lien_cgu);
     total_cgu.appendChild(text2);
     total_cgu.appendChild(cgu);
-    div_form.appendChild(total_cgu); 
+    form.appendChild(total_cgu); 
     //Action
     const action = document.createElement('input');
     action.setAttribute('type', 'hidden');
@@ -105,7 +105,8 @@ function registerFormHtml(){
     submit_btn.setAttribute('type', 'submit');
     const text3 = document.createTextNode("S'inscrire");
     submit_btn.appendChild(text3);
-    div_form.appendChild(submit_btn);
+    form.appendChild(submit_btn);
+    div_form.appendChild(form);
 }
 
 window.onload = registerFormHtml();

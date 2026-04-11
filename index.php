@@ -1,8 +1,9 @@
 <?php
     session_start();
-    include './db/db_connect.php';
-    include './lib/user_utils.php';
-    include './lib/auth_utils.php';
+    error_reporting(E_ALL);
+    ini_set('display_errors', '1');
+    include __DIR__ . '/db/db_connect.php';
+    include __DIR__ . '/lib/auth_utils.php';
 ?>
 
 <?php
@@ -10,8 +11,8 @@
     if(isset($_GET['action'])){
         $action = $_GET['action'];
         if($action == 'disconnect'){
-            logout();
-            header('Loctation: ./index.php');
+            logout($conn);
+            header('Location: ./index.php');
         }
     }
 
