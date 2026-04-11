@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', async ()=>{
     try{
-        const res = await fetch('../../lib/auth_check.php');
+        const res = await fetch('./lib/auth_check.php');
         if(res.ok){
             let data = await res.json();
             const login = document.querySelector('#login');
@@ -8,14 +8,14 @@ document.addEventListener('DOMContentLoaded', async ()=>{
             const logout = document.querySelector('#logout');
             const user = data.user;
             if(data.connected == true && data.user != null){
-                const hello = document.createTextNode(`Bonjour ${user.nom}`);
+                const hello = document.createTextNode(`Bonjour ${data.user.prenom}`);
                 login.classList.add("hidden");
                 register.classList.add("hidden");
                 logout.classList.remove("hidden");
-                document.appendChild(hello);
+                document.body.appendChild(hello);
             }
         }
     }catch(err){
-        console.error(err.message());
+        console.error(err.message);
     }
 })

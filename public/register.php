@@ -51,7 +51,7 @@
             }else{
                 $res = addUser($conn, $email, $nom, $prenom, $password1, $profile_pic);
                 if(!$res){
-                    //header('Location: ./register.php?status=bddErr');
+                    header('Location: ./register.php?status=bddErr');
                 }else{
                     header('Location: ./login.php?status=success');
                 }

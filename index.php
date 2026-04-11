@@ -44,7 +44,7 @@
     </ul>
 </body>
 </html>
-<script src="./public/js/scrpit_index.js"></script>
+<script src="./public/js/script_index.js"></script>
 <link rel="stylesheet" href="./public/css/style.css"/>
 <?php
     include './db/db_disconnect.php';

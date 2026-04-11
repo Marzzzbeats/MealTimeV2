@@ -40,7 +40,7 @@
             $action=$_POST['action'];
             if($action == 'login'){
                 $email = $_POST['email'];
-                $password = $_POST['password'];
+                $password = trim($_POST['password']);
                 $is_user = isUser($conn, $email, $password);
                 if($is_user){
                     $user = getUserByEmail($conn, $email);
@@ -51,7 +51,7 @@
                     $_SESSION['role']=$role;
                     $res=setUserActive($conn, $id);
                     if($res){
-                        header("Location: index.php?status=loginSuccess");
+                        header("Location: ../index.php?status=loginSuccess");
                     }else{
                         header("Location: login.php?status=bddErr");
                     }

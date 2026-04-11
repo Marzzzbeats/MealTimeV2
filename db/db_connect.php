@@ -4,5 +4,4 @@ if(!$conn){
     echo("Err de conneexion");
 }
 mysqli_set_charset($conn, "utf8");
-echo('Bdd bien connectée')
 ?>
