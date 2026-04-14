@@ -28,6 +28,10 @@
     
     <div id="profil">
         <img src="images/photodeprofil.jpg" alt="pdp">
+        <a href="./public/login.php" id="login">Se connecter</a>
+        <a href="./public/register.php" id="register">S'inscrire</a>
+        <a href="index.php?action=disconnect" id="logout" class="hidden">Se déconnecter</a>
+    </div>
     </div>
 
     <div id="logo">
