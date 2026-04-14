@@ -45,6 +45,9 @@
     
     <div id="profil">
         <img src="images/Black-Screen.jpg" alt="blackscreen">
+        <a href="./public/login.php" id="login">Se connecter</a>
+        <a href="./public/register.php" id="register">S'inscrire</a>
+        <a href="index.php?action=disconnect" id="logout" class="hidden">Se déconnecter</a>
     </div>
 
     <!-- <div class="logo">
