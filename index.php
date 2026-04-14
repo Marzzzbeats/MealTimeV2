@@ -26,9 +26,9 @@
             */
     ?>
     
-    <!-- <div id="profil">
-        <a href="profil.php"><img src="images/Black-Screen.jpg" alt="blackscreen"></a>
-    </div> -->
+    <div id="profil">
+        <img src="images/Black-Screen.jpg" alt="blackscreen">
+    </div>
 
     <!-- <div class="logo">
         <img src="" alt="">
