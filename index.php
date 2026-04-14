@@ -26,30 +26,31 @@
             */
     ?>
     
-    <!-- <div id="profil">
-        <a href="profil.php"><img src="images/Black-Screen.jpg" alt="blackscreen"></a>
-    </div> -->
+    <div id="profil">
+        <img src="images/photodeprofil.jpg" alt="pdp">
+    </div>
 
-    <!-- <div class="logo">
-        <img src="" alt="">
-    </div> -->
+    <div id="logo">
+        <img src="images/Black-Screen.jpg" alt="logo">
+    </div>
 
-    <form action="">
+    <div id="header">
         <div id="SearchBar">
             <input type="text" placeholder="Search..">
             <input type="submit" value="Search">
         </div>
-    </form>
+    </div>
 
-    <nav>
+    <div id="container">
+
+    </div>
         <ul>
             <li><a href="./profil.php">Profil</a></li>
             <li><a href="./favoris.php">Favoris</a></li>
-            <li><a href="./index.php">Accueil</a></li>
+            <li class="selected"><a href="./index.php">Accueil</a></li>
             <li><a href="./semaine.php">Semaine</a></li>
             <li><a href="./tickets.php">Tickets</a></li>
         </ul>
-    </nav>
 </body>
 </html>
 <?php

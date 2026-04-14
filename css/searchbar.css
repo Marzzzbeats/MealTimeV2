@@ -3,12 +3,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 10vw;
-    margin-left: 35vw;
-    padding: 10px 25px;
+    height: 6vh;
     width: 30vw;
+    padding: 0 1vw;  
     background-color: white;
-    border-radius: 5px;
+    border-radius: 1vh;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
@@ -16,8 +15,7 @@
 #SearchBar input[type="text"] {
     border: none;
     outline: none;
-    padding: 10px;
-    font-size: 16px;
+    font-size: 1rem;
     width: 25vw;
 }
 
@@ -25,10 +23,11 @@
     background: black;
     border: none;
     color: white;
-    padding: 10px 15px;
-    border-radius: 20px;
+    height: 3.5vh;
+    width: 4.5vw;
+    border-radius: 10px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 1rem;
     transition: background 0.3s;
 }
 
