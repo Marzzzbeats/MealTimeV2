@@ -24,6 +24,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/searchbar.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/roots.css">
     <title>MealTime</title>
 </head>
 <body>
@@ -37,11 +42,31 @@
         status=userErr5 : Impossible de modifier le user avec l'id $id
         */
     ?>
-    <ul>
-        <li><a href="./public/login.php" id="login">Se connecter</a></li>
-        <li><a href="./public/register.php" id="register">S'inscrire</a></li>
-        <li><button id="logout" class="hidden"><a href="./index.php?action=disconnect">Se déconnecter</a></button></li>
-    </ul>
+    
+    <div id="profil">
+        <img src="images/Black-Screen.jpg" alt="blackscreen">
+    </div>
+
+    <!-- <div class="logo">
+        <img src="" alt="">
+    </div> -->
+
+    <form action="">
+        <div id="SearchBar">
+            <input type="text" placeholder="Search..">
+            <input type="submit" value="Search">
+        </div>
+    </form>
+
+    <nav>
+        <ul>
+            <li><a href="./profil.php">Profil</a></li>
+            <li><a href="./favoris.php">Favoris</a></li>
+            <li><a href="./index.php">Accueil</a></li>
+            <li><a href="./semaine.php">Semaine</a></li>
+            <li><a href="./tickets.php">Tickets</a></li>
+        </ul>
+    </nav>
 </body>
 </html>
 <script src="./public/js/script_index.js"></script>
