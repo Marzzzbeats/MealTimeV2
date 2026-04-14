@@ -1,5 +1,23 @@
 <?php
-    include './db/db_connect';
+    // include './db/db_connect';
+?>
+
+<?php
+    // session_start();
+    // error_reporting(E_ALL);
+    // ini_set('display_errors', '1');
+?>
+
+<?php
+
+    // if(isset($_GET['action'])){
+    //     $action = $_GET['action'];
+    //     if($action == 'disconnect'){
+    //         logout($conn);
+    //         header('Location: ./index.php');
+    //     }
+    // }
+
 ?>
 
 <!DOCTYPE html>
@@ -28,9 +46,9 @@
     
     <div id="profil">
         <img src="images/photodeprofil.jpg" alt="pdp">
-        <a href="./public/login.php" id="login">Se connecter</a>
-        <a href="./public/register.php" id="register">S'inscrire</a>
-        <a href="index.php?action=disconnect" id="logout" class="hidden">Se déconnecter</a>
+        <a href="./public/login.php" id="login" class="hidden">Se connecter</a>
+        <a href="./public/register.php" id="register" class="hidden">S'inscrire</a>
+        <a href="index.php?action=disconnect" id="logout"><img src="images/logout.png" alt="logout"></a>
     </div>
     </div>
 
