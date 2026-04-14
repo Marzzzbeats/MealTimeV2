@@ -61,7 +61,7 @@ if(isset($_POST["action"]) && isset($_POST["id"])){
 	$rang=$_POST["rang"] ;
 			
 	if($action=="update"){
-		/* traitement du formulaire d'ajout */
+
 		update_etudiant($conn, $id, $nom, $prenom, $pays, $rang); 	
 
 	} elseif($action=="create"){
@@ -72,7 +72,25 @@ if(isset($_POST["action"]) && isset($_POST["id"])){
 
 ?>
 
-<!-- tableau de gestion des etudiants -->
+<h2>Ajouter une recette (test)</h2>
+<form method="POST">
+
+    Owner: <input type="number" name="owner" value="1"><br><br>
+    Image: <input type="text" name="image"><br><br>
+    Saison: <input type="text" name="saison" value="printemps"><br><br>
+    Price: <input type="number" name="price_ind" value="4"><br><br>
+    Health: <input type="number" name="health_ind" value="5"><br><br>
+    Titre: <input type="text" name="titre"><br><br>
+    Description: <input type="text" name="description"><br><br>
+    Upvote: <input type="number" name="upvote" value="5"><br><br>
+    Ingredients: <input type="text" name="ingredients" value="salade"><br><br>
+    Quantité: <input type="text" name="quantite" value="4"><br><br>
+
+    <input type="submit" name="add_recette" value="Ajouter">
+
+</form>
+
+
 <?php
 $etudiants=list_etudiant($conn) ;
 $html=html_table_etudiant($etudiants);
@@ -82,8 +100,6 @@ echo($html) ;
 include "db_disconnect.php";
 ?>
 
-<!-- lien d'ajout d'un etudiant -->
-<a href="../index.php">RETOUR</a>
 
 </body>
 </html>
