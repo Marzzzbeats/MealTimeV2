@@ -1,11 +1,9 @@
 <?php
-/**
- * Gestion des etudiant
- */
+require_once('../lib/user_utils.php');
 $debeug=True ; 
 
-function addRecettes($conn, $owner, $image, $saison, $price_ind, $health_ind, $titre, $description, $upvote, $ingredients,  $quantite){
-	$sql="INSERT INTO recettes (`owner`, `image`, `saison`, `price_ind`, `health_ind`, `titre`, `description`, `upvote`, `ingredients`, `quantite` ) VALUES ( $owner, '$image', '$saison', $price_ind, $health_ind, '$titre', '$description', $upvote, '$ingredients', '$quantite')" ; 
+function addRecettes($conn, $owner, $image, $saison, $price_ind, $health_ind, $titre, $description){
+	$sql="INSERT INTO recettes (`owner`, `image`, `saison`, `price_ind`, `health_ind`, `titre`, `description`) VALUES ( $owner, '$image', '$saison', $price_ind, $health_ind, '$titre', '$description')" ; 
 	global $debeug;
 	if($debeug){
         echo($sql); 
@@ -16,39 +14,37 @@ function addRecettes($conn, $owner, $image, $saison, $price_ind, $health_ind, $t
 }
 
 
-function updateRecettes($conn, $owner, $image, $saison, $price_ind, $health_ind, $titre, $description, $upvote, $ingredients,  $quantite){
-    $id = "SELECT id FROM `recettes` WHERE titre = '$titre'";
-    $sql="UPDATE `recettes` SET `owner`='$owner',`image`='$image', `saison`='$saison', `price_ind`='$price_ind', `health_ind`='$health_ind', `titre`='$titre', `description`='$description', `ingredients`='$ingredients', `quantite`='$quantite'  WHERE id = $id"; 
+function updateRecettes($conn, $id, $image, $saison, $price_ind, $health_ind, $titre, $description){
+    $sql="UPDATE `recettes` SET `image`='$image', `saison`='$saison', `price_ind`='$price_ind', `health_ind`='$health_ind', `titre`='$titre', `description`='$description' WHERE id = $id"; 
 	global $debeug ;
 	if($debeug) echo $sql ; 
 	$res=mysqli_query($conn, $sql) ; 
 	return $res ; 
 }
 
-function delete_etudiant($conn, $id){
-	$sql="DELETE FROM `joueur` WHERE id=$id" ; 
-	global $debeug ;
-	if($debeug) echo $sql ; 
-	$res=mysqli_query($conn, $sql) ; 
-	return $res ;
+function deleteRecette($conn, $id){
+	global $debeug
+	$sql = "DELETE FROM recettes WHERE id=$id";
+	$res = mysqli_query($conn, $sql);
+	if(!$res && $debeug){
+		echo("Erreur de suppression");
+	}
+	return $res;
 }
 
 
-function select_etudiant($conn, $id){
-	$sql="SELECT * FROM `joueur` WHERE id=$id" ; 
-	global $debeug ;
-	if($debeug) echo $sql ; 
-	$res=mysqli_query($conn, $sql) ; 
-	$tab=rs_to_tab($res) ;
-	return $tab[0] ;
+function getRecettes($conn){
+	$sql = "SELECT * FROM recettes JOIN relation_recette_ingredient ON recettes.id = relation_recette_ingredient.id_recettes JOIN ingredients ON relation_recette_ingredient.id_ingredient = ingredients.id";
+	$res = mysqli_query($conn, $sql);
+	$tab = rsToAssoc($res);
+	return $tab;
 }
 
-function list_etudiant($conn){
-	$sql="SELECT * FROM `joueur`"; 
-	global $debeug ;
-	if($debeug) echo $sql ; 
-	$res=mysqli_query($conn, $sql) ; 
-	return rs_to_tab($res) ;
+function getRecetteById($conn, $id){
+	$sql = "SELECT * FROM recettes JOIN relation_recette_ingredient ON recettes.id = relation_recette_ingredient.id_recettes JOIN ingredients ON relation_recette_ingredient.id_ingredient = ingredients.id WHERE recettes.id = $id";
+	$res = mysqli_query($conn, $sql);
+	$tab = rsToAssoc($res);
+	return $tab[0];
 }
 
 ?>
