@@ -2,6 +2,7 @@
     require_once(__DIR__ . '/../db/db_connect.php');
     require_once(__DIR__ . '/../crud/recettes.crud.php');
     require_once(__DIR__ . '/../api/api_recettes.php');
+    require_once(__DIR__ . '/../views/create_view.php');
 ?>
 
 <!DOCTYPE html>
@@ -35,6 +36,7 @@
 
 </body>
 </html>
+<script src='./js/fav_recettes.js'></script>
 <?php
     require_once(__DIR__ . '/../db/db_disconnect');
 ?>
