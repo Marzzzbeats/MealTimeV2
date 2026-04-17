@@ -1,5 +1,5 @@
 <?php
-require_once('../lib/user_utils.php');
+require_once(__DIR__ . '/../lib/user_utils.php');
 $debeug=True ; 
 
 function addRecettes($conn, $owner, $image, $saison, $price_ind, $health_ind, $titre, $description){
@@ -45,6 +45,13 @@ function getRecetteById($conn, $id){
 	$res = mysqli_query($conn, $sql);
 	$tab = rsToAssoc($res);
 	return $tab[0];
+}
+
+function getRecetteByOwner($conn, $id_owner){
+	$sql = "SELECT * FROM recettes JOIN relation_recette_ingredient ON recettes.id = relation_recette_ingredient.id_recettes JOIN ingredients ON relation_recette_ingredient.id_ingredient = ingredients.id WHERE recettes.owner = $id_owner";
+	$res = mysqli_query($conn, $sql);
+	$tab = rsToAssoc($res);
+	return $tab;
 }
 
 ?>
