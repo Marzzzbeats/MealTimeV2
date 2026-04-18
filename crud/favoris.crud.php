@@ -15,4 +15,12 @@
         $res = mysqli_query($conn, $sql);
         return $res;
     }
+
+    function addRecetteFav($conn, $user_id, $recette_id){
+        //Ajoute une recette en favoris
+        $sql = "INSERT INTO favoris (`user_id`, `recette_id`) VALUES ('$user_id', '$recette_id')";
+        echo($sql);
+        $res = mysqli_query($conn, $sql);
+        return $res;
+    }
 ?>

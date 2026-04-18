@@ -1,14 +1,17 @@
-try{
+async function init(){
+    try{
         const res = await fetch('../lib/auth_check.php');
         if(res.ok){
             let data = await res.json();
             const user = data.user;
             if(!data.connected){
-                window.location.href='../index.html';
+                window.location.href='./login.php?status=disconnected';
             }
         }
-}catch(err){
+    }catch(err){
         console.error(err.message);
+    }
+    return user;
 }
 
 async function getRecettes(user){
@@ -54,4 +57,18 @@ async function getRecettes(user){
 // }
 //A finir plus tard 
 
+const form = document.querySelector(".popup_form");
+const btn = document.querySelector("#create");
+const close = document.querySelector("#close");
+const screen = document.querySelector(".screen");
+btn.addEventListener('click', ()=>{
+    form.classList.remove('hidden');
+    screen.classList.remove('hidden');
+})
 
+close.addEventListener('click', ()=>{
+    form.classList.add('hidden');
+    screen.classList.add('hidden');
+})
+
+window.onload = init();

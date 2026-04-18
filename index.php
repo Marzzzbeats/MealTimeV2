@@ -64,7 +64,7 @@
     <nav>
         <ul>
             <li><a href="./profil.php">Profil</a></li>
-            <li><a href="./favoris.php">Favoris</a></li>
+            <li><a href="./public/recettes.php">Favoris</a></li>
             <li><a href="./index.php">Accueil</a></li>
             <li><a href="./semaine.php">Semaine</a></li>
             <li><a href="./tickets.php">Tickets</a></li>
