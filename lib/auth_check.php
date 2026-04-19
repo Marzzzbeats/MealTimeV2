@@ -1,7 +1,7 @@
 <?php
     session_start();
-    require_once('./user.crud.php');
-    require_once('./db/db_connect.php');
+    require_once(__DIR__ . '/../crud/user.crud.php');
+    require_once(__DIR__ . '/../db/db_connect.php');
 
     $res = [
         "connected" => false,

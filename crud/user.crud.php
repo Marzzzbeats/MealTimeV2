@@ -1,6 +1,6 @@
 <?php
-    require_once('./user_utils.php');
-    require_once('./auth_utils.php');
+    require_once(__DIR__ . '/../lib/user_utils.php');
+    require_once(__DIR__ . '/../lib/auth_utils.php');
 
     function getUsers($conn){
         //Récupère tous les utilisateurs
