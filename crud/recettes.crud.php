@@ -3,7 +3,7 @@
 	ini_set('display_errors', '1');
 	require_once(__DIR__ . '/../lib/user_utils.php');
 
-	$debeug=True ; 
+	$debeug=false; 
 
 	function addRecette($conn, $owner, $image, $saison, $price_ind, $health_ind, $titre, $description){
 		$sql="INSERT INTO recettes (`owner`, `image`, `saison`, `price_ind`, `health_ind`, `titre`, `description`) VALUES ( $owner, '$image', '$saison', $price_ind, $health_ind, '$titre', '$description')" ; 
@@ -12,7 +12,6 @@
 			echo($sql); 
 		}
 		$res=mysqli_query($conn, $sql);
-		echo($res);
 		return $res ; 
 	}
 
@@ -52,7 +51,6 @@
 
 	function getRecettesByOwner($conn, $id_owner){
 		$sql = "SELECT * FROM recettes JOIN relation_recette_ingredient ON recettes.id = relation_recette_ingredient.id_recette JOIN ingredients ON relation_recette_ingredient.id_ingredient = ingredients.id WHERE recettes.owner = $id_owner";
-		echo($sql);
 		$res = mysqli_query($conn, $sql);
 		$tab = rsToAssoc($res);
 		return $tab;

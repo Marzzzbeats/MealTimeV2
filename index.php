@@ -44,7 +44,7 @@
         <img src="" alt="">
     </div> -->
 
-    <form action="">
+    <form action="index.php" method="POST">
         <div id="SearchBar">
             <input type="text" placeholder="Search..">
             <input type="submit" value="Search">
