@@ -14,12 +14,14 @@
         $status = $_GET['status'];
         if($status == 'bddErr'){
             echo("<div class='alert'><p>Erreur dans la base de donnée, veuillez réeessayer ulterieurement</p></div>");
-        }else if($status == 'userNull'){
+        }elseif($status == 'userNull'){
             echo("<div class='alert'><p>Cet utilisateur n'existe pas</p></div>");
-        }else if($status == 'pwdFalse'){
+        }elseif($status == 'pwdFalse'){
             echo("<div class='alert'><p>Mauvais mot de passe</p></div>");
-        }else if($status == 'success'){
+        }elseif($status == 'success'){
             echo('<div class="alert"><p>Utilisateur enregistré avec succès. Connectez vous dès à présent</p></div>');
+        }elseif($status == 'disconnected'){
+            echo('<div class="alert"><p>Veuillez vous connecter pour accèder à vos pages personnelles</p></div>');   
         }
     }
 ?>
@@ -70,3 +72,4 @@
 ?>
 <script src="./js/login.js"></script>
 <link rel="stylesheet" href="./css/style.css">
+<link rel="stylesheet" href="./css/recettes.css">
