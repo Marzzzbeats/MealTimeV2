@@ -13,15 +13,20 @@
         return $str_abo;
     }
 
-    function strAboToList($str_abo){
-        $list_abo=array();
-        $str="";
-        for($i; $i<strlen($str_abo); $i++){
-            if($str_abo[$i] != " "){
-                $str.=$str_abo[$i];
+    function strToList($str){
+        // Transforme un str de type "Salade, Tomates, oignons jaunes" en Array([0]=>Salade [1]=>Tomate [2]=>Oignons jaunes )
+        $list=array();
+        $str_res="";
+        for($i=0; $i<strlen($str); $i++){
+            if($str[$i] != "," && $i != strlen($str)-1){
+                $str_res.=$str[$i];
             }else{
-                $list_abo[] = $str;
-                $str="";
+                if($i == strlen($str)-1){
+                    $str_res.=$str[$i];
+                }
+                $list_abo[] = $str_res;
+                $str_res="";
+                $i++; //Evite les espaces après les virgules
             }
         }
         return $list_abo;

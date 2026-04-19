@@ -1,7 +1,7 @@
 <?php
-	require_once(__DIR__ . '/../lib/user_utils.php');
 	error_reporting(E_ALL);
 	ini_set('display_errors', '1');
+	require_once(__DIR__ . '/../lib/user_utils.php');
 
 	$debeug=True ; 
 
@@ -37,21 +37,22 @@
 
 
 	function getRecettes($conn){
-		$sql = "SELECT * FROM recettes JOIN relation_recette_ingredient ON recettes.id = relation_recette_ingredient.id_recettes JOIN ingredients ON relation_recette_ingredient.id_ingredient = ingredients.id";
+		$sql = "SELECT * FROM recettes JOIN relation_recette_ingredient ON recettes.id = relation_recette_ingredient.id_recette JOIN ingredients ON relation_recette_ingredient.id_ingredient = ingredients.id";
 		$res = mysqli_query($conn, $sql);
 		$tab = rsToAssoc($res);
 		return $tab;
 	}
 
 	function getRecetteById($conn, $id){
-		$sql = "SELECT * FROM recettes JOIN relation_recette_ingredient ON recettes.id = relation_recette_ingredient.id_recettes JOIN ingredients ON relation_recette_ingredient.id_ingredient = ingredients.id WHERE recettes.id = $id";
+		$sql = "SELECT * FROM recettes JOIN relation_recette_ingredient ON recettes.id = relation_recette_ingredient.id_recette JOIN ingredient ON relation_recette_ingredient.id_ingredient = ingredients.id WHERE recettes.id = $id";
 		$res = mysqli_query($conn, $sql);
 		$tab = rsToAssoc($res);
 		return $tab[0];
 	}
 
-	function getRecetteByOwner($conn, $id_owner){
-		$sql = "SELECT * FROM recettes JOIN relation_recette_ingredient ON recettes.id = relation_recette_ingredient.id_recettes JOIN ingredients ON relation_recette_ingredient.id_ingredient = ingredients.id WHERE recettes.owner = $id_owner";
+	function getRecettesByOwner($conn, $id_owner){
+		$sql = "SELECT * FROM recettes JOIN relation_recette_ingredient ON recettes.id = relation_recette_ingredient.id_recette JOIN ingredients ON relation_recette_ingredient.id_ingredient = ingredients.id WHERE recettes.owner = $id_owner";
+		echo($sql);
 		$res = mysqli_query($conn, $sql);
 		$tab = rsToAssoc($res);
 		return $tab;
@@ -62,6 +63,13 @@
 		$res = mysqli_query($conn, $sql);
 		$tab = rsToAssoc($res);
 		return $tab[0];
+	}
+
+	function getImageRecette($conn, $id){
+		$sql = "SELECT image FROM recettes WHERE id=$id";
+		$res = mysqli_query($conn, $sql);
+		$tab = rsToAssoc($res);
+		return $tab[0]; 
 	}
 
 ?>

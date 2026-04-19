@@ -1,17 +1,17 @@
 async function init(){
     try{
-        const res = await fetch('../lib/auth_check.php');
+        const res = await fetch('../../lib/auth_check.php');
         if(res.ok){
             let data = await res.json();
             const user = data.user;
-            if(!data.connected){
+            if(!data.active){
                 window.location.href='./login.php?status=disconnected';
             }
+            return user;
         }
     }catch(err){
         console.error(err.message);
     }
-    return user;
 }
 
 async function getRecettes(user){
@@ -19,7 +19,7 @@ async function getRecettes(user){
     let res = array();
     //Récup des recettes favorites
     try{
-        const response1 = await fetch(`../api/api_recettes.php?action=fav&user_id=${user_id}`);
+        const response1 = await fetch(`../../api/api_recettes.php?action=fav&user_id=${user_id}`);
         const fav = await response1.json();
         res[0] = fav;
     }catch(err){
@@ -29,7 +29,7 @@ async function getRecettes(user){
     //Récup des recettes crées
 
     try{
-        const response2 = await fetch(`../api/api_recettes.php?action=created&user_id=${user_id}`);
+        const response2 = await fetch(`../../api/api_recettes.php?action=created&user_id=${user_id}`);
         const created  = await response2.json();
         res[1] = created;
     }catch(err2){
@@ -39,23 +39,26 @@ async function getRecettes(user){
     return res;
 }
 
-// async function afficheRecettes(user){
-//     const div_fav = document.querySelector('#fav');
-//     const div_created = document.querySelector('#created');
-//     div_fav.classList.add("recette_conteneur");
-//     const res = await getRecettes(user);
-//     const fav = res[0];
-//     const created = res[1];
-//     fav.forEach(recette => {
-//         let div = document.createElement('div');
-//         div.classList.add('recette');
-//         let img = document.createElement('img');
-//         if(recette.image != null){
-//             img.setAttribute('src', '');
-//         }
-//     })
-// }
-//A finir plus tard 
+async function afficheRecettes(user){
+    const div_fav = document.querySelector('#fav');
+    const div_created = document.querySelector('#created');
+    div_fav.classList.add("recette_conteneur");
+    const res = await getRecettes(user);
+    const fav = res[0];
+    const created = res[1];
+    fav.forEach(recette => {
+        let div = document.createElement('div');
+        div.classList.add('recette');
+        let img = document.createElement('img');
+        let recette_id = recette.id;
+        img.setAttribute('src', `../../api/api_image_recette.php?id=${recette_id}`);
+        img.setAttribute('alt', `image_recette_${recette_id}`);
+        div.appendChild(img);
+        let texte_titre = recette.titre;
+        let titre = document.createTextNode()
+    })
+} 
+
 
 const form = document.querySelector(".popup_form");
 const btn = document.querySelector("#create");
@@ -72,3 +75,6 @@ close.addEventListener('click', ()=>{
 })
 
 window.onload = init();
+user = init()
+
+document.addEventListener('DOMContentLoaded', afficheRecettes(user))
