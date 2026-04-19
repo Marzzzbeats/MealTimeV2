@@ -53,17 +53,23 @@
             $action=$_POST['action'];
             if($action == "create"){
                 $owner = $_SESSION['id'];
-                $image=$_POST['image'];
+                if(isset($_FILES['image']) && $_FILES['image']['error'] === 0){
+                    $tmp = $_FILES['image']['tmp_name']; //Nom temporaire du fichier coté serveur
+                    $data = file_get_contents($tmp);
+                }
+                if(isset($data)){
+                    $image = $data;
+                }else{
+                    $image = ""; 
+                }
                 $saison = $_POST['saison'];
                 $price_ind = $_POST['price_ind'];
                 $health_ind = $_POST['health_ind'];
                 $titre = $_POST['titre'];
                 $description = $_POST['description'];
                 addRecette($conn, $owner, $image, $saison, $price_ind, $health_ind, $titre, $description);
-                echo('Lise');
                 $id_recette = getIdDerniereRecette($conn, $owner);
                 addRecetteFav($conn, $owner, $id_recette['id']);
-                echo('ok2');
                 header('Location: ./recettes.php?status=success');
             }
         }

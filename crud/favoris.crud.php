@@ -1,9 +1,12 @@
 <?php
+    error_reporting(E_ALL);
+    ini_set('display_errors', '1');
     require_once(__DIR__ . '/../lib/user_utils.php');
 
     function getRecettesFav($conn, $user_id){
         //Récupère les recettes favorites du user entré en paramètres
-        $sql = "SELECT * FROM favoris JOIN recettes ON favoris.recette_id = recettes.id JOIN relation_recette_ingredient ON recettes.id = relation_recette_ingredient.id_recettes JOIN ingredients ON relation_recette_ingredient.id_ingredient = ingredients.id WHERE favoris.user_id = $user_id";
+        $sql = "SELECT * FROM favoris JOIN recettes ON favoris.recette_id = recettes.id JOIN relation_recette_ingredient ON recettes.id = relation_recette_ingredient.id_recette JOIN ingredients ON relation_recette_ingredient.id_ingredient = ingredients.id WHERE favoris.user_id = $user_id";
+        echo($sql);
         $res = mysqli_query($conn, $sql);
         $tab = rsToAssoc($res);
         return $tab;
