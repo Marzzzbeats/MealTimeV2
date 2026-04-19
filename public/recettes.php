@@ -6,6 +6,7 @@
     require_once(__DIR__ . '/../crud/recettes.crud.php');
     require_once(__DIR__ . '/../views/create_view.php');
     require_once(__DIR__ . '/../crud/favoris.crud.php');
+    require_once(__DIR__ . '/../crud/ingredients.crud.php');
 ?>
 
 <!DOCTYPE html>
@@ -67,9 +68,12 @@
                 $health_ind = $_POST['health_ind'];
                 $titre = $_POST['titre'];
                 $description = $_POST['description'];
+                $ing = $_POST['ingredients'];
+                $qte = $_POST['quantite'];
                 addRecette($conn, $owner, $image, $saison, $price_ind, $health_ind, $titre, $description);
                 $id_recette = getIdDerniereRecette($conn, $owner);
                 addRecetteFav($conn, $owner, $id_recette['id']);
+                addIngredientRecette($conn, $id_recette[$id], $ing, $qte);
                 header('Location: ./recettes.php?status=success');
             }
         }

@@ -4,7 +4,7 @@ async function init(){
         if(res.ok){
             let data = await res.json();
             const user = data.user;
-            if(!data.connected){
+            if(!data.active){
                 window.location.href='./login.php?status=disconnected';
             }
             return user;

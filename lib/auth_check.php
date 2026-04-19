@@ -12,7 +12,7 @@
     if(isset($_SESSION['id'])){
         $id = $_SESSION['id'];
         $user = getUserById($conn, $id);
-        if(!tokenExpired()){
+        if(!tokenExpired($conn)){
             if($user){
                 $res["connected"] = true;
                 $res['user'] = $user[0];

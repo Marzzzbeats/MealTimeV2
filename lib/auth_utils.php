@@ -10,13 +10,13 @@
         unset($_SESSION['role']);
     }
 
-    function tokenExpired(){
+    function tokenExpired($conn){
         //Vérifie si la connexion a dépassé les 30 minutes
         $res = false;
         if(isset($_SESSION['time'])){
             if(time()-$_SESSION['time'] > 1800){
                 $res = true;
-                logout();
+                logout($conn);
             }
         }
         return $res;
