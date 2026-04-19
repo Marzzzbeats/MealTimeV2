@@ -1,7 +1,7 @@
 ## MEALTIME
 Groupe 9
 
-MARZIN Simon
+MARZI Simon
 MANGALA Louciane
 PERIVOLAS Baptiste
 LANCEROTTO Maxime
