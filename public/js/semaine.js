@@ -33,14 +33,32 @@ async function getRecettes(user){
 
 
 
+
 window.onload = init();
 user = init();
 console.log(user);
+
+function recettes_random(data){ // me permet de mélanger les recettes entre elles.
+    let recettes = data;
+    for (let i = recettes.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1));
+        [recettes[i], recettes[j]] = [recettes[j], recettes[i]];
+    }
+    return recettes
+}
+
+
+//const test = recettes_random(data);
+//console.log(test);
+console.log(data);
+
+
 
 
 
 window.onload = function() { // fait le tableau de la semaine
 
+    let indice = 0;
     const h1 = document.createElement("h1");
     const hello = document.createTextNode("MA SEMAINE");
     h1.appendChild(hello);
@@ -68,7 +86,12 @@ window.onload = function() { // fait le tableau de la semaine
         for (let j = 0; j < nb_jours; j++) {
             const td = document.createElement("td");
             if ((i === 1) || (i === 3)) {
-                jour = document.createTextNode("repa");
+                if (indice < data.length) {
+                    jour = document.createTextNode(data[indice].titre);
+                    indice++;
+                } else {
+                    jour = document.createTextNode('repa');
+                }
                 td.appendChild(jour);
                 td.classList.add("repa");
                 tr.appendChild(td);
@@ -83,3 +106,4 @@ window.onload = function() { // fait le tableau de la semaine
     div.appendChild(table);
     document.body.appendChild(div);
 }
+
