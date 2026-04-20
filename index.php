@@ -44,12 +44,25 @@
             */
     ?>
     
-    <div id="profil">
+    <div class="btn_log">
         <img src="images/photodeprofil.jpg" alt="pdp">
-        <a href="./public/login.php" id="login" class="hidden">Se connecter</a>
-        <a href="./public/register.php" id="register" class="hidden">S'inscrire</a>
-        <a href="index.php?action=disconnect" id="logout"><img src="images/logout.png" alt="logout"></a>
+        <button>Déconnexion</button>
+
+
+        <!-- <a href="index.php?action=disconnect" id="logout"></a> -->
+
+
     </div>
+    <!-- <div class="btn_log">
+        <button>Connexion</button>
+        <button>Inscription</button> -->
+
+
+        <!-- <a href="./public/login.php" id="login" class="hidden">Se connecter</a>
+        <a href="./public/register.php" id="register" class="hidden">S'inscrire</a> -->
+
+
+    <!-- </div> -->
     </div>
 
     <div id="logo">

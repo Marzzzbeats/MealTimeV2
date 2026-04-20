@@ -6,21 +6,40 @@ body{
 
 
 
-#profil{
+.btn_log{
     position: absolute;
-    top: 3vh;
-    left: 3vh;
-    width: 4vw;
-    height: 4vw;
-    border-radius: 50%;
+    top: 1vh;
+    left: 1vh;
+    width: 12vw;
+    height: 5vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: red;
 }
-#profil img{
+.btn_log img{
     width: 3vw;
     height: 3vw;
     border-radius: 50%;
 }
+.btn_log img:hover{
+    width: 3.2vw;
+    height: 3.2vw;
+    cursor: pointer;
+}
+.btn_log button{
+    width: 5vw;
+    height: 3vh;
+    border-radius: 10px;
+}
 
-#logout{
+.btn_log button:hover{
+    width: 5.2vw;
+    height: 3.2vh;
+    cursor: pointer;
+}
+
+/* #logout{
     position: absolute;
     top: 0vh;
     left: 7vh;
@@ -33,7 +52,7 @@ body{
     width: 2vw;
     height: 2vw;
     border-radius: 50%;
-}
+} */
 
 
 
@@ -55,7 +74,7 @@ body{
 #header{
     width: 100vw;
     height: 30vh;
-    background-color: rgb(255, 0, 0);
+    background-color: rgb(255, 255, 255);
     display: flex;
     align-items: flex-end;
     justify-content: center;
@@ -64,5 +83,5 @@ body{
 #container{
     width: 100vw;
     height: 70vh;
-    background-color: rgb(255, 217, 0);
+    background-color: rgb(255, 255, 255);
 }
