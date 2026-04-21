@@ -1,5 +1,5 @@
 <?php
-    include './db/db_connect';
+    include '../db/db_connect';
 ?>
 
 <!DOCTYPE html>
