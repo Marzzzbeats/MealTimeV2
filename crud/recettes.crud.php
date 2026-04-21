@@ -50,7 +50,7 @@
 	}
 
 	function getRecetteById($conn, $id){
-		$sql = "SELECT * FROM recettes JOIN relation_recette_ingredient ON recettes.id = relation_recette_ingredient.id_recette JOIN ingredient ON relation_recette_ingredient.id_ingredient = ingredients.id WHERE recettes.id = $id";
+		$sql = "SELECT * FROM recettes JOIN relation_recette_ingredient ON recettes.id = relation_recette_ingredient.id_recette JOIN ingredients ON relation_recette_ingredient.id_ingredient = ingredients.id WHERE recettes.id = $id";
 		$res = mysqli_query($conn, $sql);
 		$tab = rsToAssoc($res);
 		return $tab[0];
@@ -77,10 +77,22 @@
 		return $tab[0]; 
 	}
 
+/**
+ * Fonction auxiliaire pour transformer un rs en tableau
+ */
+function rs_to_tab($rs){
+	$tab=[] ; 
+	while($row=mysqli_fetch_assoc($rs)){
+		$tab[]=$row ;	
+	}
+	return $tab;
+}
+
+
+
+
+
 ?>
-
-
-
 
 
 
