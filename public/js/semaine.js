@@ -56,7 +56,9 @@ const test = recettes_random(data);
 
 
 
-window.onload = function() { // fait le tableau de la semaine
+window.onload = async function() { // fait le tableau de la semaine
+
+    await init();
 
     let indice = 0;
     const h1 = document.createElement("h1");
