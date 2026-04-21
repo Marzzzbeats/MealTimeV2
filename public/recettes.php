@@ -86,10 +86,19 @@
 
     <ul>
         <li><a href="./profil.php">Profil</a></li>
-        <li class="selected"><a href="./favoris.php">Favoris</a></li>
+        <li class="selected"><a href="./recettes.php">Favoris</a></li>
         <li><a href="../index.php">Accueil</a></li>
         <li><a href="./semaine.php">Semaine</a></li>
-        <li><a href="./tickets.php">Tickets</a></li>
+        <?php
+            if(isset($_SESSION['role'])){
+                $role = $_SESSION['role'];
+                if($role == 'admin'){
+                    echo('<li><a href="./ticketsSee.php" id="ticketsLink">Tickets</a></li>');
+                    }else{
+                    echo('<li><a href="./ticketsMake.php" id="ticketsLink">Tickets</a></li>');
+                }
+            }
+        ?>
     </ul>
 </body>
 </html>

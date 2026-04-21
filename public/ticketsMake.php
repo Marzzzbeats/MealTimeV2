@@ -27,10 +27,10 @@
     <div id="container"></div>
     <ul>
         <li><a href="./profil.php">Profil</a></li>
-        <li class="selected"><a href="./favoris.php">Favoris</a></li>
+        <li><a href="./recettes.php">Favoris</a></li>
         <li><a href="../index.php">Accueil</a></li>
         <li><a href="./semaine.php">Semaine</a></li>
-        <li><a href="./tickets.php">Tickets</a></li>
+        <li class="selected"><a href="./tickets.php">Tickets</a></li>
     </ul>
 </body>
 </html>

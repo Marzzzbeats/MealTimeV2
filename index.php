@@ -46,13 +46,13 @@
         <img id="pdp_img" src="./public/img/AvatarDef.png" alt="pdp">
         
         <div id="pdp_menu">
-            <!-- <div class="btn_log">
-                <a href="index.php?action=disconnect" id="logout" class="button">Déconnexion</a>
-            </div> -->
+            <div class="btn_log">
+                <a href="./index.php?action=disconnect" id="logout" class="button hidden">Déconnexion</a>
+            </div>
 
             <div class="btn_log">
-                <a href="./public/img/login.php" id="login" class="button">Connexion</a>
-                <a href="./public/img/register.php" id="register" class="button">S'inscrire</a>
+                <a href="./public/login.php" id="login" class="button">Connexion</a>
+                <a href="./public/register.php" id="register" class="button">S'inscrire</a>
             </div>
         </div>
     </div>
@@ -74,11 +74,20 @@
     </div>
     
     <ul>
-        <li><a href="./public/html/profil.php">Profil</a></li>
-        <li><a href="./public/html/recettes.php">Favoris</a></li>
-        <li><a href="./index.php">Accueil</a></li>
-        <li><a href="./public/html/semaine.php">Semaine</a></li>
-        <li><a href="./public/html/ticketsMake.php" id="ticketsLink">Tickets</a></li>
+        <li><a href="./public/profil.php">Profil</a></li>
+        <li><a href="./public/recettes.php">Favoris</a></li>
+        <li class="selected"><a href="./index.php">Accueil</a></li>
+        <li><a href="./public/semaine.php">Semaine</a></li>
+        <?php
+        if(isset($_SESSION['role'])){
+            $role = $_SESSION['role'];
+            if($role == 'admin'){
+                echo('<li><a href="./public/ticketsSee.php" id="ticketsLink">Tickets</a></li>');
+            }else{
+                echo('<li><a href="./public/ticketsMake.php" id="ticketsLink">Tickets</a></li>');
+            }
+        }
+        ?>
     </ul>
  
     <div id="notifs_div">

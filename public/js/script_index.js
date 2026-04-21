@@ -42,8 +42,6 @@ async function manage_session() {
                 register.classList.add("hidden");
                 logout.classList.remove("hidden");
                 document.body.appendChild(hello);
-
-                document.getElementById("ticketsLink").href = "./public/html/ticketsMake.php";
             }
         }
     }catch(err){
