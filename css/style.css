@@ -10,32 +10,44 @@ body{
     position: absolute;
     top: 1vh;
     left: 1vh;
-    width: 12vw;
+    width: 15vw;
     height: 5vw;
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
-    background-color: red;
+    justify-content: space-between;
+    /* background-color: red; */
 }
+
 .btn_log img{
     width: 3vw;
     height: 3vw;
+    margin-left: 2vh;
     border-radius: 50%;
+    transition: all 0.3s ease-out;
 }
+
 .btn_log img:hover{
     width: 3.2vw;
     height: 3.2vw;
     cursor: pointer;
 }
-.btn_log button{
-    width: 5vw;
-    height: 3vh;
+
+.btn_log .button{
+    width: 7vw;
+    height: 3.5vh;
+    margin: 2vh;
+    padding-top: 0.7vh;
+    text-align: center;
+    color: white;
+    background-color: black;
     border-radius: 10px;
+    transition: all 0.3s ease-out;
 }
 
-.btn_log button:hover{
-    width: 5.2vw;
-    height: 3.2vh;
+.btn_log .button:hover{
+    /* width: 7.2vw;
+    height: 3.2vh; */
+    background-color: gray;
     cursor: pointer;
 }
 
