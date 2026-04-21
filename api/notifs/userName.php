@@ -14,7 +14,13 @@
 <?php
 $id = $_GET["user_id"];
 $data = getUserById($conn, $id);
-$username = $data[0]['prenom'];
+if($id == 0){
+    $username = "Mealtime";
+}elseif($data == null){
+    $username = "Unknown";
+}else{
+    $username = $data[0]['prenom'];
+}
 echo($username);
 
 ?>

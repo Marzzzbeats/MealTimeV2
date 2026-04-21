@@ -1,7 +1,3 @@
-
-
-
-
 async function loadNotifs() {
     try {
         const response = await fetch('/~perivolas/mealtime/api/notifs/notifs.php');
@@ -20,7 +16,7 @@ async function getUserName(user_id) {
         const response = await fetch(`/~perivolas/mealtime/api/notifs/userName.php?user_id=${user_id}`);
         const data = await response.text();
     
-        console.log(data);
+        // console.log(data);
         return data;
         
     } catch (err) {
@@ -60,7 +56,7 @@ function myTextNode(text, classes=[], id=null){
 function update_notif_size(){
     const container = document.getElementById("notifs_display_div");
     let notifAmount = document.querySelectorAll(".notif_div").length;
-    let topValue = 11;
+    let topValue = 9;
     if (notifAmount >= 4){
         topValue += 4*11;
     }else if(notifAmount == 0){
@@ -99,6 +95,14 @@ function actionsNotifsManager(type, id_notif, num_notif){
                 console.error(err);
             }
             notif.remove();
+
+            const remaining = document.querySelectorAll(".notif_div").length;
+            const notifsBtn = document.getElementById("notifs_div");
+
+            if (remaining === 0) {
+                notifsBtn.classList.add("hidden");
+            }
+
             update_notif_size();
         }, 300);
     });
@@ -163,6 +167,14 @@ async function createNotif(notif, num){
     const data = await loadNotifs();
 
     const container = document.getElementById("notifs_display_div");
+    const notifsBtn = document.getElementById("notifs_div");
+
+    if (!data || data.length === 0) {
+        notifsBtn.classList.add("hidden");
+        return;
+    } else {
+        notifsBtn.classList.remove("hidden");
+    }
     
     for(let i=0; i<data.length; i++){
         const notifElement = await createNotif(data[i], i);
@@ -176,23 +188,24 @@ async function createNotif(notif, num){
 
 
 document.addEventListener("DOMContentLoaded", () => {
-    createNotifs();
-    
-    const notifsDiv = document.getElementById("notifs_div");
-    const notifsDislpayDiv = document.getElementById("notifs_display_div");
-    
-    notifsDislpayDiv.addEventListener("click", (event) => {
-        event.stopPropagation();
+    createNotifs().then(() => {
+        
+        const notifsDiv = document.getElementById("notifs_div");
+        const notifsDislpayDiv = document.getElementById("notifs_display_div");
+        
+        notifsDislpayDiv.addEventListener("click", (event) => {
+            event.stopPropagation();
+        });
+        notifsDiv.addEventListener("click", (event) => {
+            event.stopPropagation();
+            notifsDislpayDiv.classList.toggle("hidden");
+        });
+        document.addEventListener("click", () => {
+            notifsDislpayDiv.classList.add("hidden");
+        });
+        
+        getUserName(2);
+        
     });
-    notifsDiv.addEventListener("click", (event) => {
-        event.stopPropagation();
-        notifsDislpayDiv.classList.toggle("hidden");
-    });
-    document.addEventListener("click", () => {
-        notifsDislpayDiv.classList.add("hidden");
-    });
-
-    getUserName(2);
-    
 
 });

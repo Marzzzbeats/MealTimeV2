@@ -17,6 +17,7 @@
     outline: none;
     font-size: 1rem;
     width: 25vw;
+    height: 90%;
 }
 
 #SearchBar input[type="submit"] {

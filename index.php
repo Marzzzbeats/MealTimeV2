@@ -26,58 +26,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./public/css/style.css">
-    <link rel="stylesheet" href="./public/css/navbar.css">
-    <link rel="stylesheet" href="./public/css/searchbar.css">
-    <link rel="stylesheet" href="./public/css/reset.css">
-    <link rel="stylesheet" href="./public/css/roots.css">
-    <link rel="stylesheet" href="./public/css/boutonpdp.css">
+
+    <link rel="stylesheet" href="./public/css/reset.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="./public/css/roots.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="./public/css/style.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="./public/css/navbar.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="./public/css/searchbar.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="./public/css/notifs.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="./public/css/pdp.css?v=<?php echo time(); ?>">
+
     <title>MealTime</title>
+
+    <script src="./public/js/script_index.js?v=<?php echo time(); ?>" defer></script>
+    <script src="./public/js/notifs.js?v=<?php echo time(); ?>" defer></script>
 </head>
 <body>
-    
-    <div class="btn_log">
-        <img src="./public/img/AvatarDef.png" alt="pdp">
-        <a href="./index.php?action=disconnect" id="logout" class="button hidden">Déconnexion</a>
-        <a href="./public/login.php" id="login" class="button">Connexion</a>
-        <a href="./public/register.php" id="register" class="button">S'inscrire</a>
-    </div>
+       
+    <div id="pdp">
+        <img id="pdp_img" src="./public/img/AvatarDef.png" alt="pdp">
+        
+        <div id="pdp_menu">
+            <!-- <div class="btn_log">
+                <a href="index.php?action=disconnect" id="logout" class="button">Déconnexion</a>
+            </div> -->
 
-
-    <div id="logo">
-        <img src="./public/img/LogoMeal.png" alt="logo">
-    </div>
-
-    <div id="header">
-        <div id="SearchBar">
-            <form action="index.php" method="POST">
-                <input type="text" placeholder="Search..">
-                <input type="submit" value="Search">
-            </form>
+            <div class="btn_log">
+                <a href="./public/img/login.php" id="login" class="button">Connexion</a>
+                <a href="./public/img/register.php" id="register" class="button">S'inscrire</a>
+            </div>
         </div>
     </div>
-
-    <div id="container">
-
+        
+        
+        <div id="logo">
+            <img src="./public/img/LogoMeal.png" alt="logo">
+        </div>
+        
+    <div id="header">
+        <div id="SearchBar">
+            <input type="text" placeholder="Search..">
+            <input type="submit" value="Search">
+        </div>
     </div>
-        <ul>
-            <li><a href="./profil.php">Profil</a></li>
-            <li><a href="./public/recettes.php">Favoris</a></li>
-            <li class="selected"><a href="./index.php">Accueil</a></li>
-            <li><a href="./public/semaine.php">Semaine</a></li>
-            <?php
-                if(isset($_SESSION['role'])){
-                    $role = $_SESSION['role'];
-                    if($role == 'admin'){
-                        echo('<li><a href="./public/ticketsSee.php">Tickets</a></li>');
-                    }else{
-                        echo('<li><a href="./public/ticketsMake.php">Tickets</a></li>');
-                    }
-                }else{
-                    echo('<li><a href="./public/ticketsMake.php">Tickets</a></li>');
-                }
-            ?>
-        </ul>
+    
+    <div id="container">
+        <div id="searchResults" class="hidden"></div>
+    </div>
+    
+    <ul>
+        <li><a href="./public/html/profil.php">Profil</a></li>
+        <li><a href="./public/html/recettes.php">Favoris</a></li>
+        <li><a href="./index.php">Accueil</a></li>
+        <li><a href="./public/html/semaine.php">Semaine</a></li>
+        <li><a href="./public/html/ticketsMake.php" id="ticketsLink">Tickets</a></li>
+    </ul>
+ 
+    <div id="notifs_div">
+        <div id="notifs_display_div" class="hidden">
+            <p id="notif_p">NOTIFICATIONS</p>
+    </div>
 </body>
 </html>
 <script src="./public/js/script_index.js"></script>
