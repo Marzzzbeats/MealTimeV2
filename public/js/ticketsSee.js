@@ -6,10 +6,12 @@ async function init(){
         if(res.ok){
             let data = await res.json();
             const user = data.user;
-            if(!data.active && user.role != 'admin'){
+            if(!data.active && user.role !== "admin"){
                 window.location.href='./login.php?status=forbidden';
             }
             return user;
+        }else{
+            window.location.href='./login.php?status=forbidden';
         }
     }catch(err){
         console.error(err.message);
@@ -130,7 +132,7 @@ function createticketHead(ticket){
     category.textContent = ticket["category"];
 
     const expand_btn = document.createElement("img");
-    expand_btn.src = "../svgs/down.svg";
+    expand_btn.src = "./svgs/down.svg";
     expand_btn.alt = "arrow down";
 
     const img_container = document.createElement("div");
@@ -184,7 +186,8 @@ function createTicketView(ticket, ticket_li){
 
 
 document.addEventListener("DOMContentLoaded", async () => {
-    await init();
+    let user = await init();
+    console.log(user);
     createTicketsList();
     // document.getElementById("container").appendChild();
     document.getElementById("filter_category").addEventListener("change", (e) => {

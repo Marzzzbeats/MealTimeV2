@@ -113,7 +113,7 @@ async function afficheRecettes(user){
         div_indh.appendChild(text_indh);
         div.appendChild(div_indh);
         div_fav.appendChild(div);
-        //
+        //Boutons
     })
 } 
 
@@ -135,5 +135,5 @@ close.addEventListener('click', ()=>{
 
 document.addEventListener('DOMContentLoaded', async ()=>{
     let user_data = await init();
-    afficheRecettes(user_data)
+    afficheRecettes(user_data);
 });
