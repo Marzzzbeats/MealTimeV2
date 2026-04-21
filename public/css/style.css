@@ -1,0 +1,143 @@
+
+
+body{
+    width: 100vw;
+    height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--bg-main);
+    /* color: var(--text-main); */
+}
+
+
+
+
+#logo{
+    position: absolute;
+    top: 3vh;
+    right: 3vh;
+    width: 6vw;
+    height: 3vw;
+    border-radius: 40px;
+}
+#logo img{
+    width: 6vw;
+    height: auto;
+    border-radius: 40px;
+}
+
+#header{
+    width: 100vw;
+    height: 20vh;
+    padding-bottom: 3vh;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+#container{
+    width: 100vw;
+    height: 75vh;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    overflow-y: scroll;
+}
+
+#container::-webkit-scrollbar{
+    display: none;
+}
+
+.carousselTopContainer{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.carousselTop{
+    width: 95%;
+    display: flex;
+    overflow-x: hidden;
+    margin-bottom: 2vw;
+}
+
+.carousselTop::-webkit-scrollbar{
+    display: none;
+}
+
+.innerCarousselTop{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1vw;
+    padding-right: 1vw;
+}
+
+.innerCarousselTop.toLeft {
+    animation: carousselToLeft 100s infinite linear;
+}
+
+.innerCarousselTop.toRight {
+    animation: carousselToRight 100s infinite linear;
+}
+
+
+.cardTopElm{
+    width: 10vw;
+    height: 10vw;
+    padding: 1vw;
+    font-size: 1rem;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--accent-primary);
+}
+
+
+
+@keyframes carousselToLeft{
+    from {transform: translateX(0);}
+    to {transform: translateX(-100%);}
+}
+@keyframes carousselToRight{
+    from {transform: translateX(-100%);}
+    to {transform: translateX(0);}
+}
+
+#cardsDiv{
+    width: 80%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(7vw, 1fr));
+    gap: 1vw;
+    margin-bottom: 10vh;
+}
+
+.cardElm{
+    width: 7vw;
+    height: 7vw;
+    padding: 1vw;
+    background-color: var(--accent-secondary);
+    font-size: 1rem;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+#searchResults{
+    width: 80%;
+    grid-template-columns: repeat(auto-fill, minmax(7vw, 1fr));
+    gap: 1vw;
+    margin-bottom: 10vh;
+}
+
+#searchResults p{
+    width: 100%;
+    text-align: center;
+    font-size: 3rem;
+}
+

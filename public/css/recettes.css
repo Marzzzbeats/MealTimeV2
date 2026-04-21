@@ -1,0 +1,84 @@
+.popup_form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: whitesmoke;
+    border: 2px solid black;
+    border-radius: 15px;
+    width: fit-content;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    text-align: center;
+    padding: 20px; 
+    max-width: 90%; 
+    gap: 15px;
+    align-self: center;
+}
+
+.rcp_form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.alert{
+    background-color: #b9ffce;
+    opacity: 50%;
+    text-align: center;
+    width: auto;
+    height: fit-content;
+    padding: 15px;
+    border: solid 2px ;
+    border-left: 5px rgb(82, 255, 47) solid;
+    border-radius: 15px;
+}
+
+.fl-row-recette{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    max-width: 100%;
+}
+
+.screen {
+    background-color: rgba(128, 128, 128, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    z-index: 2000;
+    /* Flexbox pour centrer */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn{
+    background-color: rgb(145, 255, 120);
+    font-size: medium;
+    font-family: cursive;
+    padding: 5px;
+    border-radius: 10px;
+    border: 2px;
+    border-style: solid;
+    color: black;
+    border-color: black;
+    margin: 0 30px 0 30px;
+    transition: 0.5s;
+}
+
+.hidden{
+    display: none;
+}
+
+.close_div{
+    display: flex;
+    flex-direction: row;
+    align-content: flex-end;
+    align-items: right;
+    width: 100%;
+}
