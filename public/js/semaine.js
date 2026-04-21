@@ -48,9 +48,9 @@ function recettes_random(data){ // me permet de mélanger les recettes entre ell
 }
 
 
-//const test = recettes_random(data);
+const test = recettes_random(data);
 //console.log(test);
-console.log(data);
+//console.log(data);
 
 
 

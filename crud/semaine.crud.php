@@ -5,15 +5,6 @@ require_once(__DIR__ . '/../lib/user_utils.php');
 
 $debug = false;
 
-if (isset($_POST["action"])) {
-
-    if ($_POST["action"] == "add") {
-
-        addSemaine($conn, $user_id, $_POST["p1"], $_POST["p2"], $_POST["p3"], $_POST["p4"], $_POST["p5"], $_POST["p6"], $_POST["p7"], $_POST["p8"], $_POST["p9"], $_POST["p10"], $_POST["p11"] ,$_POST["p12"], $_POST["p13"], $_POST["p14"]);
-    }
-}
-
-
 
 
 function addSemaine($conn,$user_id,$p1,$p2,$p3,$p4,$p5,$p6,$p7,$p8,$p9,$p10,$p11,$p12,$p13,$p14){
