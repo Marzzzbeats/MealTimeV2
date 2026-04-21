@@ -1,4 +1,5 @@
 <?php
+<<<<<<< HEAD
     require_once(__DIR__ . '/../lib/user_utils.php');
     require_once(__DIR__ . '/../lib/auth_utils.php');
 
@@ -14,11 +15,17 @@
         }
         return rsToAssoc($result);
     }
+=======
+>>>>>>> b_dev
 
     function getUserById($conn, $id){
         //Réucupère un utilisateur en conftion de son id
         if(!$conn){
+<<<<<<< HEAD
             header('Location: index.php?status=connError');
+=======
+            header('Location: user.crud.php?status=connError');
+>>>>>>> b_dev
         }
         $sql="SELECT * FROM user WHERE id = $id";
         $result = mysqli_query($conn, $sql);
@@ -28,6 +35,7 @@
         return rsToAssoc($result);
     }
 
+<<<<<<< HEAD
     function addUser($conn, $email, $nom, $prenom, $password, $profile_pic){
         //Rajoute un utilisateur à la bdd
         if(!$conn){
@@ -142,6 +150,15 @@
             $res = true;
         }
         return $res;
+=======
+    function rsToAssoc($rs){
+        //Change un résultSet en tableau associatif
+        $tab=[] ; 
+        while($row=mysqli_fetch_assoc($rs)){
+            $tab[]=$row ;	
+        }
+        return $tab;
+>>>>>>> b_dev
     }
 
 ?>
