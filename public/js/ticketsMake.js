@@ -1,10 +1,23 @@
-
-
+async function init(){
+    try{
+        const res = await fetch('../lib/auth_check.php');
+        if(res.ok){
+            let data = await res.json();
+            const user = data.user;
+            if(!data.active){
+                window.location.href='./login.php?status=disconnected';
+            }
+            return user;
+        }
+    }catch(err){
+        console.error(err.message);
+    }
+}
 
 
 async function sendTicket(user_id, category, title, message){
     try {
-        const response = await fetch('/~perivolas/mealtime/api/tickets/sendTicket.php', {
+        const response = await fetch('../api/tickets/sendTicket.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -22,7 +35,7 @@ async function sendTicket(user_id, category, title, message){
     }
 }
 
-function createTicketForm(user_id){
+async function createTicketForm(user_id){
     const form = document.createElement("form");
     form.classList.add("ticket_form");
 
@@ -83,8 +96,10 @@ function createTicketForm(user_id){
 }
 
 
-document.addEventListener("DOMContentLoaded", () => {
-
-    document.getElementById("container").appendChild(createTicketForm(2));
+document.addEventListener("DOMContentLoaded", async () => {
+    let user = await init();
+    let user_id = user.id;
+    let form = await createTicketForm(user_id);
+    document.getElementById("container").appendChild(form);
 
 });

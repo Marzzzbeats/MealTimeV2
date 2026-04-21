@@ -13,6 +13,8 @@
         if($action == 'disconnect'){
             logout($conn);
             header('Location: ./index.php');
+        }else if($action == 'forbidden'){
+            echo("<div class='alert'>Vous n'avez pas accès à cette page</div>");
         }
     }
 
@@ -56,8 +58,19 @@
             <li><a href="./profil.php">Profil</a></li>
             <li><a href="./public/recettes.php">Favoris</a></li>
             <li><a href="./index.php">Accueil</a></li>
-            <li><a href="./semaine.php">Semaine</a></li>
-            <li><a href="./tickets.php">Tickets</a></li>
+            <li><a href="./public/semaine.php">Semaine</a></li>
+            <?php
+                if(isset($_SESSION['role'])){
+                    $role = $_SESSION['role'];
+                    if($role == 'admin'){
+                        echo('<li><a href="./public/ticketsSee.php">Tickets</a></li>');
+                    }else{
+                        echo('<li><a href="./public/ticketsMake.php">Tickets</a></li>');
+                    }
+                }else{
+                    echo('<li><a href="./public/ticketsMake.php">Tickets</a></li>');
+                }
+            ?>
         </ul>
     </nav>
 </body>

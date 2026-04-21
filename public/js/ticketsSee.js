@@ -1,10 +1,24 @@
-
 let ALL_TICKETS = []
 
+async function init(){
+    try{
+        const res = await fetch('../lib/auth_check.php');
+        if(res.ok){
+            let data = await res.json();
+            const user = data.user;
+            if(!data.active && user.role != 'admin'){
+                window.location.href='./login.php?status=forbidden';
+            }
+            return user;
+        }
+    }catch(err){
+        console.error(err.message);
+    }
+}
 
 async function closeTicket(ticketId) {
     try {
-        const res = await fetch('/~perivolas/mealtime/api/tickets/closeTicket.php', {
+        const res = await fetch('../api/tickets/closeTicket.php', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -23,7 +37,7 @@ async function closeTicket(ticketId) {
 
 async function loadTickets() {
     try {
-        const response = await fetch('/~perivolas/mealtime/api/tickets/getTicket.php');
+        const response = await fetch('../api/tickets/getTicket.php');
         const data = await response.json();
 
         console.log(data);
@@ -169,7 +183,8 @@ function createTicketView(ticket, ticket_li){
 }
 
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
+    await init();
     createTicketsList();
     // document.getElementById("container").appendChild();
     document.getElementById("filter_category").addEventListener("change", (e) => {
