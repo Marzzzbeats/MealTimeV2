@@ -31,33 +31,43 @@
     <link rel="stylesheet" href="./public/css/searchbar.css">
     <link rel="stylesheet" href="./public/css/reset.css">
     <link rel="stylesheet" href="./public/css/roots.css">
+    <link rel="stylesheet" href="./public/css/boutonpdp.css">
     <title>MealTime</title>
 </head>
 <body>
     
-    <div id="profil">
-        <img src="./public/img/Black-Screen.jpg" alt="blackscreen">
-        <a href="./public/login.php" id="login">Se connecter</a>
-        <a href="./public/register.php" id="register">S'inscrire</a>
-        <a href="index.php?action=disconnect" id="logout" class="hidden">Se déconnecter</a>
+    <div class="btn_log">
+        <img src="./public/img/AvatarDef.png" alt="pdp">
+        <a href="index.php?action=disconnect" id="logout" class="button">Déconnexion</a>
     </div>
 
-    <!-- <div class="logo">
-        <img src="" alt="">
-    </div> -->
 
-    <form action="index.php" method="POST">
+    <div class="btn_log">
+        <a href="./public/login.php" id="login" class="button">Connexion</a>
+        <a href="./public/register.php" id="register" class="button">S'inscrire</a>
+    </div>
+
+
+    <div id="logo">
+        <img src="images/LogoMeal.png" alt="logo">
+    </div>
+
+    <div id="header">
         <div id="SearchBar">
-            <input type="text" placeholder="Search..">
-            <input type="submit" value="Search">
+            <form action="index.php" method="POST">
+                <input type="text" placeholder="Search..">
+                <input type="submit" value="Search">
+            </form>
         </div>
-    </form>
+    </div>
 
-    <nav>
+    <div id="container">
+
+    </div>
         <ul>
             <li><a href="./profil.php">Profil</a></li>
             <li><a href="./public/recettes.php">Favoris</a></li>
-            <li><a href="./index.php">Accueil</a></li>
+            <li><a href="./index.php" class="selected">Accueil</a></li>
             <li><a href="./public/semaine.php">Semaine</a></li>
             <?php
                 if(isset($_SESSION['role'])){
@@ -72,7 +82,6 @@
                 }
             ?>
         </ul>
-    </nav>
 </body>
 </html>
 <script src="./public/js/script_index.js"></script>
