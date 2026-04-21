@@ -82,3 +82,29 @@
     align-items: right;
     width: 100%;
 }
+
+.carte{
+    display: flex;
+    flex-direction: column;
+    background-color:rgb(184, 255, 184);
+    justify-content: space-around;
+    align-items: left;
+    border: 2px;
+    border-style: solid;
+    border-radius: 15px;
+    width: 22%;
+    padding: 15px;
+    height: auto;
+    max-width: 25%;
+    gap: 20px;
+}
+
+.carte img{
+    width: 200px;
+    margin: 5px;
+    text-align: center;
+}
+
+.carte h2{
+    max-width: 100%;
+}

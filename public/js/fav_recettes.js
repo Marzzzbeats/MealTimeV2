@@ -49,7 +49,7 @@ async function afficheRecettes(user){
     const created = res[1];
     fav.forEach(recette => {
         let div = document.createElement('div');
-        div.classList.add('recette');
+        div.classList.add('carte');
         //Icone de favoris
         let div_favo = document.createElement('div');
         div_favo.classList.add('close_div');
@@ -99,16 +99,21 @@ async function afficheRecettes(user){
         div_ingredients.appendChild(ul_ing);
         div.appendChild(div_ingredients);
         //Indice de prix
+        let div_indp = document.createElement('div')
         let ind_p = recette.price_ind;
         let str_indp = `Indice de prix : ${ind_p}`;
         let text_indp = document.createTextNode(str_indp);
-        div.appendChild(text_indp);
+        div_indp.appendChild(text_indp);
+        div.appendChild(div_indp);
         //Indice de santé
+        let div_indh = document.createElement('div');
         let ind_h = recette.health_ind;
         let str_indh = `Indice de santé : ${ind_h}`;
         let text_indh = document.createTextNode(str_indh);
-        div.appendChild(text_indh);
+        div_indh.appendChild(text_indh);
+        div.appendChild(div_indh);
         div_fav.appendChild(div);
+        //
     })
 } 
 
