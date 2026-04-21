@@ -1,6 +1,2 @@
-<<<<<<< HEAD
 .env
-=======
-db_connect.php
-db_disconnect.php
->>>>>>> dev_louciane
+.vscode/sftp.json

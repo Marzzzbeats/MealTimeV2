@@ -38,18 +38,14 @@
     
     <div class="btn_log">
         <img src="./public/img/AvatarDef.png" alt="pdp">
-        <a href="index.php?action=disconnect" id="logout" class="button">Déconnexion</a>
-    </div>
-
-
-    <div class="btn_log">
+        <a href="./index.php?action=disconnect" id="logout" class="button hidden">Déconnexion</a>
         <a href="./public/login.php" id="login" class="button">Connexion</a>
         <a href="./public/register.php" id="register" class="button">S'inscrire</a>
     </div>
 
 
     <div id="logo">
-        <img src="images/LogoMeal.png" alt="logo">
+        <img src="./public/img/LogoMeal.png" alt="logo">
     </div>
 
     <div id="header">
@@ -67,7 +63,7 @@
         <ul>
             <li><a href="./profil.php">Profil</a></li>
             <li><a href="./public/recettes.php">Favoris</a></li>
-            <li><a href="./index.php" class="selected">Accueil</a></li>
+            <li class="selected"><a href="./index.php">Accueil</a></li>
             <li><a href="./public/semaine.php">Semaine</a></li>
             <?php
                 if(isset($_SESSION['role'])){
