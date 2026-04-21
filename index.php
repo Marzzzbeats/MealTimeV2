@@ -30,6 +30,7 @@
     <link rel="stylesheet" href="css/searchbar.css">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/roots.css">
+    <link rel="stylesheet" href="css/boutonpdp.css">
     <title>MealTime</title>
 </head>
 <body>
@@ -45,7 +46,7 @@
     ?>
     
     <div class="btn_log">
-        <img src="images/photodeprofil.jpg" alt="pdp">
+        <img src="images/AvatarDef.png" alt="pdp">
         <a href="index.php?action=disconnect" id="logout" class="button">Déconnexion</a>
     </div>
 
@@ -57,7 +58,7 @@
 
 
     <div id="logo">
-        <img src="images/Black-Screen.jpg" alt="logo">
+        <img src="images/LogoMeal.png" alt="logo">
     </div>
 
     <div id="header">
