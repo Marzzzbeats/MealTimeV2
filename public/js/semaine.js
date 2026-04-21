@@ -36,7 +36,7 @@ async function getRecettes(user){
 
 window.onload = init();
 user = init();
-console.log(user);
+// console.log(user);
 
 function recettes_random(data){ // me permet de mélanger les recettes entre elles.
     let recettes = data;
@@ -50,7 +50,7 @@ function recettes_random(data){ // me permet de mélanger les recettes entre ell
 
 const test = recettes_random(data);
 //console.log(test);
-//console.log(data);
+// console.log(data);
 
 
 
@@ -87,10 +87,10 @@ window.onload = function() { // fait le tableau de la semaine
             const td = document.createElement("td");
             if ((i === 1) || (i === 3)) {
                 if (indice < data.length) {
-                    jour = document.createTextNode(data[indice].titre);
+                    jour = document.createTextNode(tableau_nom_recettes[indice]);
                     indice++;
                 } else {
-                    jour = document.createTextNode('repa');
+                    jour = document.createTextNode('repas');
                 }
                 td.appendChild(jour);
                 td.classList.add("repa");
