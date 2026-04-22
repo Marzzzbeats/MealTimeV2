@@ -23,7 +23,7 @@ return mysqli_query($conn,$sql);
 
 
 function deleteSemaine($conn,$id){
-$sql = "DELETE FROM semaine WHERE id=$id";
+$sql = "DELETE FROM semaine WHERE id_user=$id";
 global $debug; if($debug) echo $sql;
 return mysqli_query($conn,$sql);
 }
