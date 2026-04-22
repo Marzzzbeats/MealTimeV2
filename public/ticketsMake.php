@@ -25,7 +25,7 @@
 </head>
 <body>
     <div id="container"></div>
-    <ul>
+    <ul id="navbar_ul">
         <li><a href="./profil.php">Profil</a></li>
         <li><a href="./recettes.php">Favoris</a></li>
         <li><a href="../index.php">Accueil</a></li>

@@ -17,7 +17,7 @@ async function init(){
 
 async function sendTicket(user_id, category, title, message){
     try {
-        const response = await fetch('/home/~grp9/public_html/api/tickets/sendTicket.php', {
+        const response = await fetch('../api/tickets/sendTicket.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
