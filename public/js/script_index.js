@@ -37,7 +37,9 @@ async function manage_session() {
             const logout = document.querySelector('#logout');
             const user = data.user;
             if(data.connected == true && data.user != null){
-                const hello = document.createTextNode(`Bonjour ${data.user.prenom}`);
+                const hello = document.createElement("p");
+                hello.textContent = `Bonjour ${data.user.prenom}`;
+                hello.id = "userName_p";
                 login.classList.add("hidden");
                 register.classList.add("hidden");
                 logout.classList.remove("hidden");
@@ -87,16 +89,26 @@ function createCaroussel(sens,  recettes){
             innerCarousselTop.classList.add("toRight");
         }
         recettes.forEach(recette => {
-            const card = document.createElement("div");
-            card.classList.add("cardTopElm");
-            card.textContent = recette.titre;
-            innerCarousselTop.appendChild(card);
+            innerCarousselTop.appendChild(createTopCard(recette));
         });
         carousselTop.appendChild(innerCarousselTop);
     }
     return carousselTop;
 }
 
+
+function createTopCard(recette){
+    const card = document.createElement("div");
+    card.classList.add("cardTopElm");
+    card.classList.add("cardElm");
+    cardVisu(recette).forEach(elm => {
+        card.appendChild(elm);
+    });
+    card.addEventListener("click", () => {
+        redirectRecette(recette.owner, recette.id);
+    });
+    return card
+}
 
 function createCards(recettes){
     const cardsDiv = document.createElement("div");
@@ -110,10 +122,56 @@ function createCards(recettes){
 function createCard(recette){
     const card = document.createElement("div");
     card.classList.add("cardElm");
-    card.textContent = recette.titre;
+    cardVisu(recette).forEach(elm => {
+        card.appendChild(elm);
+    });
+    card.addEventListener("click", () => {
+        redirectRecette(recette.owner, recette.id);
+    });
     return card;
 }
 
+function cardVisu(recette){
+    const recette_img = document.createElement("img");
+    // recette_img.src = `./api/api_image_recette.php?id=${recette.id}`;
+    // recette_img.src = `./public/img/local_dining.png`;
+    recette_img.src = `./public/img/rdn_img_bouffe.png`;
+    recette.atl = "image de la recette";
+    recette_img.classList.add("recette_img");
+
+    const titre = document.createElement("p");
+    titre.classList.add("titre_reccete");
+    titre.textContent = recette.titre;
+    
+    const upvote = document.createElement("p");
+    upvote.classList.add("upvote_p");
+    upvote.textContent = recette.upvote;
+
+    const season_img = document.createElement("img");
+    season_img.classList.add("season_img");
+    if(recette.saison == "all"){
+        season_img.src = "./public/img/all-removebg-preview.png";
+    }else if(recette.saison == "spring"){
+        season_img.src = "./public/img/spring-removebg-preview.png";
+    }else if(recette.saison == "summer"){
+        season_img.src = "./public/img/summer-removebg-preview.png";
+    }else if(recette.saison == "winter"){
+        season_img.src = "./public/img/winter-removebg-preview.png";
+    }else if(recette.saison == "autumn"){
+        season_img.src = "./public/img/autumn-removebg-preview.png";
+    }else{
+        season_img.alt = "met une vrai saisons fdp";
+    }
+
+
+
+    return [recette_img, titre, season_img, upvote];
+}
+
+function redirectRecette(user_id, id_recette){
+    window.location = `https://l1.dptinfo-usmb.fr/~grp9/public/profil.php?owner=${user_id}&id_recette=${id_recette}`;
+    console.log("clicked");
+}
 
 function initSearch(){
     const input = document.querySelector("#SearchBar input[type='text']");

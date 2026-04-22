@@ -16,7 +16,7 @@
     <title>MealTime</title>
 </head>
 <body>
-        <ul>
+        <ul id="navbar_ul">
             <li class="selected"><a href="./profil.php">Profil</a></li>
             <li><a href="./recettes.php">Favoris</a></li>
             <li><a href="../index.php">Accueil</a></li>
