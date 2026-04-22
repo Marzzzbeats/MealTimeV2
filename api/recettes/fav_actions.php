@@ -16,6 +16,7 @@
         }else if($action == 'addFav'){
             addRecetteFav($conn, $user_id, $recette_id);
             addUpVote($conn, $recette_id);
+            header('Location: ../../public/recettes.php?status=addSuccess');
         }else if($action == 'remFav'){
             deleteRecetteFav($conn, $recette_id, $user_id,);
             delUpVote($conn, $recette_id);

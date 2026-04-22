@@ -27,7 +27,12 @@
 	function deleteRecette($conn, $id){
 		global $debeug;
 		$sql = "DELETE FROM recettes WHERE id=$id";
+		$sql2 = "DELETE FROM relation_recette_ingredient WHERE id_recette = $id";
+		$sql3 = "DELETE FROM favoris WHERE recette_id = $id";
 		$res = mysqli_query($conn, $sql);
+		$res2 = mysqli_query($conn, $sql2);
+		$res3 = mysqli_query($conn, $sql3);
+
 		if(!$res && $debeug){
 			echo("Erreur de suppression");
 		}
