@@ -5,8 +5,6 @@
     include __DIR__ . "/../../db/db_connect.php"; 
     include __DIR__ . "/../../crud/user.crud.php"; 
 
-    $conn = connection();
-
     header('Content-Type: application/json');
 
 ?>

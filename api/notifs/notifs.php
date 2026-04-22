@@ -3,9 +3,8 @@
     ini_set('display_errors', '1');
 
     include __DIR__ . "/../../db/db_connect.php"; 
-    include __DIR__ . "/home/perivolas/public_html/mealtime/crud/notifs.crud.php"; 
+    include __DIR__ . "/../../crud/notifs.crud.php"; 
 
-    $conn = connection();
 
     header('Content-Type: application/json');
 
