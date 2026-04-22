@@ -2,10 +2,8 @@
     error_reporting(E_ALL);
     ini_set('display_errors', '1');
 
-    include "/home/perivolas/public_html/mealtime/db/db_connect.php";
-    include "/home/perivolas/public_html/mealtime/crud/tickets.crud.php";
-
-    $conn = connection();
+    include __DIR__ . "/../../db/db_connect.php"; 
+    include __DIR__ . "/../../crud/tickets.crud.php"; 
     
     header('Content-Type: application/json');
 

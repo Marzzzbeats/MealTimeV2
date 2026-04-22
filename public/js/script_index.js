@@ -3,7 +3,7 @@ let ALL_RECETTES = [];
 
 async function loadRecettes() {
     try {
-        const response = await fetch('/~perivolas/mealtime/api/recettes/getRecettes.php');
+        const response = await fetch('./api/recettes/getRecettes.php');
         const data = await response.json();
 
         console.log(data);
@@ -16,7 +16,7 @@ async function loadRecettes() {
 
 async function getUserName(user_id) {
     try {
-        const response = await fetch(`/~perivolas/mealtime/api/notifs/userName.php?user_id=${user_id}`);
+        const response = await fetch(`./api/notifs/userName.php?user_id=${user_id}`);
         const data = await response.text();
     
         // console.log(data);

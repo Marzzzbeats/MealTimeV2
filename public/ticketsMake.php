@@ -30,7 +30,7 @@
         <li><a href="./recettes.php">Favoris</a></li>
         <li><a href="../index.php">Accueil</a></li>
         <li><a href="./semaine.php">Semaine</a></li>
-        <li class="selected"><a href="./tickets.php">Tickets</a></li>
+        <li class="selected"><a href="./ticketsMake.php">Tickets</a></li>
     </ul>
 </body>
 </html>

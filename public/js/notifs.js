@@ -1,6 +1,6 @@
 async function loadNotifs() {
     try {
-        const response = await fetch('/~perivolas/mealtime/api/notifs/notifs.php');
+        const response = await fetch('./api/notifs/notifs.php');
         const data = await response.json();
 
         console.log(data);
@@ -13,7 +13,7 @@ async function loadNotifs() {
 
 async function getUserName(user_id) {
     try {
-        const response = await fetch(`/~perivolas/mealtime/api/notifs/userName.php?user_id=${user_id}`);
+        const response = await fetch(`./api/notifs/userName.php?user_id=${user_id}`);
         const data = await response.text();
     
         // console.log(data);
@@ -26,7 +26,7 @@ async function getUserName(user_id) {
 
 async function markAsRead(id) {
     try {
-        await fetch('/~perivolas/mealtime/api/notifs/markAsRead.php', {
+        await fetch('./api/notifs/markAsRead.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

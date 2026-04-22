@@ -2,8 +2,8 @@
     error_reporting(E_ALL);
     ini_set('display_errors', '1');
 
-    include "/home/perivolas/public_html/mealtime/db/db_connect.php"; 
-    include "/home/perivolas/public_html/mealtime/crud/notifs.crud.php"; 
+    include __DIR__ . "/../../db/db_connect.php"; 
+    include __DIR__ . "/../../crud/notifs.crud.php"; 
 
     $conn = connection();
 
