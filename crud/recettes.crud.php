@@ -6,13 +6,22 @@
 	$debeug=false; 
 
 	function addRecette($conn, $owner, $image, $saison, $price_ind, $health_ind, $titre, $description){
-		$sql="INSERT INTO recettes (`owner`, `image`, `saison`, `price_ind`, `health_ind`, `titre`, `description`) VALUES ( $owner, '$image', '$saison', $price_ind, $health_ind, '$titre', '$description')" ; 
-		global $debeug;
-		if($debeug){
-			echo($sql); 
+    
+		if($image == ""){
+			$image = null;
 		}
-		$res=mysqli_query($conn, $sql);
-		return $res ; 
+
+		$sql = "INSERT INTO recettes (`owner`, `image`, `saison`, `price_ind`, `health_ind`, `titre`, `description`) 
+				VALUES (?, ?, ?, ?, ?, ?, ?)";
+				
+		$stmt = mysqli_prepare($conn, $sql);
+		$null_blob = null; 
+		mysqli_stmt_bind_param($stmt, "ibsiiss", $owner, $null_blob, $saison, $price_ind, $health_ind, $titre, $description);
+		if($image !== null){
+			mysqli_stmt_send_long_data($stmt, 1, $image);
+		}
+		$res = mysqli_stmt_execute($stmt);
+		return $res; 
 	}
 
 
@@ -76,10 +85,10 @@
 	}
 
 	function getImageRecette($conn, $id){
-		$sql = "SELECT image FROM recettes WHERE id=$id";
+		$sql = "SELECT `image` FROM recettes WHERE id=$id";
 		$res = mysqli_query($conn, $sql);
 		$tab = rsToAssoc($res);
-		return $tab[0]; 
+		return $tab; 
 	}
 
 	function getUpVotes($conn, $recette_id){

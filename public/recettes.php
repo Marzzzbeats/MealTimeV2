@@ -77,9 +77,10 @@
                 addRecette($conn, $owner, $image, $saison, $price_ind, $health_ind, $titre, $description);
                 $id_recette = getIdDerniereRecette($conn, $owner);
                 addRecetteFav($conn, $owner, $id_recette['id']);
-                addUpVote($conn, $id_recette);
+                addUpVote($conn, $id_recette['id']);
                 addIngredientRecette($conn, $id_recette['id'], $ing, $qte);
                 header('Location: ./recettes.php?status=success');
+                exit;
             }
         }
 

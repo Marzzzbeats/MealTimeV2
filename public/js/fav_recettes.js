@@ -67,7 +67,7 @@ async function afficheRecettes(user){
         let img = document.createElement('img');
         let recette_id = recette.id_recette;
         console.log(recette_id);
-        img.setAttribute('src', `../api/api_image_recette.php?id=${recette_id}`);
+        img.setAttribute('src', `../api/recettes/api_image_recette.php?id=${recette_id}`);
         img.setAttribute('alt', `image_recette_${recette_id}`);
         div_img.appendChild(img);
         div.appendChild(div_img);
@@ -163,7 +163,7 @@ async function afficheRecettes(user){
         let img = document.createElement('img');
         let recette_id = recette.id_recette;
         console.log(recette_id);
-        img.setAttribute('src', `../api/api_image_recette.php?id=${recette_id}`);
+        img.setAttribute('src', `../api/recettes/api_image_recette.php?id=${recette_id}`);
         img.setAttribute('alt', `image_recette_${recette_id}`);
         div_img.appendChild(img);
         div.appendChild(div_img);
