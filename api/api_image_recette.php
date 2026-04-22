@@ -6,14 +6,17 @@
 
     if(isset($_GET['id'])){
         $id = $_GET['id'];
-        $image = getImageRecette($conn, $id);
-        if($image['image'] == null){
-            header("Content-Type: image/jpeg");
-            readfile('../public/img/placeholder.jpeg');
-        }else{
-            header("Content-Type: image/jpeg");
-            $data = $image['image'];
-            echo($data);
-        }
+        // $image = getImageRecette($conn, $id);
+        header("Content-Type: image/png");
+        // readfile('local_dining.png');
+        readfile('./public/img/LogoMeal.png');
+        // if($image['image'] == null){
+        //     header("Content-Type: image/png");
+        //     readfile('./public/img/local_dining.png');
+        // }else{
+        //     header("Content-Type: image/jpeg");
+        //     $data = $image['image'];
+        //     echo($data);
+        // }
     }
 ?>

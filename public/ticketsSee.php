@@ -15,7 +15,10 @@
 
     <script src="./js/ticketsSee.js?v=3" defer></script>
 
-    <link rel="stylesheet" href="./css/tickets.css?v=3">
+    <link rel="stylesheet" href="./css/reset.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="./css/root.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="./css/tickets.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="./css/navbar.css?v=<?php echo time(); ?>">
 
 </head>
 <body>
@@ -24,5 +27,12 @@
         <select id="filter_category"></select>
     </header>
     <ul id="tickets_ul"></ul>
+    <ul id="navbar_ul">
+        <li><a href="./profil.php">Profil</a></li>
+        <li><a href="./recettes.php">Favoris</a></li>
+        <li><a href="../index.php">Accueil</a></li>
+        <li><a href="./semaine.php">Semaine</a></li>
+        <li class="selected"><a href="./ticketsMake.php">Tickets</a></li>
+    </ul>
 </body>
 </html>
