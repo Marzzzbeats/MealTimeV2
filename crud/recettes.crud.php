@@ -57,7 +57,7 @@
 	}
 
 	function getRecettesOrderedByPopularity($conn){
-		$sql = "SELECT * FROM recettes ORDER BY upvote DESC";
+		$sql = "SELECT `id`, `owner`, `saison`, `price_ind`, `health_ind`, `titre`, `description`, `upvote` FROM recettes ORDER BY upvote DESC";
 		$res = mysqli_query($conn, $sql);
 		$tab = rsToAssoc($res);
 		return $tab;

@@ -6,7 +6,7 @@ async function loadRecettes() {
         const response = await fetch('./api/recettes/getRecettes.php');
         const data = await response.json();
 
-        console.log(data);
+        //console.log(data);
         return data;
         
     } catch (err) {
@@ -133,9 +133,9 @@ function createCard(recette){
 
 function cardVisu(recette){
     const recette_img = document.createElement("img");
-    // recette_img.src = `./api/api_image_recette.php?id=${recette.id}`;
+    recette_img.src = `./api/recettes/api_image_recette.php?id=${recette.id}`;
     // recette_img.src = `./public/img/local_dining.png`;
-    recette_img.src = `./public/img/rdn_img_bouffe.png`;
+    // recette_img.src = `./public/img/rdn_img_bouffe.png`;
     recette.atl = "image de la recette";
     recette_img.classList.add("recette_img");
 
@@ -214,6 +214,7 @@ function initSearch(){
 document.addEventListener('DOMContentLoaded', async ()=>{
     manage_session();
     const recettes = await loadRecettes();
+    console.log(recettes);
     ALL_RECETTES = recettes;
     createAllCards(recettes)
     initSearch();
