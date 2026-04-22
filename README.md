@@ -11,14 +11,6 @@ MARZI Simon
 =======
 <<<<<<< HEAD
 Groupe 9
-
-=======
-Groupe 9 
->>>>>>> origin/dev_simon
->>>>>>> maxime
-=======
->>>>>>> dev_louciane
->>>>>>> dev_louciane
 MARZIN Simon
 >>>>>>> dev_simon
 MANGALA Louciane
