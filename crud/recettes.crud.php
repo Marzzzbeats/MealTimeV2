@@ -41,7 +41,7 @@
 		$tab = rsToAssoc($res);
 		return $tab;
 	}
-	
+
 	function getRecettesOrderedByPopularity($conn){
 		$sql = "SELECT * FROM recettes ORDER BY upvote DESC";
 		$res = mysqli_query($conn, $sql);
@@ -77,20 +77,37 @@
 		return $tab[0]; 
 	}
 
-/**
- * Fonction auxiliaire pour transformer un rs en tableau
- */
-function rs_to_tab($rs){
-	$tab=[] ; 
-	while($row=mysqli_fetch_assoc($rs)){
-		$tab[]=$row ;	
+	function getUpVotes($conn, $recette_id){
+		$sql = "SELECT upvote FROM recettes WHERE id = $recette_id";
+		$res = mysqli_query($conn, $sql);
+		$tab = rsToAssoc($res);
+		return $tab[0];
 	}
-	return $tab;
-}
 
+	function addUpVote($conn, $recette_id){
+		$uv = getUpVotes($conn, $recette_id);
+		$nb_uv = $uv['upvote'];
+		$uvv = $nb_uv+1;
+		$sql = "UPDATE recettes SET upvote=$uvv WHERE id=$recette_id";
+		$res = mysqli_query($conn, $sql);
+		return $res;
+	}
 
+	function delUpVote($conn, $recette_id){
+		$uv = getUpVotes($conn, $recette_id);
+		$nb_uv = $uv['upvote'];
+		$uvv = $nb_uv-1;
+		$sql = "UPDATE recettes SET upvote=$uvv WHERE id=$recette_id";
+		$res = mysqli_query($conn, $sql);
+		return $res;
+	}
 
-
+	function getIdRecettesFav($conn, $user_id){
+		$sql = "SELECT recette_id FROM favoris WHERE user_id = $user_id";
+		$res = mysqli_query($conn, $sql);
+		$tab = rsToAssoc($res);
+		return $tab;
+	}
 
 ?>
 

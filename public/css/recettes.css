@@ -108,3 +108,14 @@
 .carte h2{
     max-width: 100%;
 }
+
+#favImg{
+    height: 40px;
+    width: 40px;
+}
+
+.fl-row{
+    display:flex;
+    justify-content: center;
+    text-align: center;
+}
