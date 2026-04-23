@@ -1,0 +1,82 @@
+.screen {
+    background-color: rgba(128, 128, 128, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+}
+
+.popup_form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: whitesmoke;
+    border: 2px solid rgb(0, 17, 255);
+    border-radius: 15px;
+    width: fit-content;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    text-align: center;
+    padding: 20px; 
+    max-width: 90%; 
+    gap: 15px;
+    align-self: center;
+    width: 50%;
+}
+
+.rcp_form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.rcp_form p {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    font-size: 0.9em;
+    color: #444;
+}
+
+.rcp_form input,.rcp_form textarea,.rcp_form select {
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    font-size: 0.95em;
+
+    transition: all 0.2s ease;
+}
+
+.rcp_form input:focus,.rcp_form textarea:focus,.rcp_form select:focus {
+    outline: none;
+    border-color: #00c853;
+    box-shadow: 0 0 0 2px rgba(0,200,83,0.2);
+}
+
+.rcp_form textarea {
+    resize: none;
+    min-height: 80px;
+}
+
+.rcp_form input[type="range"] {
+    appearance: none;
+    height: 6px;
+    background: #ddd;
+    border-radius: 10px;
+}
+
+/* bouton du slider */
+.rcp_form input[type="range"]::-webkit-slider-thumb {
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #00c853;
+    cursor: pointer;
+}
