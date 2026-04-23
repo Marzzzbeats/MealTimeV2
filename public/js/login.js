@@ -2,6 +2,11 @@ function createLoginForm(){
     //Crée le html du formulaire
     const div_form = document.querySelector('#login_form');
     const form = document.createElement('form');
+    const titre = document.createElement('h2');
+    const text = document.createTextNode("Formulaire de connexion");
+    titre.appendChild(text);
+    form.appendChild(titre);
+    form.classList.add('rcp_form');
     form.setAttribute('action', 'login.php');
     form.setAttribute('method', 'POST');
     const total_email = document.createElement('div');
@@ -33,10 +38,21 @@ function createLoginForm(){
     form.appendChild(action);
     const submit = document.createElement('button');
     submit.setAttribute('type', 'submit');
+    submit.classList.add('btn');
+    submit.classList.add('createBtn');
     const text_btn = document.createTextNode('Se connecter');
     submit.appendChild(text_btn);
     form.appendChild(submit);
     div_form.appendChild(form);
+    let div_link = document.createElement('div');
+    let text4 = document.createTextNode('Pas encore de compte ?');
+    let lien = document.createElement('a');
+    lien.setAttribute('href', './register.php');
+    let a_text = document.createTextNode("S'inscrire");
+    lien.appendChild(a_text);
+    div_link.appendChild(text4);
+    div_link.appendChild(lien);
+    div_form.appendChild(div_link);
 }
 
 window.onload = createLoginForm;

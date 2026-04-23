@@ -32,9 +32,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <link rel="stylesheet" href="./css/recettes.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/rcp_form.css">
+    <link rel="stylesheet" href="./css/register.css">
 </head>
 <body>
-    <div id='login_form'></div>
+    <div>
+        <h1>Bon retour parmi nous !</h1>
+        <img src="./img/LogoMeal.png" alt="Logo MealTime">
+    </div>
+    <div id='login_form' class="popup_form"></div>
     <?php
         //Controleur POST
 
@@ -62,8 +70,6 @@
         }
     ?>
 
-    <p>Pas encore de compte ? <a href="./register.php">S'inscrire</a></p>
-
 </body>
 </html>
 
@@ -71,5 +77,3 @@
     include '../db/db_disconnect.php';
 ?>
 <script src="./js/login.js"></script>
-<link rel="stylesheet" href="./css/style.css">
-<link rel="stylesheet" href="./css/recettes.css">

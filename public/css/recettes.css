@@ -7,7 +7,7 @@ body {
 
 .alert{
     background-color: #b9ffce;
-    opacity: 50%;
+    opacity: 75%;
     text-align: center;
     width: auto;
     height: fit-content;
@@ -15,6 +15,7 @@ body {
     border: solid 2px ;
     border-left: 5px rgb(82, 255, 47) solid;
     border-radius: 15px;
+    max-width: 50%;
 }
 
 .fl-row-recette{

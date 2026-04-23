@@ -28,11 +28,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
-
+    <link rel="stylesheet" href="./css/recettes.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/rcp_form.css">
+    <link rel="stylesheet" href="./css/register.css">
 </head>
 <body>
-    <div id='register_form'></div>
-    <p>Déjà membre ? <a href="./login.php">Se connecter</a></p>
+    <div>
+        <h1>Binevenue chez MealTime !</h1>
+        <img src="./img/LogoMeal.png" alt="Logo MealTime">
+    </div>
+    <div id='register_form' class='popup_form'></div>
     <?php
         if(isset($_POST['action'])){
             $nom = $_POST['nom'];

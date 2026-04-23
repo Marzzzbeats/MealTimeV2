@@ -3,10 +3,13 @@ function registerFormHtml(){
     //Crée le html du formulaire d'inscription
     const div_form = document.querySelector('#register_form');
     const form = document.createElement('form');
+    const titre = document.createElement('h2');
     const text = document.createTextNode("Formulaire d'inscription");
-    form.appendChild(text);
+    titre.appendChild(text);
+    form.appendChild(titre);
     form.setAttribute('action', 'register.php');
     form.setAttribute('method', 'POST');
+    form.classList.add('rcp_form');
     //Nom
     const total_nom = document.createElement('div');
     const text_nom = document.createTextNode('Nom* : ');
@@ -103,10 +106,21 @@ function registerFormHtml(){
     //Bouton de submit
     const submit_btn = document.createElement('button');
     submit_btn.setAttribute('type', 'submit');
+    submit_btn.classList.add('btn');
+    submit_btn.classList.add('createBtn');
     const text3 = document.createTextNode("S'inscrire");
     submit_btn.appendChild(text3);
     form.appendChild(submit_btn);
     div_form.appendChild(form);
+    let div_link = document.createElement('div');
+    let text4 = document.createTextNode('Déjà membre ?');
+    let lien = document.createElement('a');
+    lien.setAttribute('href', './login.php');
+    let a_text = document.createTextNode('Se connecter');
+    lien.appendChild(a_text);
+    div_link.appendChild(text4);
+    div_link.appendChild(lien);
+    div_form.appendChild(div_link);
 }
 
 window.onload = registerFormHtml();
