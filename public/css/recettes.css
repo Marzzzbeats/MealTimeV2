@@ -167,3 +167,18 @@ body {
     font-size: x-large;
     margin : 10px
 }
+
+.selected_rcp{
+    display: flex;
+    flex-direction: column;
+    background: rgb(89, 255, 114);
+    border-radius: 20px;
+    width: 290px;
+    padding: 15px;
+    gap: 12px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    border: solid #0004ff
+}

@@ -74,7 +74,7 @@
     </div>
     
     <ul id="navbar_ul">
-        <li><a href="./public/profil.php">Profil</a></li>
+        <li><a href="./public/account.php">Profil</a></li>
         <li><a href="./public/recettes.php">Favoris</a></li>
         <li class="selected"><a href="./index.php">Accueil</a></li>
         <li><a href="./public/semaine.php">Semaine</a></li>
