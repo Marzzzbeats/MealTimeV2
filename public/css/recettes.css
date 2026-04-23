@@ -1,25 +1,9 @@
-.popup_form {
+body {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    background-color: whitesmoke;
-    border: 2px solid black;
-    border-radius: 15px;
-    width: fit-content;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
     text-align: center;
-    padding: 20px; 
-    max-width: 90%; 
-    gap: 15px;
-    align-self: center;
 }
 
-.rcp_form{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-}
 
 .alert{
     background-color: #b9ffce;
@@ -43,79 +27,142 @@
     max-width: 100%;
 }
 
-.screen {
-    background-color: rgba(128, 128, 128, 0.5);
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    width: 100vw;
-    z-index: 2000;
-    /* Flexbox pour centrer */
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.btn {
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
-.btn{
-    background-color: rgb(145, 255, 120);
-    font-size: medium;
-    font-family: cursive;
-    padding: 5px;
-    border-radius: 10px;
-    border: 2px;
-    border-style: solid;
-    color: black;
-    border-color: black;
-    margin: 0 30px 0 30px;
-    transition: 0.5s;
+.btn:hover {
+    transform: scale(1.05);
+}
+
+.delBtn{
+    background: linear-gradient(135deg, #ff4848, #d63031);
+}
+
+.createBtn{
+    background: linear-gradient(135deg, #79ff54, #0ffe17);
 }
 
 .hidden{
     display: none;
 }
 
-.close_div{
-    display: flex;
-    flex-direction: row;
-    align-content: flex-end;
-    align-items: right;
-    width: 100%;
-}
-
-.carte{
+.carte {
     display: flex;
     flex-direction: column;
-    background-color:rgb(184, 255, 184);
-    justify-content: space-around;
-    align-items: left;
-    border: 2px;
-    border-style: solid;
-    border-radius: 15px;
-    width: 22%;
+    background: white;
+    border-radius: 20px;
+    width: 280px;
     padding: 15px;
-    height: auto;
-    max-width: 25%;
-    gap: 20px;
+    gap: 12px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    border: solid #0004ff
 }
 
-.carte img{
-    width: 200px;
-    margin: 5px;
-    text-align: center;
+.carte:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+}
+
+.carte img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 15px;
 }
 
 .carte h2{
     max-width: 100%;
 }
 
-#favImg{
-    height: 40px;
-    width: 40px;
+.close_div {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+
+#favImg {
+    height: 35px;
+    width: 35px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+#favImg:hover {
+    transform: scale(1.2);
+}
+
+.carte div {
+    font-family: Arial, sans-serif;
+}
+
+.carte div:nth-child(3) { 
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #333;
+}
+
+.carte div:nth-child(4) { 
+    font-size: 0.9em;
+    color: #666;
+}
+
+.carte ul {
+    padding-left: 20px;
+    margin: 5px 0;
+}
+
+.carte li {
+    font-size: 0.9em;
+    color: #444;
+}
+
+.badge {
+    padding: 5px 10px;
+    border-radius: 10px;
+    font-size: 0.8em;
+    width: fit-content;
+    font-weight: bold;
+}
+
+.price {
+    background-color: #ffeaa7;
+    color: #6c5ce7;
+}
+
+.health {
+    background-color: #55efc4;
+    color: #00695c;
 }
 
 .fl-row{
     display:flex;
     justify-content: center;
     text-align: center;
+}
+
+#close{
+    padding:15px;
+}
+
+.rec{
+    text-align: left;
+    padding: 5vh;
+    margin: 5vh;
+}
+
+#create{
+    display: flex;
+    max-width: 15%;
+    align-self: center;
+    font-size: x-large;
+    margin : 10px
 }

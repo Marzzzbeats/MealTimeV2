@@ -106,6 +106,7 @@ async function afficheRecettes(user){
         div.appendChild(div_ingredients);
         //Indice de prix
         let div_indp = document.createElement('div')
+        div_indp.classList.add("badge", "price");
         let ind_p = recette.price_ind;
         let str_indp = `Indice de prix : ${ind_p}`;
         let text_indp = document.createTextNode(str_indp);
@@ -113,6 +114,7 @@ async function afficheRecettes(user){
         div.appendChild(div_indp);
         //Indice de santé
         let div_indh = document.createElement('div');
+        div_indh.classList.add("badge", "health");
         let ind_h = recette.health_ind;
         let str_indh = `Indice de santé : ${ind_h}`;
         let text_indh = document.createTextNode(str_indh);
@@ -124,6 +126,7 @@ async function afficheRecettes(user){
             div_btn.classList.add('fl-row');
             let delete_btn = document.createElement('button');
             delete_btn.classList.add('btn');
+            delete_btn.classList.add('delBtn');
             let a_delete = document.createElement('a');
             let text_del = document.createTextNode('Supprimer la recette');
             a_delete.setAttribute('href', `../api/recettes/fav_actions.php?id_user=${user.id}&id_recette=${recette_id}&action=delete`);
@@ -201,7 +204,8 @@ async function afficheRecettes(user){
         div_ingredients.appendChild(ul_ing);
         div.appendChild(div_ingredients);
         //Indice de prix
-        let div_indp = document.createElement('div')
+        let div_indp = document.createElement('div');
+        div_indp.classList.add("badge", "price");
         let ind_p = recette.price_ind;
         let str_indp = `Indice de prix : ${ind_p}`;
         let text_indp = document.createTextNode(str_indp);
@@ -209,6 +213,7 @@ async function afficheRecettes(user){
         div.appendChild(div_indp);
         //Indice de santé
         let div_indh = document.createElement('div');
+        div_indh.classList.add("badge", "health");
         let ind_h = recette.health_ind;
         let str_indh = `Indice de santé : ${ind_h}`;
         let text_indh = document.createTextNode(str_indh);
@@ -220,6 +225,7 @@ async function afficheRecettes(user){
             div_btn.classList.add('fl-row');
             let delete_btn = document.createElement('button');
             delete_btn.classList.add('btn');
+            delete_btn.classList.add('delBtn');
             let a_delete = document.createElement('a');
             let text_del = document.createTextNode('Supprimer la recette');
             a_delete.setAttribute('href', `../api/recettes/fav_actions.php?id_user=${user.id}&id_recette=${recette_id}&action=delete`);
@@ -245,6 +251,15 @@ btn.addEventListener('click', ()=>{
 close.addEventListener('click', ()=>{
     form.classList.add('hidden');
     screen.classList.add('hidden');
+})
+
+screen.addEventListener('click', ()=>{
+    form.classList.add('hidden');
+    screen.classList.add('hidden');
+})
+
+form.addEventListener('click', (e)=>{
+    e.stopPropagation();
 })
 
 

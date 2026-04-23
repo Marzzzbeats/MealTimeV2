@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/roots.css">
+    <link rel="stylesheet" href="./css/rcp_form.css">
     <title>Mes recettes</title>
 </head>
 <body>
@@ -29,20 +30,19 @@
             }
         }
     ?>
-    <div>
+    <button id="create" class='btn createBtn'>Créer une recette</button>
+    <div class="rec">
         <h2>Mes recettes favorites</h2>
         <div id="fav" class='fl-row-recette'>
 
         </div>
     </div>
-    <div>
-        <h2>Recettes créées</h2>
+    <div class="rec">
+        <h2>Mes recettes créées</h2>
         <div id="created" class='fl-row-recette'>
 
         </div>
     </div>
-
-    <button id="create" class='btn'>Créer une recette</button>
 
     <div class="screen hidden">
         <div class="popup_form hidden">

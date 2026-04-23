@@ -2,7 +2,7 @@
 
     function createHtmlCreateForm(){
         $html = '<form action=recettes.php method=POST class="rcp_form" enctype="multipart/form-data">';
-        $html .= '<div class="close_div"><button class="btn" id="close">X</button></div>';
+        $html .= '<div class="close_div"><button class="btn delBtn" id="close">X</button></div>';
         $html .= "<p>Déposez l'image de la recette (format JPEG attendu): <input type='file' id='image' name='image' accept='image/*'/></p>";
         $html .= "<p>Entrez le titre de la recette* : <input type='text' id='titre' name='titre' required='required' placeholder='Pâtes à la carbonarra'/></p>";
         $html .= "<p>Entrez une brève description de la recette* : <textarea id='description' name='description' required='required'></textarea></p>";
@@ -19,7 +19,7 @@
         $html .= "</select></p>";
         $html .= "<p>* Obligatoire </p>";
         $html .= "<input type='hidden' name='action' id='action' value='create' />";
-        $html .= "<button type='submit' class='btn'>Créer la recette</button>";
+        $html .= "<button type='submit' class='btn createBtn'>Créer la recette</button>";
         $html .= "</form>";
         return $html;
     }

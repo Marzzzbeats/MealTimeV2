@@ -1,6 +1,6 @@
 
 #navbar_ul{
-    position: absolute;
+    position: fixed;
     left: 10vw;
     bottom: 4vh;
     display: flex;
