@@ -9,6 +9,7 @@ function registerFormHtml(){
     form.appendChild(titre);
     form.setAttribute('action', 'register.php');
     form.setAttribute('method', 'POST');
+    form.setAttribute('enctype', 'multipart/form-data');
     form.classList.add('rcp_form');
     //Nom
     const total_nom = document.createElement('div');

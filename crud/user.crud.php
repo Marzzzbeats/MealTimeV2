@@ -28,25 +28,25 @@
         return rsToAssoc($result);
     }
 
+
     function addUser($conn, $email, $nom, $prenom, $password, $profile_pic){
-        //Rajoute un utilisateur à la bdd
-        if(!$conn){
-            header('Location: index.php?status=connError');
-        }
+    
+		if($profile_pic == ""){
+			$profile_pic = null;
+		}
         $ashed = ashPassword($password);
-        if($profile_pic != ""){
-            $sql="INSERT INTO user (`email`, `nom`, `prenom`, `password`, `profile_pic`) VALUES ('$email', '$nom', '$prenom', '$ashed', $profile_pic)";
-        }else{
-            $sql="INSERT INTO user (`email`, `nom`, `prenom`, `password`) VALUES ('$email', '$nom', '$prenom', '$ashed')";   
-        }
-        $result=mysqli_query($conn, $sql);
-        echo($sql);
-        echo($result);
-        if(!$result){
-            echo('Erreur de la bdd');
-        }
-        return $result;
-    }
+		$sql = "INSERT INTO recettes (`email`, `nom`, `prenom`, `password`, `profile_pic`) 
+				VALUES (?, ?, ?, ?, ?)";
+				
+		$stmt = mysqli_prepare($conn, $sql);
+		$null_blob = null; 
+		mysqli_stmt_bind_param($stmt, "ssssb", $email, $nom, $prenom, $ashed, $profile_pic);
+		if($profile_pic !== null){
+			mysqli_stmt_send_long_data($stmt, 1, $profile_pic);
+		}
+		$res = mysqli_stmt_execute($stmt);
+		return $res; 
+	}
 
     function deleteUser($conn, $id){
         //Supprime d'utilisateur avec l'id $id de la bdd
@@ -143,5 +143,12 @@
         }
         return $res;
     }
+
+    function getProfilePic($conn, $id){
+		$sql = "SELECT `profile_pic` FROM user WHERE id=$id";
+		$res = mysqli_query($conn, $sql);
+		$tab = rsToAssoc($res);
+		return $tab; 
+	}
 
 ?>

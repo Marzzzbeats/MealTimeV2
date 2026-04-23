@@ -159,6 +159,10 @@ body{
     font-size: 3rem;
 }
 
+.hidden{
+    display: none;
+}
+
 .upvote_p{
     position: absolute;
     bottom: 0.5vw;
@@ -168,10 +172,6 @@ body{
 
 .upvote_p::before{
     
-}
-
-.hidden{
-    display: none;
 }
 
 

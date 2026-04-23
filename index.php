@@ -43,7 +43,7 @@
 <body>
        
     <div id="pdp">
-        <img id="pdp_img" src="./public/img/AvatarDef.png" alt="pdp">
+        <img id="pdp_img" src="./public/img/photodeprofil.jpg" alt="pdp">
         
         <div id="pdp_menu">
             <div class="btn_log">

@@ -30,11 +30,14 @@ async function getUserName(user_id) {
 async function manage_session() {
     try{
         const res = await fetch('./lib/auth_check.php');
+        const navbar = document.querySelector('#navbar_ul');
+        const notifs = document.querySelector('#notifs_div');
         if(res.ok){
             let data = await res.json();
             const login = document.querySelector('#login');
             const register = document.querySelector('#register');
             const logout = document.querySelector('#logout');
+            const pp = document.querySelector('#pdp_img');
             const user = data.user;
             if(data.connected == true && data.user != null){
                 const hello = document.createElement("p");
@@ -44,6 +47,12 @@ async function manage_session() {
                 register.classList.add("hidden");
                 logout.classList.remove("hidden");
                 document.body.appendChild(hello);
+                navbar.classList.remove('hidden');
+                notifs.classList.remove('hidden');
+                pp.setAttribute('src', `https://l1.dptinfo-usmb.fr/~grp9/api/user/getProfilePic.php?id=${user.id}`);
+            }else{
+                navbar.classList.add('hidden');
+                notifs.classList.add('hidden');
             }
         }
     }catch(err){

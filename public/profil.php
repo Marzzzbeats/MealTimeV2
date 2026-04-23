@@ -1,5 +1,5 @@
 <?php
-    include './db/db_connect';
+    require_once(__DIR__ . '/../db/db_connect');
     session_start();
 ?>
 

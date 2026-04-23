@@ -46,12 +46,15 @@
             $email = $_POST['email'];
             $password1 = $_POST['password1'];
             $password2 = $_POST['password2'];
-            $profile_pic = ""; // Valeur par défaut (vide)
-            if (isset($_FILES['profile_pic']) && $_FILES['profile_pic']['error'] === UPLOAD_ERR_OK) {
-                // L'utilisateur a uploadé une image !
-                // (Ici vous mettriez votre code pour déplacer le fichier avec move_uploaded_file)
-                $profile_pic = $_FILES['profile_pic']['name']; 
-            }
+            if(isset($_FILES['profile_pic']) && $_FILES['profile_pic']['error'] === 0){
+                    $tmp = $_FILES['profile_pic']['tmp_name']; 
+                    $data = file_get_contents($tmp);
+                }
+                if(isset($data)){
+                    $profile_pic = $data;
+                }else{
+                    $profile_pic = ""; 
+                }
             if(!pwordOk($password1, $password2)){
                 header('Location: ./register.php?status=pwordNok');
             }else{
