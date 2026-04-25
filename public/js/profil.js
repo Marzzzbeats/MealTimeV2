@@ -17,6 +17,7 @@ async function init(owner, id_recette){
                 //Photo de profil
                 const pp = document.createElement('img');
                 pp.setAttribute('src', `https://l1.dptinfo-usmb.fr/~grp9/api/user/getProfilePic.php?id=${owner}`);
+                pp.classList.add('pp');
                 div_npp.appendChild(pp);
                 //Nom
                 const text_nom = document.createElement('h3');

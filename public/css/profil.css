@@ -1,0 +1,8 @@
+.pp {
+    width: 20vh;
+    height: 20vh;
+    border-radius: 50%;
+    border: solid blue 3px;
+    object-fit: cover;      /* ecrase pas l'image */
+    object-position: center;
+}

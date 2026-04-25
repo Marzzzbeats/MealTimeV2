@@ -11,6 +11,8 @@
     cursor: pointer;
     z-index: 2;
     position: relative;
+    object-fit: cover;      /* ecrase pas l'image */
+    object-position: center;
 }
 
 #pdp_menu{

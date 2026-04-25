@@ -128,9 +128,9 @@
 
     <ul id="navbar_ul">
             <li><a href="./account.php">Profil</a></li>
-            <li><a href="./recettes.php">Favoris</a></li>
+            <li><a href="./recettes.php">Mes recettes</a></li>
             <li><a href="../index.php">Accueil</a></li>
-            <li class="selected"><a href="./semaine.php">Semaine</a></li>
+            <li class="selected"><a href="./semaine.php">Ma semaine</a></li>
             <?php
                 if(isset($_SESSION['role'])){
                     $role = $_SESSION['role'];

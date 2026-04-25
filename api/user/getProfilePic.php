@@ -11,13 +11,13 @@
     if(isset($_GET['id'])){
         $id = $_GET['id'];
         $image = getProfilePic($conn, $id);
-        header("Content-Type: image/jpg");
-        if(empty($image) || empty($image[0]['image'])){
+        header("Content-Type: image/jpeg");
+        if(empty($image) || empty($image[0]['profile_pic'])){
             header("Cache-Control: no-cache, must-revalidate");
             readfile(__DIR__ . '/../../public/img/photodeprofil.jpg');
             exit;
         }else{
-            $data = $image[0]['image'];
+            $data = $image[0]['profile_pic'];
             echo($data);
         }
     }

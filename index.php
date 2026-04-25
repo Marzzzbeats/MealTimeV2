@@ -42,8 +42,14 @@
 </head>
 <body>
     <div id="pdp">
-        <img id="pdp_img" src="./public/img/photodeprofil.jpg" alt="pdp">
-        
+        <?php
+        if(isset($_SESSION['id'])){
+            $user_id = $_SESSION['id'];
+            echo("<img id='pdp_img' src='https://l1.dptinfo-usmb.fr/~grp9/api/user/getProfilePic.php?id=$user_id' alt='pdp'>");
+        }else{
+            echo("<img id='pdp_img' src='./public/img/photodeprofil.jpg' alt='pdp'>");   
+        }
+        ?>
         <div id="pdp_menu">
             <div class="btn_log">
                 <a href="./index.php?action=disconnect" id="logout" class="button hidden">Déconnexion</a>
@@ -79,9 +85,9 @@
             echo("<li><a href='./public/account.php?user_id=$user_id'>Profil</a></li>");
         }
         ?>
-        <li><a href="./public/recettes.php">Favoris</a></li>
+        <li><a href="./public/recettes.php">Mes recettes</a></li>
         <li class="selected"><a href="./index.php">Accueil</a></li>
-        <li><a href="./public/semaine.php">Semaine</a></li>
+        <li><a href="./public/semaine.php">Ma semaine</a></li>
         <?php
         if(isset($_SESSION['role'])){
             $role = $_SESSION['role'];
