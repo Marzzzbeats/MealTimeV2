@@ -20,7 +20,7 @@
         if(!$conn){
             header('Location: index.php?status=connError');
         }
-        $sql="SELECT * FROM user WHERE id = $id";
+        $sql="SELECT id, email, nom, prenom, `role`, active FROM user WHERE id = $id";
         $result = mysqli_query($conn, $sql);
         if(!$result){
             echo('Erreur de bdd');
@@ -35,14 +35,14 @@
 			$profile_pic = null;
 		}
         $ashed = ashPassword($password);
-		$sql = "INSERT INTO recettes (`email`, `nom`, `prenom`, `password`, `profile_pic`) 
+		$sql = "INSERT INTO user (`email`, `nom`, `prenom`, `password`, `profile_pic`) 
 				VALUES (?, ?, ?, ?, ?)";
 				
 		$stmt = mysqli_prepare($conn, $sql);
 		$null_blob = null; 
-		mysqli_stmt_bind_param($stmt, "ssssb", $email, $nom, $prenom, $ashed, $profile_pic);
+		mysqli_stmt_bind_param($stmt, "ssssb", $email, $nom, $prenom, $ashed, $null_blob);
 		if($profile_pic !== null){
-			mysqli_stmt_send_long_data($stmt, 1, $profile_pic);
+			mysqli_stmt_send_long_data($stmt, 4, $profile_pic);
 		}
 		$res = mysqli_stmt_execute($stmt);
 		return $res; 

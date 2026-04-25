@@ -41,7 +41,6 @@
     <script src="./public/js/notifs.js?v=<?php echo time(); ?>" defer></script>
 </head>
 <body>
-       
     <div id="pdp">
         <img id="pdp_img" src="./public/img/photodeprofil.jpg" alt="pdp">
         
@@ -74,7 +73,12 @@
     </div>
     
     <ul id="navbar_ul">
-        <li><a href="./public/account.php">Profil</a></li>
+        <?php
+        if(isset($_SESSION['id'])){
+            $user_id = $_SESSION['id'];
+            echo("<li><a href='./public/account.php?user_id=$user_id'>Profil</a></li>");
+        }
+        ?>
         <li><a href="./public/recettes.php">Favoris</a></li>
         <li class="selected"><a href="./index.php">Accueil</a></li>
         <li><a href="./public/semaine.php">Semaine</a></li>

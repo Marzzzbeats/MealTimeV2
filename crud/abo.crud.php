@@ -14,15 +14,28 @@
         return $res;
     }
 
-    function getAboUser($conn, $user){
-        $sql = "SELECT user_id FROM relation_user_abonnement WHERE account_id=$user";
+    function getAboUser($conn, $user_id){
+        $sql = "SELECT user_id FROM relation_user_abonnement WHERE account_id=$user_id";
         $res = mysqli_query($conn, $sql);
         $tab = rsToAssoc($res);
         return $tab;
     }
 
-    function getNbAbo($conn, $user){
-        $abo = getAboUser($conn, $user);
+    function getNbAbo($conn, $user_id){
+        $abo = getAboUser($conn, $user_id);
         return count($abo);
     }
+
+    function getAbonnementsUser($conn, $user_id){
+        $sql = "SELECT account_id FROM relation_user_abonnement WHERE user_id=$user_id";
+        $res = mysqli_query($conn, $sql);
+        $tab = rsToAssoc($res);
+        return $tab;
+    }
+
+    function getNbAbonnements($conn, $user_id){
+        $abo = getAbonnementsUser($conn, $user_id);
+        return count($abo);
+    }
+    
 ?>
