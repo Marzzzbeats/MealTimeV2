@@ -28,6 +28,7 @@
             if($res == []){
                 $sql1 = "INSERT INTO ingredients (`nom`) VALUES ('$ing')";
                 $res2 = mysqli_query($conn, $sql1);
+                usleep(500000);
                 $res = getIngredientByNom($conn, $ing);
                 $ind_ing = $res[0]['id'];
             }else{

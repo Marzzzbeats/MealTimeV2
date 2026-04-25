@@ -132,9 +132,7 @@ async function afficheRecettes(user, owner, id_recette){
         //Titre
         let div_titre = document.createElement('div');
         let texte_titre = recette.titre;
-        let titre_titre = document.createTextNode('Titre : ')
         let titre = document.createTextNode(texte_titre);
-        div_titre.appendChild(titre_titre);
         div_titre.appendChild(titre);
         div.appendChild(div_titre);
         //Description

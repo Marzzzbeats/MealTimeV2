@@ -74,17 +74,13 @@ async function afficheRecettes(user){
         //Titre
         let div_titre = document.createElement('div');
         let texte_titre = recette.titre;
-        let titre_titre = document.createTextNode('Titre : ')
         let titre = document.createTextNode(texte_titre);
-        div_titre.appendChild(titre_titre);
         div_titre.appendChild(titre);
         div.appendChild(div_titre);
         //Description
         let div_description = document.createElement('div');
-        let desc_desc = document.createTextNode('Description : ');
         let desc = recette.description;
         let text_desc = document.createTextNode(desc);
-        div_description.appendChild(desc_desc);
         div_description.appendChild(text_desc);
         div.appendChild(div_description);
         //ingredients
@@ -173,17 +169,13 @@ async function afficheRecettes(user){
         //Titre
         let div_titre = document.createElement('div');
         let texte_titre = recette.titre;
-        let titre_titre = document.createTextNode('Titre : ')
         let titre = document.createTextNode(texte_titre);
-        div_titre.appendChild(titre_titre);
         div_titre.appendChild(titre);
         div.appendChild(div_titre);
         //Description
         let div_description = document.createElement('div');
-        let desc_desc = document.createTextNode('Description : ');
         let desc = recette.description;
         let text_desc = document.createTextNode(desc);
-        div_description.appendChild(desc_desc);
         div_description.appendChild(text_desc);
         div.appendChild(div_description);
         //ingredients

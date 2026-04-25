@@ -71,7 +71,7 @@
 	}
 
 	function getRecettesByOwner($conn, $id_owner){
-		$sql = "SELECT * FROM recettes JOIN relation_recette_ingredient ON recettes.id = relation_recette_ingredient.id_recette JOIN ingredients ON relation_recette_ingredient.id_ingredient = ingredients.id WHERE recettes.owner = $id_owner";
+		$sql = "SELECT * FROM recettes JOIN relation_recette_ingredient ON recettes.id = relation_recette_ingredient.id_recette JOIN ingredients ON relation_recette_ingredient.id_ingredient = ingredients.id WHERE recettes.owner = $id_owner ORDER BY recettes.id, relation_recette_ingredient.id_ingredient";
 		$res = mysqli_query($conn, $sql);
 		$tab = rsToAssoc($res);
 		return $tab;

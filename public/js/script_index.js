@@ -154,22 +154,23 @@ function cardVisu(recette){
     
     const upvote = document.createElement("p");
     upvote.classList.add("upvote_p");
+    upvote.classList.add("badge");
     upvote.textContent = recette.upvote;
 
     const season_img = document.createElement("img");
     season_img.classList.add("season_img");
     if(recette.saison == "all"){
         season_img.src = "./public/img/all-removebg-preview.png";
-    }else if(recette.saison == "spring"){
-        season_img.src = "./public/img/spring-removebg-preview.png";
-    }else if(recette.saison == "summer"){
-        season_img.src = "./public/img/summer-removebg-preview.png";
-    }else if(recette.saison == "winter"){
-        season_img.src = "./public/img/winter-removebg-preview.png";
-    }else if(recette.saison == "autumn"){
+    }else if(recette.saison == "printemps"){
+        season_img.src = "./public/img/spring.png";
+    }else if(recette.saison == "ete"){
+        season_img.src = "./public/img/summer.png";
+    }else if(recette.saison == "hiver"){
+        season_img.src = "./public/img/winter.png";
+    }else if(recette.saison == "automne"){
         season_img.src = "./public/img/autumn-removebg-preview.png";
     }else{
-        season_img.alt = "met une vrai saisons fdp";
+        season_img.alt = "Saison invalide";
     }
 
 

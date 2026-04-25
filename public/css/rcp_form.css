@@ -71,7 +71,6 @@
     border-radius: 10px;
 }
 
-/* bouton du slider */
 .rcp_form input[type="range"]::-webkit-slider-thumb {
     appearance: none;
     width: 15px;
