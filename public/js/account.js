@@ -21,6 +21,7 @@ async function afficheHead(user){
     //Photo de profil
     const pp = document.createElement('img');
     pp.setAttribute('src', `https://l1.dptinfo-usmb.fr/~grp9/api/user/getProfilePic.php?id=${user_id}`);
+    pp.classList.add('pp');
     div_pp.appendChild(pp);
     //Nom
     const text_nom = document.createElement('h3');
@@ -28,19 +29,37 @@ async function afficheHead(user){
     text_nom.appendChild(text_text_nom);
     div_pp.appendChild(text_nom);
     //Abonnements
+    const abonnements_btn = document.createElement('button');
+    abonnements_btn.classList.add('btn');
     const div_abonnements = document.createElement('div');
-                const text = document.createTextNode('Abonnés : ');
-                const result = await fetch(`https://l1.dptinfo-usmb.fr/~grp9/api/sub/get_abo.php?id=${owner}&action=nbAbo`);
-                nb_abonnements = await result.json();
-                const text2 = document.createTextNode(`${nb_abo.nb_abo}`);
-                console.log(nb_abo.nb_abo);
-                div_abo.appendChild(text);
-                div_abonnements.appendChild(text2);
-                div_pp.appendChild(div_abo);
-    
-
+    const text = document.createTextNode('Abonnements : ');
+    const result = await fetch(`https://l1.dptinfo-usmb.fr/~grp9/api/sub/get_abonnements.php?id=${user_id}&action=nbAbo`);
+    const nb_abonnements = await result.json();
+    const text2 = document.createTextNode(`${nb_abonnements.nb_abo}`);
+    div_abonnements.appendChild(text);
+    div_abonnements.appendChild(text2);
+    abonnements_btn.appendChild(div_abonnements);
+    div_pp.appendChild(abonnements_btn);
+    //Abonnés
+    const abonnes_btn = document.createElement('button');
+    abonnes_btn.classList.add('btn');
+    const div_abonnes = document.createElement('div');
+    const text_a = document.createTextNode('Abonnés : ');
+    const result_a = await fetch(`https://l1.dptinfo-usmb.fr/~grp9/api/sub/get_abo.php?id=${user_id}&action=nbAbo`);
+    const nb_abonnes = await result_a.json();
+    const text2_a = document.createTextNode(`${nb_abonnes.nb_abo}`);
+    div_abonnes.appendChild(text_a);
+    div_abonnes.appendChild(text2_a);
+    abonnes_btn.appendChild(div_abonnes);
+    div_pp.appendChild(abonnes_btn);
 }
 
-// async function afficheInfos(user){
+async function afficheInfos(user){
+    const div_infos = document.querySelector('#infos');
+    
+}
 
-// }
+document.addEventListener('DOMContentLoaded', async()=>{
+    const user = await init();
+    await afficheHead(user);
+})

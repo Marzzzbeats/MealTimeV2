@@ -7,21 +7,22 @@
     require_once(__DIR__ . '/../../db/db_connect.php');
 
     function groupRecettes($recettes) {
-        $res = [];
+    $res = [];
 
-        foreach ($recettes as $recette) {
-            $id = $recette['id_recette'];
+    foreach ($recettes as $recette) {
+        $id = $recette['id'];
 
-            if (!isset($res[$id])) {
-                $res[$id] = ['id_recette' => $id, 'owner' => $recette['owner'], 'saison' => $recette['saison'], 'price_ind' => $recette['price_ind'], 'health_ind' => $recette['health_ind'], 'titre' => $recette['titre'], 'description' => $recette['description'], 'upvote' => $recette['upvote'], 'ing' => []];
-            }
-            if (!empty($recette['id_ingredient'])) {
-                $res[$id]['ing'][] = ['id_ingredient' => $recette['id_ingredient'], 'nom' => $recette['nom'], 'quantite' => $recette['quantite']];
-            }
+        if (!isset($res[$id])) {
+            $res[$id] = [
+                'id_recette' => $id, 'owner' => $recette['owner'], 'saison' => $recette['saison'], 'price_ind' => $recette['price_ind'], 'health_ind' => $recette['health_ind'], 'titre' => $recette['titre'], 'description' => $recette['description'], 'upvote' => $recette['upvote'],'ing' => []];
         }
-
-        return array_values($res);
+        if ($recette['ingredient_id'] !== null) {
+            $res[$id]['ing'][] = ['id_ingredient' => $recette['ingredient_id'],'nom' => $recette['nom'],'quantite' => $recette['quantite']];
+        }
     }
+
+    return array_values($res);
+}
 
     if(isset($_GET['action']) && $_GET['user_id']){
         $action = $_GET['action'];

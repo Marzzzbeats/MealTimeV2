@@ -74,11 +74,10 @@
                 $description = $_POST['description'];
                 $ing = $_POST['ingredients'];
                 $qte = $_POST['quantite'];
-                addRecette($conn, $owner, $image, $saison, $price_ind, $health_ind, $titre, $description);
-                $id_recette = getIdDerniereRecette($conn, $owner);
-                addRecetteFav($conn, $owner, $id_recette['id']);
-                addUpVote($conn, $id_recette['id']);
-                addIngredientRecette($conn, $id_recette['id'], $ing, $qte);
+                $id_recette = addRecette($conn, $owner, $image, $saison, $price_ind, $health_ind, $titre, $description);
+                addRecetteFav($conn, $owner, $id_recette);
+                addUpVote($conn, $id_recette);
+                addIngredientRecette($conn, $id_recette, $ing, $qte);
                 header('Location: ./recettes.php?status=success');
                 exit;
             }

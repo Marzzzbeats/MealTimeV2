@@ -6,24 +6,20 @@
 	$debeug=false; 
 
 	function addRecette($conn, $owner, $image, $saison, $price_ind, $health_ind, $titre, $description){
-    
-		if($image == ""){
-			$image = null;
-		}
 
-		$sql = "INSERT INTO recettes (`owner`, `image`, `saison`, `price_ind`, `health_ind`, `titre`, `description`) 
+		$sql = "INSERT INTO recettes (owner, image, saison, price_ind, health_ind, titre, description) 
 				VALUES (?, ?, ?, ?, ?, ?, ?)";
-				
-		$stmt = mysqli_prepare($conn, $sql);
-		$null_blob = null; 
-		mysqli_stmt_bind_param($stmt, "ibsiiss", $owner, $null_blob, $saison, $price_ind, $health_ind, $titre, $description);
-		if($image !== null){
-			mysqli_stmt_send_long_data($stmt, 1, $image);
-		}
-		$res = mysqli_stmt_execute($stmt);
-		return $res; 
-	}
 
+		$stmt = mysqli_prepare($conn, $sql);
+
+		mysqli_stmt_bind_param($stmt,"issiiss",$owner,$image,$saison,$price_ind,$health_ind,$titre,$description);
+
+		if (!mysqli_stmt_execute($stmt)) {
+			die("Erreur SQL: " . mysqli_error($conn));
+		}
+
+		return mysqli_insert_id($conn);
+	}
 
 	function updateRecettes($conn, $id, $image, $saison, $price_ind, $health_ind, $titre, $description){
 		$sql="UPDATE `recettes` SET `image`='$image', `saison`='$saison', `price_ind`='$price_ind', `health_ind`='$health_ind', `titre`='$titre', `description`='$description' WHERE id = $id"; 
@@ -71,10 +67,34 @@
 	}
 
 	function getRecettesByOwner($conn, $id_owner){
-		$sql = "SELECT * FROM recettes JOIN relation_recette_ingredient ON recettes.id = relation_recette_ingredient.id_recette JOIN ingredients ON relation_recette_ingredient.id_ingredient = ingredients.id WHERE recettes.owner = $id_owner ORDER BY recettes.id, relation_recette_ingredient.id_ingredient";
-		$res = mysqli_query($conn, $sql);
-		$tab = rsToAssoc($res);
-		return $tab;
+		$sql = "
+			SELECT 
+				r.id AS id,
+				r.owner,
+				r.saison,
+				r.price_ind,
+				r.health_ind,
+				r.titre,
+				r.description,
+				r.upvote,
+				i.id AS ingredient_id,
+				i.nom,
+				ri.quantite
+			FROM recettes r
+			LEFT JOIN relation_recette_ingredient ri 
+				ON r.id = ri.id_recette
+			LEFT JOIN ingredients i 
+				ON ri.id_ingredient = i.id
+			WHERE r.owner = ?
+			ORDER BY r.id
+		";
+
+		$stmt = mysqli_prepare($conn, $sql);
+		mysqli_stmt_bind_param($stmt, "i", $id_owner);
+		mysqli_stmt_execute($stmt);
+
+		$res = mysqli_stmt_get_result($stmt);
+		return rsToAssoc($res);
 	}
 
 	function getIdDerniereRecette($conn, $owner){

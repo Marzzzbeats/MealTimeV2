@@ -10,7 +10,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <link rel="stylesheet" href="./css/recettes.css">
+    <link rel="stylesheet" href="./css/profil.css">
     <link rel="stylesheet" href="./css/reset.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="./css/roots.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="./css/style.css?v=<?php echo time(); ?>">
@@ -25,14 +26,14 @@
 
     <div id='div_nom_pp'></div>
     <div id='titre_info' class='rec'>
-        <div id='infos'>
+        <div id='infos' class='info_container'>
 
         </div>
     </div>
 
 
     <ul id="navbar_ul">
-        <li class="selected"><a href='./account.php'>Profil</a></li>"
+        <li class="selected"><a href='./account.php'>Profil</a></li>
         <li><a href="./recettes.php">Mes recettes</a></li>
         <li><a href="../index.php">Accueil</a></li>
         <li><a href="./semaine.php">Ma semaine</a></li>
@@ -48,5 +49,5 @@
         ?>
     </ul>
 
-    <script src='./js/account.js'>
+    <script src='./js/account.js'></script>
 </body>

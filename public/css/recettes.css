@@ -29,7 +29,6 @@ body {
 }
 
 .btn {
-    color: white;
     border: none;
     padding: 8px 12px;
     border-radius: 10px;
@@ -41,12 +40,19 @@ body {
     transform: scale(1.05);
 }
 
+.abo_btn{
+    color: black;
+    background-color: whitesmoke;
+}
+
 .delBtn{
     background: linear-gradient(135deg, #ff4848, #d63031);
+    color: white;
 }
 
 .createBtn{
     background: linear-gradient(135deg, #79ff54, #0ffe17);
+    color: white;
 }
 
 .hidden{
