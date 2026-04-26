@@ -1,14 +1,17 @@
 body {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    justify-content: flex-start;
+    min-height: 150vh;
 }
-
 h1 {
+    display: flex;
+    flex-direction: column;
     top: 5vh;
     margin-bottom: 5vh;
     font-size: 60px;
+    justify-content: center;
 }
 
         
@@ -41,4 +44,14 @@ table {
     width: 100%;
     object-fit: cover;
     object-position: center;
+}
+
+
+#tableau {
+    margin-top: 3%;
+    margin-bottom: 30px;
+}
+
+#formulaire {
+    margin-bottom: 50px;
 }

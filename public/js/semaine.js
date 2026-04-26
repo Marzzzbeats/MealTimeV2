@@ -56,12 +56,13 @@ function recettes_random(data){ // me permet de mélanger les recettes entre ell
 
 async function creer_tableau_semaine(tableau_nom_recettes, tableau_id_recettes) { // fait le tableau de la semaine
     // console.log(tableau_nom_recettes);
+    let container = document.getElementById("tableau");
     let indice1 = 0;
     let indice2 = 0;
     const h1 = document.createElement("h1");
     const hello = document.createTextNode("MA SEMAINE");
     h1.appendChild(hello);
-    document.body.appendChild(h1);
+    container.appendChild(h1);
     const nb_jours = 7;
     const nb_repas = 4;
 
@@ -109,6 +110,6 @@ async function creer_tableau_semaine(tableau_nom_recettes, tableau_id_recettes) 
         table.appendChild(tr);
     }
     div.appendChild(table);
-    document.body.appendChild(div);
+    container.appendChild(div);
 }
 

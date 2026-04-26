@@ -24,6 +24,18 @@
         $user_id = $_SESSION['id']; 
         // $user_id = 6;
         // echo($user_id);
+        
+        if (isset($_POST)){
+            $prix = $_POST['prix'];
+            $sante = $_POST['sante'];
+            echo($prix);
+            echo($sante);
+        }
+
+
+
+
+
 
         function recettes_random($data){ // me permet de mélanger les recettes entre elles.
             for ($i = count($data) - 1; $i > 0; $i--) {
@@ -164,6 +176,9 @@
     ?>
 
 
+    
+
+
     <script src="./js/semaine.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", async() => {
@@ -196,5 +211,35 @@
             ?>
         </ul>
     <script src="./js/semaine.js"></script>
+
+    <div id='tableau'></div>
+
+
+    <h1>Formulaire</h1>
+    <div id='formulaire'>
+        <form method="post" action="">
+    
+            <p>Indice de prix :</p>
+            <select name="prix">
+                <option value="5" <?= (@$_POST["prix"] == 5) ? "selected" : "" ?>>5 (cher)</option>
+                <option value="4" <?= (@$_POST["prix"] == 4) ? "selected" : "" ?>>4</option>
+                <option value="3" <?= (@$_POST["prix"] == 3) ? "selected" : "" ?>>3</option>
+                <option value="2" <?= (@$_POST["prix"] == 2) ? "selected" : "" ?>>2</option>
+                <option value="1" <?= (@$_POST["prix"] == 1) ? "selected" : "" ?>>1 (très pas cher)</option>
+            </select>
+
+            <p>Indice de santé :</p>
+            <select name="sante">
+                <option value="5" <?= (@$_POST["sante"] == 5) ? "selected" : "" ?>>5 (très sain)</option>
+                <option value="4" <?= (@$_POST["sante"] == 4) ? "selected" : "" ?>>4</option>
+                <option value="3" <?= (@$_POST["sante"] == 3) ? "selected" : "" ?>>3</option>
+                <option value="2" <?= (@$_POST["sante"] == 2) ? "selected" : "" ?>>2</option>
+                <option value="1" <?= (@$_POST["sante"] == 1) ? "selected" : "" ?>>1 (pas sain)</option>
+            </select>
+
+            <br><br>
+            <input type="submit" value="Valider">
+        </form>
+    </div>
 </body>
 </html>
