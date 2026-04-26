@@ -115,13 +115,12 @@ function afficheInfos(user){
     div_infos.appendChild(div_pp);
 }
 
-async function afficheAbonnements(user){
-    const response2 = await fetch(`https://l1.dptinfo-usmb.fr/~grp9/api/sub/get_abonnements.php?id=${user.id}&action=abonnements`);
-    const abonnements_abo = await response2.json();
-    const div_popup_abonnements = document.createElement('div');
-    
+// async function afficheAbonnements(user){
+//     const response2 = await fetch(`https://l1.dptinfo-usmb.fr/~grp9/api/sub/get_abonnements.php?id=${user.id}&action=abonnements`);
+//     const abonnements_abo = await response2.json();
+//     const div_popup_abonnements = document.createElement('div');
 
-}
+// }
 
 document.addEventListener('DOMContentLoaded', async()=>{
     const user = await init();
