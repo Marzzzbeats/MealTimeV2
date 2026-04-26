@@ -13,10 +13,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tickets</title>
 
-    <script src="./js/ticketsSee.js?v=3" defer></script>
+    <script src="./js/ticketsSee.js?v=<?php echo time(); ?>" defer></script>
 
     <link rel="stylesheet" href="./css/reset.css?v=<?php echo time(); ?>">
-    <link rel="stylesheet" href="./css/root.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="./css/roots.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="./css/tickets.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="./css/navbar.css?v=<?php echo time(); ?>">
 
@@ -32,7 +32,7 @@
         <li><a href="./recettes.php">Mes recettes</a></li>
         <li><a href="../index.php">Accueil</a></li>
         <li><a href="./semaine.php">Ma semaine</a></li>
-        <li class="selected"><a href="./ticketsMake.php">Tickets</a></li>
+        <li class="selected"><a href="./ticketsMake.php">Support</a></li>
     </ul>
 </body>
 </html>

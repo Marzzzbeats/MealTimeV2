@@ -11,8 +11,8 @@
 ?>
 
 <?php
-
-$data = getNotifs($conn);
+$id = $_GET["user_id"];
+$data = getUnreadNotifs($conn, $id);
 echo(json_encode($data));
 
 ?>

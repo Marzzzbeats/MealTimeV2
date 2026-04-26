@@ -64,9 +64,8 @@ async function manage_session() {
 
 function createAllCards(recettes){
     const container = document.getElementById("container");
-    
-    const top = recettes.slice(0, 20);
-    const rest = recettes.slice(20);
+    let top = recettes.slice(0, 20);
+    let rest = recettes.slice(0);
 
     container.appendChild(createTopCards(top));
     container.appendChild(createCards(rest));
@@ -77,7 +76,7 @@ function createAllCards(recettes){
 function createTopCards(recettes){
     const carousselTopContainer = document.createElement("div");
     carousselTopContainer.classList.add("carousselTopContainer");
-    let rec = [recettes.slice(0, 10), recettes.slice(10, 20)];
+    let rec = [recettes.slice(0, recettes.length/2), recettes.slice(recettes.length/2, recettes.length)];
     for(let i=0; i<2; i++){
         const sens = i % 2 === 0 ? "left" : "right";
         const caroussel = createCaroussel(sens, rec[i]);
@@ -107,16 +106,26 @@ function createCaroussel(sens,  recettes){
 
 
 function createTopCard(recette){
+    const wrapper = document.createElement("div");
+    wrapper.classList.add("cardWrapper");
+
     const card = document.createElement("div");
     card.classList.add("cardTopElm");
     card.classList.add("cardElm");
+
+    const titre = document.createElement("p");
+    titre.classList.add("titre_recette");
+    titre.textContent = recette.titre;
+
     cardVisu(recette).forEach(elm => {
         card.appendChild(elm);
     });
     card.addEventListener("click", () => {
         redirectRecette(recette.owner, recette.id);
     });
-    return card
+    wrapper.appendChild(titre);
+    wrapper.appendChild(card);
+    return wrapper
 }
 
 function createCards(recettes){
@@ -129,28 +138,32 @@ function createCards(recettes){
 }
 
 function createCard(recette){
+    const wrapper = document.createElement("div");
+    wrapper.classList.add("cardWrapper");
+    
+    const titre = document.createElement("p");
+    titre.classList.add("titre_recette");
+    titre.textContent = recette.titre;
+
     const card = document.createElement("div");
     card.classList.add("cardElm");
     cardVisu(recette).forEach(elm => {
         card.appendChild(elm);
     });
-    card.addEventListener("click", () => {
+    wrapper.addEventListener("click", () => {
         redirectRecette(recette.owner, recette.id);
     });
-    return card;
+
+    wrapper.appendChild(card);
+    wrapper.appendChild(titre);
+    return wrapper;
 }
 
 function cardVisu(recette){
     const recette_img = document.createElement("img");
     recette_img.src = `./api/recettes/api_image_recette.php?id=${recette.id}`;
-    // recette_img.src = `./public/img/local_dining.png`;
-    // recette_img.src = `./public/img/rdn_img_bouffe.png`;
     recette.atl = "image de la recette";
     recette_img.classList.add("recette_img");
-
-    const titre = document.createElement("p");
-    titre.classList.add("titre_reccete");
-    titre.textContent = recette.titre;
     
     const upvote = document.createElement("p");
     upvote.classList.add("upvote_p");
@@ -175,7 +188,7 @@ function cardVisu(recette){
 
 
 
-    return [recette_img, titre, season_img, upvote];
+    return [recette_img, season_img, upvote];
 }
 
 function redirectRecette(user_id, id_recette){
@@ -208,6 +221,7 @@ function initSearch(){
 
         if(filtered.length === 0){
             const p = document.createElement("p");
+            p.id = "noRes";
             p.textContent = "Aucun resultat";
             resultsDiv.style.display = "flex";
             resultsDiv.appendChild(p);

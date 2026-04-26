@@ -1,8 +1,8 @@
 <?php
 
 
-function addTicket($conn, $user_id, $category, $title, $message){
-    $sql = "INSERT INTO tickets (user_id, category, titre, message) VALUES ('$user_id', '$category', '$title', '$message')";
+function addTicket($conn, $user_id, $category, $title, $message, $date){
+    $sql = "INSERT INTO tickets (user_id, category, titre, message, date) VALUES ('$user_id', '$category', '$title', '$message', '$date')";
     return mysqli_query($conn, $sql);
 }
 

@@ -17,8 +17,9 @@
     $category = $data["category"];
     $title = $data["title"];
     $message = $data["message"];
+    $date = $data["date"];
 
-    $result = addTicket($conn, $user_id, $category, $title, $message);
+    $result = addTicket($conn, $user_id, $category, $title, $message, $date);
 
     echo json_encode(["success" => $result]);
 
