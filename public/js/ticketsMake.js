@@ -56,7 +56,7 @@ async function createTicketForm(user_id){
     title_inp.type = "text";
 
     const select_label = document.createElement("label");
-    select_label.textContent = "Selectionez une category";
+    select_label.textContent = "Selectionez une categorie";
 
     const select = document.createElement("select");
     ["bug", "signalement", "autre"].forEach(cat => {
