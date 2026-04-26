@@ -5,22 +5,26 @@ body {
     align-items: center;
 }
 
-div {
-    height: 400px;
+h1 {
+    top: 5vh;
+    margin-bottom: 5vh;
+    font-size: 60px;
 }
+
         
 td{
     background-color: rgb(182, 182, 182);
-    height: 30%;
-    width: 50%;
+    height: 20vh;
+    width: 20vh;
     text-align: center;
 }
         
 table {
-    background-color: rgb(0, 0, 0);
     width: 90vw;
-    height: 400px;
+    height: 60vh;
+    margin-bottom: 5vh;
     table-layout: fixed;
+    background-color: rgb(0, 0, 0);
 }
 
 .repa {
@@ -29,6 +33,12 @@ table {
 }
 
 .ligne_jour {
-    border-radius: 10px;
     overflow: hidden;
+}
+
+.image{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
 }

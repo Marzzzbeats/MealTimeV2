@@ -57,7 +57,7 @@
             for ($i = 1; $i <= 14; $i++) {
                 //echo($i);
                 $id = $semaine["id_plat_$i"];
-                $tableau_id_recettes["id_plat_$i"] = $id;
+                $tableau_id_recettes[] = $id;
             }
             // var_dump($tableau_id_recettes);
             return $tableau_id_recettes;
@@ -79,8 +79,8 @@
         function compare_semaine_favoris($conn, $semaine, $recettes){
             $res = TRUE;
             $semaine = get_semaine_id($conn, $semaine, $recettes);
-            for ($i = 1; $i <= 14; $i++) {
-                $id_de_la_recette = $semaine["id_plat_$i"];
+            for ($i = 0; $i < 14; $i++) {
+                $id_de_la_recette = $semaine[$i];
                 if (!trouve_dans_favoris($id_de_la_recette, $recettes)){
                     $res = FALSE;
                 }
@@ -97,25 +97,26 @@
             // var_dump($recettes);
             if (count($recettes) < 14){
                 deleteSemaine($conn,$user_id);
-                echo("<h1>Vous n'avez pas assez de recettes en favoris !</h1>");
+                echo("<h2>Vous n'avez pas assez de recettes en favoris !</h2>");
                 $nb_recette_maquant = 14 - count($recettes);
                 if ($nb_recette_maquant === 1){
-                    echo("<br><h1>Il vous manque 1 recette favorite pour programmer une semaine complète.</h1>");
+                    echo("<br><h2>Il vous manque 1 recette favorite pour programmer une semaine complète.</h2>");
                 }
                 else {
-                    echo("<br><h1>Il vous manque $nb_recette_maquant recettes favorites pour programmer une semaine complète.</h1>");
+                    echo("<br><h2>Il vous manque $nb_recette_maquant recettes favorites pour programmer une semaine complète.</h2>");
                 }
             }
             else if(!compare_semaine_favoris($conn, $semaine, $recettes)){
                 deleteSemaine($conn,$user_id);
-                echo("<h1>Vous avez retiré de vos favoris une recette présente dans votre semaine.</h1>");
-                echo("<h1>Une nouvelle semaine va être chargée.</h1>");
+                echo("<h2>Vous avez retiré de vos favoris une recette présente dans votre semaine.</h2>");
+                echo("<h2>Une nouvelle semaine va être chargée.</h2>");
                 }
             
             else {
                 // var_dump($semaine);
                 $tableau_nom_recettes = get_semaine_titre($conn, $semaine, $recettes);
-                // var_dump($tableau_nom_recettes);
+                $tableau_id_recettes = get_semaine_id($conn, $semaine, $recettes);
+                // var_dump($tableau_id_recettes);
 
             }
         }
@@ -123,13 +124,13 @@
             $recettes = getRecettesFavoris($conn, $user_id);
             // var_dump($recettes);
             if (count($recettes) < 14){
-                echo("<h1>Vous n'avez pas assez de recettes en favoris !</h1>");
+                echo("<h2>Vous n'avez pas assez de recettes en favoris !</h2>");
                 $nb_recette_maquant = 14 - count($recettes);
                 if ($nb_recette_maquant === 1){
-                    echo("<br><h1>Il vous manque 1 recette favorite pour programmer une semaine complète.</h1>");
+                    echo("<br><h2>Il vous manque 1 recette favorite pour programmer une semaine complète.</h2>");
                     }
                     else {
-                    echo("<br><h1>Il vous manque $nb_recette_maquant recettes favorites pour programmer une semaine complète.</h1>");
+                    echo("<br><h2>Il vous manque $nb_recette_maquant recettes favorites pour programmer une semaine complète.</h2>");
                 }
             }
             else {
@@ -154,7 +155,8 @@
                 
                 $semaine = getSemaineByUser($conn,$user_id);
                 $tableau_nom_recettes = get_semaine_titre($conn, $semaine, $recettes);
-                // var_dump($tableau_nom_recettes);
+                $tableau_id_recettes = get_semaine_id($conn, $semaine, $recettes);
+                //var_dump($tableau_id_recettes);
 
 
             }
@@ -164,12 +166,17 @@
 
     <script src="./js/semaine.js"></script>
     <script>
-        let data_semaine = <?php echo json_encode($semaine); ?>;
-        // console.log(data_semaine);
+        document.addEventListener("DOMContentLoaded", async() => {
+            let data_semaine = <?php echo json_encode($semaine); ?>;
+            // console.log(data_semaine);
 
-        let tableau_nom_recettes = <?php echo json_encode($tableau_nom_recettes); ?>;
-        // console.log(tableau_nom_recettes);
-        creer_tableau_semaine(tableau_nom_recettes);
+            let tableau_nom_recettes = <?php echo json_encode($tableau_nom_recettes); ?>;
+            let tableau_id_recettes = <?php echo json_encode($tableau_id_recettes); ?>;
+            // console.log(tableau_nom_recettes);
+            console.log(tableau_id_recettes);
+            const user = await init();
+            await creer_tableau_semaine(tableau_nom_recettes, tableau_id_recettes);
+        });
     </script>
 
     <ul id="navbar_ul">
