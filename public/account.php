@@ -26,11 +26,32 @@
 
     <div id='div_nom_pp'></div>
     <div id='titre_info' class='rec'>
+        <h2>Voici vos informations personnelles :</h2>
         <div id='infos' class='info_container'>
 
         </div>
     </div>
 
+    <div class="screen hidden" id="modif_nom">
+
+    </div>
+
+    <div class="screen hidden" id="modif_email">
+
+    </div>
+
+    <div class="screen hidden" id="modif_password">
+
+    </div>
+
+    <div class="screen hidden" id="modif_pp">
+
+    </div>
+
+    
+
+    <div class="screen hidden" id="abonnements"></div>
+    <div class="screen hidden" id="abonnes"></div>
 
     <ul id="navbar_ul">
         <li class="selected"><a href='./account.php'>Profil</a></li>

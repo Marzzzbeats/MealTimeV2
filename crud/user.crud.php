@@ -151,4 +151,28 @@
 		return $tab; 
 	}
 
+    function modifNomUser($conn, $id, $nom, $prenom){
+        if(!$conn){
+            header('Location: index.php?status=connError');
+        }
+        $sql = "UPDATE user SET `nom`='$nom', `prenom`='$prenom' WHERE id=$id";
+        $result = mysqli_query($conn, $sql);
+        return $result;
+    }
+
+    function modifEmailUser($conn, $id, $email){
+        if(!$conn){
+            header('Location: index.php?status=connError');
+        }
+        $sql = "UPDATE user SET `email`='$email' WHERE id=$id";
+        $result = mysqli_query($conn, $sql);
+        return $result;
+    }
+
+    function modifMdp($conn, $id, $password){
+        $ashed = ashPassword($password);
+        $sql = "UPDATE user SET `password`='$ashed' WHERE id=$id";
+        $result = mysqli_query($conn, $sql);
+        return $result;
+    }
 ?>

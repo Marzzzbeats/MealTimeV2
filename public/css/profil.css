@@ -6,3 +6,10 @@
     object-fit: cover;      /* ecrase pas l'image */
     object-position: center;
 }
+
+.pp_img{
+    width: 15vh;
+    height: 15vh;
+    object-fit: cover;
+    object-position: center;
+}
