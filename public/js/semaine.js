@@ -34,8 +34,6 @@ async function getRecettes(user){
 
 
 
-window.onload = init();
-user = init();
 // console.log(user);
 
 function recettes_random(data){ // me permet de mélanger les recettes entre elles.
@@ -56,9 +54,10 @@ function recettes_random(data){ // me permet de mélanger les recettes entre ell
 
 
 
-function creer_tableau_semaine(tableau_nom_recettes) { // fait le tableau de la semaine
+async function creer_tableau_semaine(tableau_nom_recettes, tableau_id_recettes) { // fait le tableau de la semaine
     // console.log(tableau_nom_recettes);
-    let indice = 0;
+    let indice1 = 0;
+    let indice2 = 0;
     const h1 = document.createElement("h1");
     const hello = document.createTextNode("MA SEMAINE");
     h1.appendChild(hello);
@@ -86,10 +85,10 @@ function creer_tableau_semaine(tableau_nom_recettes) { // fait le tableau de la 
         for (let j = 0; j < nb_jours; j++) {
             const td = document.createElement("td");
             if ((i === 1) || (i === 3)) {
-                if (tableau_nom_recettes[indice] !== null) {
+                if (tableau_nom_recettes[indice1] !== null) {
                     //console.log(indice);
-                    jour = document.createTextNode(tableau_nom_recettes[indice]);
-                    indice++;
+                    jour = document.createTextNode(tableau_nom_recettes[indice1]);
+                    indice1++;
                 } else {
                     jour = document.createTextNode('repas');
                 }
@@ -97,8 +96,13 @@ function creer_tableau_semaine(tableau_nom_recettes) { // fait le tableau de la 
                 td.classList.add("repa");
                 tr.appendChild(td);
             } else {
-                jour = document.createTextNode("");
-                td.appendChild(jour);
+                
+                let img = document.createElement('img');
+                console.log(`https://l1.dptinfo-usmb.fr/~grp9/api/recettes/api_image_recette.php?id=${tableau_id_recettes[indice2]}`);
+                await img.setAttribute('src', `https://l1.dptinfo-usmb.fr/~grp9/api/recettes/api_image_recette.php?id=${tableau_id_recettes[indice2]}`);
+                indice2++;
+                img.classList.add("image");
+                td.appendChild(img);
                 tr.appendChild(td);
             }
         }
