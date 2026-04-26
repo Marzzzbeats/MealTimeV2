@@ -56,6 +56,19 @@ async function getUserName(user_id) {
     }
 }
 
+function filterByCategory(category) {
+    if (category === "all") {
+        renderTickets(ALL_TICKETS)
+        return
+    }
+
+    const filtered = ALL_TICKETS.filter(ticket => 
+        ticket.category === category
+    )
+
+    renderTickets(filtered)
+}
+
 async function createTicketsList(){
     const tickets = await loadTickets()
 
