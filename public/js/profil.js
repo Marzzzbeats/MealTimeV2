@@ -103,17 +103,17 @@ async function afficheRecettes(user, owner, id_recette){
         let div_favo = document.createElement('div');
         div_favo.classList.add('close_div');
         let a_fav = document.createElement('a');
-        let response = await fetch(`../api/recettes/fav_actions.php?id_user=${user.id}&id_recette=${recette.id_recette}&action=isFav`);
+        let response = await fetch(`../api/recettes/fav_actions.php?id_user=${user.id}&id_recette=${recette.id_recette}&action=isFav&owner=${owner}`);
         let isFav = await response.json();
         let fav = isFav.fav;
         console.log(fav);
         let fav_icon = document.createElement('img');
         if(fav == true){
-            a_fav.setAttribute('href', `../api/recettes/fav_actions.php?id_user=${user.id}&id_recette=${recette.id_recette}&action=remFav`);
+            a_fav.setAttribute('href', `../api/recettes/fav_actions.php?id_user=${user.id}&id_recette=${recette.id_recette}&action=remFav&owner=${owner}`);
             fav_icon.setAttribute('src', './img/favoris.png');
             fav_icon.setAttribute('id', 'favImg');
         }else{
-            a_fav.setAttribute('href', `../api/recettes/fav_actions.php?id_user=${user.id}&id_recette=${recette.id_recette}&action=addFav`);
+            a_fav.setAttribute('href', `../api/recettes/fav_actions.php?id_user=${user.id}&id_recette=${recette.id_recette}&action=addFav&owner=${owner}`);
             fav_icon.setAttribute('src', './img/non_favoris.png');
             fav_icon.setAttribute('id', 'favImg');
         }
