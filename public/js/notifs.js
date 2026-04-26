@@ -1,6 +1,6 @@
-async function loadNotifs() {
+async function loadNotifs(user_id) {
     try {
-        const response = await fetch('./api/notifs/notifs.php');
+        const response = await fetch(`./api/notifs/notifs.php?user_id=${user_id}`);
         const data = await response.json();
 
         console.log(data);

@@ -36,36 +36,24 @@ async function closeTicket(ticketId) {
     }
 }
 
-
 async function loadTickets() {
     try {
         const response = await fetch('../api/tickets/getTicket.php');
         const data = await response.json();
-
-        console.log(data);
         return data;
-        
     } catch (err) {
         console.error("Erreur :", err);
     }
 }
 
-async function createTicketsList(){
-    const tickets = await loadTickets()
-
-    ALL_TICKETS = tickets
-    generateCategoryFilters();
-    renderTickets(ALL_TICKETS)
-}
-
-function renderTickets(tickets) {
-    const tickets_ul = document.getElementById("tickets_ul")
-    tickets_ul.innerHTML = ""
-
-    if (!tickets || !Array.isArray(tickets)) return
-    tickets.forEach(ticket => {
-        tickets_ul.appendChild(createTicket(ticket))
-    })
+async function getUserName(user_id) {
+    try {
+        const response = await fetch(`../api/notifs/userName.php?user_id=${user_id}`);
+        const data = await response.text();
+        return data;
+    } catch (err) {
+        console.error("Erreur :", err);
+    }
 }
 
 function filterByCategory(category) {
@@ -81,8 +69,28 @@ function filterByCategory(category) {
     renderTickets(filtered)
 }
 
+async function createTicketsList(){
+    const tickets = await loadTickets()
+
+    ALL_TICKETS = tickets
+    generateCategoryFilters();
+    await renderTickets(ALL_TICKETS)
+}
+
+async function renderTickets(tickets) {
+    const tickets_ul = document.getElementById("tickets_ul")
+    tickets_ul.innerHTML = ""
+
+    if (!tickets || !Array.isArray(tickets)) return
+
+    for (const ticket of tickets) {
+        const tck = await createTicket(ticket);
+        tickets_ul.appendChild(tck)
+    }
+}
+
 function generateCategoryFilters() {
-    const categories = ["bug", "report", "other"];
+    const categories = ["bug", "signalement", "autre"];
 
     const select = document.getElementById("filter_category")
     select.innerHTML = '<option value="all">Tous</option>'
@@ -95,25 +103,25 @@ function generateCategoryFilters() {
     })
 }
 
-function createTicket(ticket){
+async function createTicket(ticket){
     const ticket_li = document.createElement("li");
     ticket_li.classList.add("ticket_li");
 
     const ticket_header = document.createElement("div");
+    ticket_header.classList.add("ticket_header");
+
     ticket_header.addEventListener("click", () => {
         ticket_li.classList.toggle("open");
     });
-    ticket_header.classList.add("ticket_header");
-    createticketHead(ticket).forEach(elm => {
-        ticket_header.appendChild(elm);
-    });
-    
+
+    const headerElements = createticketHead(ticket);
+    headerElements.forEach(elm => ticket_header.appendChild(elm));
+
     const ticket_expand = document.createElement("div");
     ticket_expand.classList.add("ticket_expand");
-    createTicketView(ticket, ticket_li).forEach(elm => {
-        ticket_expand.appendChild(elm);
-    });
 
+    const expandElements = await createTicketView(ticket, ticket_li);
+    expandElements.forEach(elm => ticket_expand.appendChild(elm));
 
     ticket_li.appendChild(ticket_header);
     ticket_li.appendChild(ticket_expand);
@@ -123,17 +131,16 @@ function createTicket(ticket){
 
 function createticketHead(ticket){
     const ticket_title = document.createElement("h4");
-    ticket_title.textContent = ticket["titre"];
+    ticket_title.textContent = ticket.titre;
 
     const date = document.createElement("p");
-    date.textContent = "1212121";
+    date.textContent = ticket.date;
 
     const category = document.createElement("p");
-    category.textContent = ticket["category"];
+    category.textContent = ticket.category;
 
     const expand_btn = document.createElement("img");
     expand_btn.src = "./svgs/down.svg";
-    expand_btn.alt = "arrow down";
 
     const img_container = document.createElement("div");
     img_container.appendChild(expand_btn);
@@ -141,7 +148,7 @@ function createticketHead(ticket){
     return [ticket_title, category, date, img_container];
 }
 
-function createTicketView(ticket, ticket_li){
+async function createTicketView(ticket, ticket_li){
     const ticket_div = document.createElement("div");
     const ticket_actions = document.createElement("div");
 
@@ -149,10 +156,14 @@ function createTicketView(ticket, ticket_li){
     message.textContent = ticket.message;
 
     const user_info = document.createElement("div");
+
     const username = document.createElement("p")
     const category = document.createElement("p")
-    username.textContent = ticket["user_id"];
-    category.textContent = ticket["category"];
+
+    const usr = await getUserName(ticket.user_id);
+    username.textContent = usr;
+
+    category.textContent = ticket.category;
 
     user_info.appendChild(username);
     user_info.appendChild(category);
@@ -160,17 +171,20 @@ function createTicketView(ticket, ticket_li){
     const close_btn = document.createElement("p");
     close_btn.textContent = "Fermer le ticket";
     close_btn.classList.add("ticket_close_btn")
-    
+
     let isClosing = false;
+
     close_btn.addEventListener("click", async (e) => {
         e.stopPropagation()
+
         if (isClosing) return
         isClosing = true
-        const confirmClose = confirm("t sur ?")
 
+        const confirmClose = confirm("t sur ?")
         if (!confirmClose) return
 
         await closeTicket(ticket.id)
+
         ticket_li.style.transition = "0.3s"
         ticket_li.style.opacity = "0"
         setTimeout(() => ticket_li.remove(), 300)
@@ -178,20 +192,19 @@ function createTicketView(ticket, ticket_li){
 
     ticket_div.appendChild(message)
     ticket_div.appendChild(user_info)
-
     ticket_actions.appendChild(close_btn);
 
     return [ticket_div, ticket_actions];
 }
 
-
 document.addEventListener("DOMContentLoaded", async () => {
-    let user = await init();
+    const user = await init();
     console.log(user);
-    createTicketsList();
-    // document.getElementById("container").appendChild();
-    document.getElementById("filter_category").addEventListener("change", (e) => {
-        filterByCategory(e.target.value)
-    })
 
-});
+    await createTicketsList();
+
+    document.getElementById("filter_category")
+        .addEventListener("change", (e) => {
+            filterByCategory(e.target.value)
+        })
+})

@@ -62,9 +62,9 @@
             if(isset($_SESSION['role'])){
                 $role = $_SESSION['role'];
                 if($role == 'admin'){
-                    echo('<li><a href="./ticketsSee.php" id="ticketsLink">Tickets</a></li>');
+                    echo('<li><a href="./ticketsSee.php" id="ticketsLink">Support</a></li>');
                 }else{
-                    echo('<li><a href="./ticketsMake.php" id="ticketsLink">Tickets</a></li>');
+                    echo('<li><a href="./ticketsMake.php" id="ticketsLink">Support</a></li>');
                 }
             }
         ?>

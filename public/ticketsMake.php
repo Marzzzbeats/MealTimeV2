@@ -20,7 +20,7 @@
 
     <script src="./js/ticketsMake.js?v=2" defer></script>
 
-    <link rel="stylesheet" href="./css/tickets.css?v=4">
+    <link rel="stylesheet" href="./css/ticketsMake.css?v=4">
 
 </head>
 <body>
@@ -30,7 +30,7 @@
         <li><a href="./recettes.php">Mes recettes</a></li>
         <li><a href="../index.php">Accueil</a></li>
         <li><a href="./semaine.php">Ma semaine</a></li>
-        <li class="selected"><a href="./ticketsMake.php">Tickets</a></li>
+        <li class="selected"><a href="./ticketsMake.php">Support</a></li>
     </ul>
 </body>
 </html>
