@@ -22,7 +22,7 @@
         error_reporting(E_ALL);
         ini_set('display_errors', '1');
         $user_id = $_SESSION['id']; 
-        // $user_id = 4;
+        // $user_id = 6;
         // echo($user_id);
 
         function recettes_random($data){ // me permet de mélanger les recettes entre elles.
@@ -52,10 +52,10 @@
 
 
         $semaine = getSemaineByUser($conn,$user_id);
-        //var_dump($semaine);
+        // var_dump($semaine);
         //var_dump($recettes);
         if ($semaine){
-            $recettes = getRecettesFav($conn, $user_id);
+            $recettes = getRecettesFavoris($conn, $user_id);
             if (count($recettes) < 14){
                 deleteSemaine($conn,$user_id);
                 echo("<h1>Vous n'avez pas assez de recettes en favoris !</h1>");
@@ -68,26 +68,26 @@
                 }
             }
             else {
-                $recettes = getRecettesFavFormat($conn, $user_id);
+                $recettes = getRecettesFavorisFormat($conn, $user_id);
                 // var_dump($semaine);
                 $tableau_nom_recettes = get_semaine($conn, $semaine, $recettes);
                 //var_dump($tableau_nom_recettes);
             }
         }
         else {
-            $recettes = getRecettesFav($conn, $user_id);
+            $recettes = getRecettesFavoris($conn, $user_id);
             if (count($recettes) < 14){
                 echo("<h1>Vous n'avez pas assez de recettes en favoris !</h1>");
                 $nb_recette_maquant = 14 - count($recettes);
                 if ($nb_recette_maquant === 1){
                     echo("<br><h1>Il vous manque 1 recette favorite pour programmer une semaine complète.</h1>");
-                }
-                else {
+                    }
+                    else {
                     echo("<br><h1>Il vous manque $nb_recette_maquant recettes favorites pour programmer une semaine complète.</h1>");
                 }
             }
             else {
-                $recettes = getRecettesFavFormat($conn, $user_id);
+                $recettes = getRecettesFavorisFormat($conn, $user_id);
                 $recettes_shuffle = recettes_random($recettes);
                 $p1 = $recettes_shuffle[0]['id_recette'];
                 $p2 = $recettes_shuffle[1]['id_recette'];
