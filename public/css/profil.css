@@ -1,3 +1,7 @@
+body{
+    font-family: var(--font-primary);
+}
+
 .pp {
     width: 20vh;
     height: 20vh;

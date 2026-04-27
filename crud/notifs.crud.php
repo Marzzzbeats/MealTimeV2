@@ -85,8 +85,8 @@
         $result = mysqli_query($conn, $sql);
         if(!$result){
             header('Location: notifs.php?status=notifErr5');
-            return $result;
-        }
+            }
+        return $result;
     }
 
     function notifFollowRequest($conn, $from, $to){

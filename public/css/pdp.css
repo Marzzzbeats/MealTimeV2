@@ -1,63 +1,103 @@
 #pdp{
     position: absolute;
-    top: 1vW;
-    left: 1vW;
+    top: 1vw;
+    left: 1vw;
 }
 
 #pdp_img{
-    width: 3.2vw;
-    height: 3.2vw;
+    width: 3vw;
+    height: 3vw;
     border-radius: 50%;
     cursor: pointer;
-    z-index: 2;
+    z-index: 12;
     position: relative;
-    object-fit: cover;      /* ecrase pas l'image */
+    object-fit: cover;
     object-position: center;
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--transition), box-shadow var(--transition);
+}
+
+#pdp:hover #pdp_img{
+    transform: scale(1.1);
+    box-shadow: var(--shadow-md);
 }
 
 #pdp_menu{
     position: absolute;
     top: 0;
     left: 0;
-    width: 0;
-    height: 0;
-    background-color: var(--color-primary-dark);
-    border-radius: 10px;
-    overflow: hidden;
-    transform: scale(0);
-    transform-origin: top left;
-    opacity: 0;
-    transition: all 0.3s ease-out;
+    width: auto;
+    height: 7vh;
+    background: var(--color-surface);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-lg);
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
+    gap: 1vw;
     padding: 1vw;
+    transform: scale(0.8);
+    transform-origin: top left;
+    opacity: 0;
+    pointer-events: none;
+    transition: transform var(--transition), opacity var(--transition);
+    z-index: 10;
 }
 
 #pdp:hover #pdp_menu{
-    width: 25vw;
-    height: 7vh;
-
     transform: scale(1);
     opacity: 1;
+    pointer-events: auto;
 }
 
 .btn_log{
     display: flex;
-    gap: 2vw;
+    gap: 1vw;
+}
+
+.btn_log:nth-child(1){
+    margin-left: 3vw;
 }
 
 .button{
-    text-align: center;
-    align-content: center;
-    color: white;
-    background-color: var(--color-blue);
-    border-radius: 10px;
-    transition: 0.2s;
-    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 1.2rem;
+
     padding: 0.5vw 1vw;
+
+    border-radius: var(--radius-sm);
+
+    background: linear-gradient(
+        to bottom,
+        var(--color-primary-light),
+        var(--color-primary)
+    );
+
+    color: white;
+    font-weight: 600;
+
+    box-shadow:
+        0 3px 0 rgba(0,0,0,0.15),
+        0 6px 10px rgba(0,0,0,0.1);
+
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
 }
 
 .button:hover{
-    background-color: var(--color-accent);
+    transform: translateY(-1px);
+}
+
+.button:active{
+    transform: translateY(2px);
+    box-shadow:
+        inset 0 3px 5px rgba(0,0,0,0.2);
+    background: var(--color-primary);
+}
+
+.hidden{
+    display: none;
 }
