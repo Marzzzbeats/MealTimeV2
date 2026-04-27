@@ -65,7 +65,7 @@ function afficheInfos(user){
     const modif_btn = document.createElement('button');
     modif_btn.classList.add('btn');
     modif_btn.classList.add('createBtn');
-    modif_btn.setAttribute('id', 'modif_nom');
+    modif_btn.id = 'modif_nom_btn';
     const text_btn_nom = document.createTextNode('Modifier');
     modif_btn.appendChild(text_btn_nom);
     const text_nom = document.createTextNode(`${prenom} ${nom}`);
@@ -78,7 +78,7 @@ function afficheInfos(user){
     const modif_btn_mail = document.createElement('button');
     modif_btn_mail.classList.add('btn');
     modif_btn_mail.classList.add('createBtn');
-    modif_btn_mail.setAttribute('id', 'modif_mail');
+    modif_btn_mail.id = 'modif_email_btn';
     const text_btn_email = document.createTextNode('Modifier');
     modif_btn_mail.appendChild(text_btn_email);
     const text_mail = document.createTextNode(`Email : ${email}`);
@@ -90,7 +90,7 @@ function afficheInfos(user){
     const modif_btn_password = document.createElement('button');
     modif_btn_password.classList.add('btn');
     modif_btn_password.classList.add('createBtn');
-    modif_btn_password.setAttribute('id', 'modif_password');
+    modif_btn_password.id = 'modif_password_btn';
     const text_btn_password = document.createTextNode('Modifier');
     modif_btn_password.appendChild(text_btn_password);
     const text_password = document.createTextNode(`Mot de passe : ********`);
@@ -110,7 +110,7 @@ function afficheInfos(user){
     const modif_btn_pp = document.createElement('button');
     modif_btn_pp.classList.add('btn');
     modif_btn_pp.classList.add('createBtn');
-    modif_btn_pp.setAttribute('id', 'modif_pp');
+    modif_btn_pp.id = 'modif_pp_btn';
     const text_btn_pp = document.createTextNode('Modifier');
     modif_btn_pp.appendChild(text_btn_pp);
     div_pp.appendChild(modif_btn_pp);
@@ -184,7 +184,17 @@ document.addEventListener('DOMContentLoaded', async()=>{
     const div_abonnements = document.querySelector('#div_abonnements');
     const div_abonnes = document.querySelector('#div_abonnes');
     
+    const modif_nom = document.querySelector('#modif_nom');
+    const modif_email = document.querySelector('#modif_email');
+    const modif_password = document.querySelector('#modif_password');
+    const modif_pp = document.querySelector('#modif_pp');
 
+    const modif_nom_btn = document.querySelector('#modif_nom_btn');
+    const modif_email_btn = document.querySelector('#modif_email_btn');
+    const modif_password_btn = document.querySelector('#modif_password_btn');
+    const modif_pp_btn = document.querySelector('#modif_pp_btn');
+
+    const forms = document.querySelectorAll('form');
 
     abonnements_btn.addEventListener('click', ()=>{
         abonnements_dom.classList.remove('hidden');
@@ -198,7 +208,27 @@ document.addEventListener('DOMContentLoaded', async()=>{
         screen.addEventListener('click', ()=>{
             abonnes_dom.classList.add('hidden');
             abonnements_dom.classList.add('hidden');
+            modif_nom.classList.add('hidden');
+            modif_email.classList.add('hidden');
+            modif_password.classList.add('hidden');
+            modif_pp.classList.add('hidden');
         })
+    })
+
+    modif_nom_btn.addEventListener('click', ()=>{
+        modif_nom.classList.remove('hidden');
+    })
+
+    modif_email_btn.addEventListener('click', ()=>{
+        modif_email.classList.remove('hidden');
+    })
+
+    modif_password_btn.addEventListener('click', ()=>{
+        modif_password.classList.remove('hidden');
+    })
+
+    modif_pp_btn.addEventListener('click', ()=>{
+        modif_pp.classList.remove('hidden');
     })
 
     div_abonnements.addEventListener('click', (e)=>{
@@ -209,4 +239,9 @@ document.addEventListener('DOMContentLoaded', async()=>{
         e.stopPropagation();
     })
 
+    forms.forEach((form)=>{
+        form.addEventListener('click', (e)=>{
+           e.stopPropagation(); 
+        })
+    })
 })

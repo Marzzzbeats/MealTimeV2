@@ -1,4 +1,7 @@
 <?php
+
+    require_once(__DIR__ . '/../crud/user.crud.php');
+
     function rsToAssoc($rs){
         //Change un résultSet en tableau associatif
         $tab=[] ; 
@@ -38,6 +41,17 @@
             $str_elt.=" $elt";
         }
         return $str_elt;
+    }
+
+    function isOkEmail($email, $conn){
+        $res = true;
+        $emails = getEmails($conn);
+        foreach($emails as $mail){
+            if($mail['email'] === $email){
+                $res = false;
+            }
+        }
+        return $res;
     }
 
 ?>

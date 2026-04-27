@@ -2,6 +2,9 @@
     error_reporting(E_ALL);
     ini_set('display_errors', '1');
     require_once(__DIR__ . '/../db/db_connect.php');
+    require_once(__DIR__ . '/../views/account_views.php'); 
+    require_once(__DIR__ . '/../crud/user.crud.php');
+    require_once(__DIR__ . '/../lib/user_utils.php');
     session_start();
 ?>
 
@@ -24,7 +27,16 @@
     <title>MealTime</title>
 </head>
 <body>
-
+    <?php
+        if(isset($_GET['status'])){
+            $status = $_GET['status'];
+            if($status == 'notValidEmail'){
+                echo('<div class="alert">Cet email est déjà pris par un autre utilisateur</p>');
+            }else if($status == 'mdpFalse'){
+                echo("<div class='alert'>Mot de passe incorrect</p>");
+            }
+        }
+    ?>
     <div id='div_nom_pp'></div>
     <div id='titre_info' class='rec'>
         <h2>Voici vos informations personnelles :</h2>
@@ -34,20 +46,79 @@
     </div>
 
     <div class="screen hidden" id="modif_nom">
-
+        <div class="popup_form">
+            <?php
+                echo(createHtmlModifNameForm($conn));
+            ?>
+        </div>
     </div>
 
     <div class="screen hidden" id="modif_email">
-
+        <div class="popup_form">
+            <?php
+                echo(createHtmlModifEmailForm($conn));
+            ?>
+        </div>
     </div>
 
     <div class="screen hidden" id="modif_password">
-
+        <div class="popup_form">
+            <?php
+                echo(createHtmlModifPasswordForm($conn));
+            ?>
+        </div>
     </div>
 
     <div class="screen hidden" id="modif_pp">
-
+        <div class="popup_form">
+            <?php
+                echo(createHtmlModifPpForm($conn));
+            ?>
+        </div>
     </div>
+
+    <?php
+        //Gestion des formulaires
+
+        if(isset($_POST['action'])){
+            $id = $_SESSION['id'];
+            $action = $_POST['action'];
+            if($action == 'modif_name'){
+                $nom = $_POST['nom'];
+                $prenom = $_POST['prenom'];
+                modifNomUser($conn, $id, $nom, $prenom);
+            }else if($action == 'modif_email'){
+                $email = $_POST['email'];
+                if(isOkEmail($email, $conn)){
+                    modifEmailUser($conn, $id, $email);
+                }else{
+                    header("Location: https://l1.dptinfo-usmb.fr/~grp9/public/account.php?user_id=$id&status=notValidEmail");
+                }
+            }else if($action == 'modif_password'){
+                $response = getPasswordUser($conn, $id);
+                $user_pass = $response['password'];
+                $password = $_POST['old_pass'];
+                if(checkPassword($password, $user_pass)){
+                    $new_pass = $_POST['new_pass'];
+                    modifMdp($conn, $id, $new_pass);
+                }else{
+                    header("Location: https://l1.dptinfo-usmb.fr/~grp9/public/account.php?user_id=$id&status=mdpFalse");
+                }
+            }else if($action == 'modif_pp'){
+                if(isset($_FILES['pp']) && $_FILES['pp']['error'] === 0){
+                    $tmp = $_FILES['pp']['tmp_name']; 
+                    $data = file_get_contents($tmp);
+                }
+                if(isset($data)){
+                    $profile_pic = $data;
+                }else{
+                    $profile_pic = ""; 
+                }
+                modifPp($conn, $id, $profile_pic);
+            }
+        }
+
+    ?>
 
     
 

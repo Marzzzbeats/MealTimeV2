@@ -175,4 +175,34 @@
         $result = mysqli_query($conn, $sql);
         return $result;
     }
+
+    function getEmails($conn){
+        $sql = "SELECT email FROM user";
+        $res = mysqli_query($conn, $sql);
+        $result = rsToAssoc($res);
+        return $result;
+    }
+
+    function getPasswordUser($conn, $id){
+        $sql = "SELECT `password` FROM user WHERE id=$id";
+        $res = mysqli_query($conn, $sql);
+        $tab = rsToAssoc($res);
+        return $tab[0];
+    }
+
+    function modifPp($conn, $id, $profile_pic){
+        if($profile_pic == ""){
+			$profile_pic = null;
+		}
+		$sql = "UPDATE user SET `profile_pic`=? WHERE id=?";
+				
+		$stmt = mysqli_prepare($conn, $sql);
+		mysqli_stmt_bind_param($stmt, "bi", $profile_pic, $id);
+		if($profile_pic !== null){
+			mysqli_stmt_send_long_data($stmt, 0, $profile_pic);
+		}
+		$res = mysqli_stmt_execute($stmt);
+		return $res; 
+    }   
+
 ?>
