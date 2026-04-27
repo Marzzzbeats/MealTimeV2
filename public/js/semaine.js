@@ -14,27 +14,59 @@ async function init(){
     }
 }
 
-async function getRecettes(user){
+async function getSemaine(user){
     let user_id = user.id;
     try{
-        const res = await fetch(`../api/api_recettes.php?action=fav&user_id=${user_id}`);
+        const res = await fetch(`../api/semaine/get_semaine_by_user.php?user_id=${user_id}`);
+        let semaine = await res.json();
+        console.log(semaine);
+        return semaine;
+    }catch(err){
+        console.error(err.message);
+    }
+}
+
+async function getRecettesfav(user){
+    let user_id = user.id;
+    try{
+        const res = await fetch(`../api/semaine/get_recette_favoris.php?user_id=${user_id}`);
         let recettes = await res.json();
-        let recettes_random = [];
-        for (let i = recettes.length; i >= 0; i--) {
-            let nombre_aleatoire = getRandomInt(i);
-            let recette = recettes.splice(nombre_aleatoire, 1);
-            recettes_random.push(recette.titre);
-        };
-        return recettes_random;
+        console.log(recettes);
+        return recettes;
+    }catch(err){
+        console.error(err.message);
+    }
+}
+
+async function deleteSemaine(user){
+    let user_id = user.id;
+    try{
+        const res = await fetch(`../api/semaine/delete_semaine.php?user_id=${user_id}`);
+        let data = await res.json();
+        return data;
     }catch(err){
         console.error(err.message);
     }
 }
 
 
+async function addSemaine(user, p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11,p12,p13,p14){
+    let user_id = user.id;
+    try{
+        const response = await fetch(`../api/semaine/add_semaine.php?user_id=${user_id}`, {
+            method: 'POST', 
+            headers: {
+                'Content-Type': 'application/json' 
+            }, 
+            body: JSON.stringify({user_id, p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11,p12,p13,p14})
+        });
+        let data = await res.json();
+        return data;
+    }catch(err){
+        console.error(err.message);
+    }
+}
 
-
-// console.log(user);
 
 function recettes_random(data){ // me permet de mélanger les recettes entre elles.
     let recettes = data;
@@ -44,14 +76,6 @@ function recettes_random(data){ // me permet de mélanger les recettes entre ell
     }
     return recettes
 }
-
-
-//const test = recettes_random(data);
-//console.log(test);
-// console.log(data);
-
-
-
 
 
 async function creer_tableau_semaine(tableau_nom_recettes, tableau_id_recettes) { // fait le tableau de la semaine
@@ -111,4 +135,42 @@ async function creer_tableau_semaine(tableau_nom_recettes, tableau_id_recettes) 
     div.appendChild(table);
     document.body.appendChild(div);
 }
+
+document.addEventListener("DOMContentLoaded", async () => {    
+    let user = await init();
+    let semaine = fetch(`../api/semaine/get_semaine_by_user.php?user_id=${user_id}`)
+    console.log(semaine);
+    if (semaine){
+        let recettes = fetch(`../api/semaine/get_recettes_favoris.php?user_id=${user_id}`);
+            if (recettes.lenght() < 14) {
+                fetch(`../api/semaine/delete_semaine.php?user_id=${user_id}`);
+                let container = document.getElementById('message');
+                let text = document.createTextNode("Vous n'avez pas assez de recettes en favoris !");
+                let h2 = document.createElement("h2");
+                h2.appendChild(text);
+                container.appendChild(h2);
+                let nb_recettes_manquant = (14 - recettes.lenght());
+                if (nb_recettes_manquant === 1){
+                    let br = createElement("br");
+                    let h2 = createElement("h2");
+                    let text = createTextNode("Il vous manque 1 recette favorite pour programmer une semaine complète.");
+                    h2.appendChild(text);
+                    br.appendChild(h2);
+                    document.body.appendChild(br);
+                } else {
+                    
+                    let br = createElement("br");
+                    let h2 = createElement("h2");
+                    let text = createTextNode("Il vous manque "+nb_recettes_manquant+" recette favorite pour programmer une semaine complète.");
+                    h2.appendChild(text);
+                    br.appendChild(h2);
+                    document.body.appendChild(br);
+                }
+            } else if {
+                
+            }
+    }
+});
+
+
 

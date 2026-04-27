@@ -11,9 +11,17 @@
         return $tab;
     }
     
-    function getRecettesFavoris($conn, $user_id){
+    function getRecettesFavorisR($conn, $user_id){
         //Récupère les recettes favorites du user entré en paramètres
         $sql = "SELECT favoris.user_id, favoris.recette_id, recettes.id, recettes.owner, recettes.saison, recettes.price_ind, recettes.health_ind, recettes.titre, recettes.description, recettes.upvote FROM favoris JOIN recettes ON favoris.recette_id = recettes.id WHERE favoris.user_id = $user_id ORDER BY recettes.id ";
+        $res = mysqli_query($conn, $sql);
+        $tab = rsToAssoc($res);
+        return $tab;
+    }
+    
+    function getRecettesFavoris($conn, $user_id, $prix, $sante, $saison){
+        //Récupère les recettes favorites du user entré en paramètres
+        $sql = "SELECT favoris.user_id, favoris.recette_id, recettes.id, recettes.owner, recettes.saison, recettes.price_ind, recettes.health_ind, recettes.titre, recettes.description, recettes.upvote FROM favoris JOIN recettes ON favoris.recette_id = recettes.id WHERE favoris.user_id = $user_id AND recettes.saison = '$saison' AND recettes.price_ind <= $prix AND recettes.health_ind >= $sante ORDER BY recettes.id";
         $res = mysqli_query($conn, $sql);
         $tab = rsToAssoc($res);
         return $tab;
@@ -107,4 +115,6 @@
         $res[] = $created;
         return $res;
     }
+
+
 ?>
