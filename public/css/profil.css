@@ -13,3 +13,41 @@
     object-fit: cover;
     object-position: center;
 }
+
+.popup_abo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: whitesmoke;
+    border: 2px solid rgb(0, 17, 255);
+    border-radius: 15px;
+    width: fit-content;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    text-align: center;
+    padding: 20px; 
+    max-width: 90%; 
+    gap: 15px;
+    align-self: center;
+    width: 50%;
+}
+
+.line_abo{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 20vw;
+    height: 10vh;
+    border: solid blue 2px;
+    border-radius: 15px;
+    align-items: center;
+    padding: 2vw;
+}
+
+.pp_abo{
+    width: 5vh;
+    height: 5vh;
+    border-radius: 50%;
+    border: solid blue 3px;
+    object-fit: cover;      /* ecrase pas l'image */
+    object-position: center;
+}

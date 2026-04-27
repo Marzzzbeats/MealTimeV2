@@ -31,6 +31,7 @@ async function afficheHead(user){
     //Abonnements
     const abonnements_btn = document.createElement('button');
     abonnements_btn.classList.add('btn');
+    abonnements_btn.id = 'btn_abonnements';
     const div_abonnements = document.createElement('div');
     const text = document.createTextNode('Abonnements : ');
     const result = await fetch(`https://l1.dptinfo-usmb.fr/~grp9/api/sub/get_abonnements.php?id=${user_id}&action=nbAbo`);
@@ -43,6 +44,7 @@ async function afficheHead(user){
     //Abonnés
     const abonnes_btn = document.createElement('button');
     abonnes_btn.classList.add('btn');
+    abonnes_btn.id = 'btn_abonnes';
     const div_abonnes = document.createElement('div');
     const text_a = document.createTextNode('Abonnés : ');
     const result_a = await fetch(`https://l1.dptinfo-usmb.fr/~grp9/api/sub/get_abo.php?id=${user_id}&action=nbAbo`);
@@ -115,15 +117,96 @@ function afficheInfos(user){
     div_infos.appendChild(div_pp);
 }
 
-// async function afficheAbonnements(user){
-//     const response2 = await fetch(`https://l1.dptinfo-usmb.fr/~grp9/api/sub/get_abonnements.php?id=${user.id}&action=abonnements`);
-//     const abonnements_abo = await response2.json();
-//     const div_popup_abonnements = document.createElement('div');
+async function afficheAbonnements(user){
+    const abonnements_dom = document.querySelector('#abonnements');
+    const response2 = await fetch(`https://l1.dptinfo-usmb.fr/~grp9/api/sub/get_abonnements.php?id=${user.id}&action=abonnements`);
+    const abonnements_abo = await response2.json();
+    const div_popup_abonnements = document.createElement('div');
+    div_popup_abonnements.id = 'div_abonnements';
+    div_popup_abonnements.classList.add('popup_form');
+    abonnements_abo.forEach((abonnement)=>{
+        let div_affichage_abonnement = document.createElement('div');
+        div_affichage_abonnement.classList.add('line_abo');
+        let id_abo = abonnement.id;
+        //Photo de profil
+        let pp = document.createElement('img');
+        pp.classList.add('pp_abo');
+        pp.setAttribute('src', `https://l1.dptinfo-usmb.fr/~grp9/api/user/getProfilePic.php?id=${id_abo}`);
+        //texte
+        let nom = abonnement.nom;
+        prenom = abonnement.prenom;
+        let texte_abonnement = document.createTextNode(`${prenom} ${nom}`);
+        div_affichage_abonnement.appendChild(texte_abonnement);
+        div_affichage_abonnement.appendChild(pp);
+        div_popup_abonnements.appendChild(div_affichage_abonnement);
+    })
+    abonnements_dom.appendChild(div_popup_abonnements);
+}
 
-// }
+async function afficheAbonnes(user){
+    const abonnes_dom = document.querySelector('#abonnes');
+    const response2 = await fetch(`https://l1.dptinfo-usmb.fr/~grp9/api/sub/get_abo.php?id=${user.id}&action=abonnes`);
+    const abonnes_abo = await response2.json();
+    const div_popup_abonnes = document.createElement('div');
+    div_popup_abonnes.id = 'div_abonnes';
+    div_popup_abonnes.classList.add('popup_form');
+    abonnes_abo.forEach((abo)=>{
+        let div_affichage_abonne = document.createElement('div');
+        div_affichage_abonne.classList.add('line_abo');
+        let id_abo = abo.id;
+        //Photo de profil
+        let pp = document.createElement('img');
+        pp.classList.add('pp_abo');
+        pp.setAttribute('src', `https://l1.dptinfo-usmb.fr/~grp9/api/user/getProfilePic.php?id=${id_abo}`);
+        //texte
+        let nom = abo.nom;
+        prenom = abo.prenom;
+        let texte_abonne = document.createTextNode(`${prenom} ${nom}`);
+        div_affichage_abonne.appendChild(texte_abonne);
+        div_affichage_abonne.appendChild(pp);
+        div_popup_abonnes.appendChild(div_affichage_abonne);
+    })
+    abonnes_dom.appendChild(div_popup_abonnes);
+}
 
 document.addEventListener('DOMContentLoaded', async()=>{
     const user = await init();
     await afficheHead(user);
     afficheInfos(user);
+    await afficheAbonnements(user);
+    await afficheAbonnes(user);
+
+    const abonnements_btn = document.querySelector("#btn_abonnements");
+    const abonnes_btn = document.querySelector("#btn_abonnes");
+    const abonnements_dom = document.querySelector('#abonnements');
+    const abonnes_dom = document.querySelector('#abonnes');
+    const allscreens = document.querySelectorAll(".screen");
+    const div_abonnements = document.querySelector('#div_abonnements');
+    const div_abonnes = document.querySelector('#div_abonnes');
+    
+
+
+    abonnements_btn.addEventListener('click', ()=>{
+        abonnements_dom.classList.remove('hidden');
+    })
+
+    abonnes_btn.addEventListener('click', ()=>{
+        abonnes_dom.classList.remove('hidden');
+    })
+
+    allscreens.forEach((screen) =>{
+        screen.addEventListener('click', ()=>{
+            abonnes_dom.classList.add('hidden');
+            abonnements_dom.classList.add('hidden');
+        })
+    })
+
+    div_abonnements.addEventListener('click', (e)=>{
+        e.stopPropagation();
+    })
+
+    div_abonnes.addEventListener('click', (e)=>{
+        e.stopPropagation();
+    })
+
 })
