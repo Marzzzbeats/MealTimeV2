@@ -41,7 +41,7 @@ async function manage_session() {
             const user = data.user;
             if(data.connected == true && data.user != null){
                 const hello = document.createElement("p");
-                hello.textContent = `Bonjour ${data.user.prenom}`;
+                hello.textContent = `Bonjour ${data.user.prenom} !`;
                 hello.id = "userName_p";
                 login.classList.add("hidden");
                 register.classList.add("hidden");
@@ -65,7 +65,7 @@ async function manage_session() {
 function createAllCards(recettes){
     const container = document.getElementById("container");
     let top = recettes.slice(0, 20);
-    let rest = recettes.slice(0);
+    let rest = recettes.slice(20);
 
     container.appendChild(createTopCards(top));
     container.appendChild(createCards(rest));

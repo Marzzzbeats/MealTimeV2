@@ -69,8 +69,8 @@
         
     <div id="header">
         <div id="SearchBar">
-            <input type="text" placeholder="Search..">
-            <input type="submit" value="Search">
+            <input type="text" placeholder="Poke bowl...">
+            <input type="submit" value="Rechercher">
         </div>
     </div>
     

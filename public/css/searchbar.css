@@ -21,11 +21,11 @@
 }
 
 #SearchBar input[type="submit"] {
-    background: black;
+    background: rgb(43, 151, 0);
     border: none;
     color: white;
     height: 3.5vh;
-    width: 4.5vw;
+    width: 6.5vw;
     border-radius: 10px;
     cursor: pointer;
     font-size: 1rem;
@@ -33,5 +33,5 @@
 }
 
 #SearchBar input[type="submit"]:hover {
-    background-color: gray;
+    background-color: rgb(9, 78, 0);
 }
