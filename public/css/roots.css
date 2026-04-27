@@ -1,4 +1,4 @@
-:root{
+/* :root{
     --bg-main: #f8fafc;
     --bg-header: #e2e8f0;
     --bg-container: #f1f5f9;
@@ -27,4 +27,45 @@
 
     --notif-border: #1e293b;
     --notif-shadow: #000000;
+} */
+
+
+:root {
+  --color-primary: #22c55e;  
+  
+  --color-primary-dark: #16a34a;
+  --color-primary-light: #86efac;
+  --color-primary-soft: #dcfce7;
+
+  --color-accent: #f97316;
+  --color-accent-light: #fdba74;
+
+  --color-bg: #f6fef9;        
+  --color-surface: #ffffff;
+  --color-surface-alt: #ecfdf5;
+
+  --color-text: #052e16;
+  --color-text-light: #4d7c0f;
+
+  --color-border: #d1fae5;
+
+  --color-success: #22c55e;
+  --color-warning: #f59e0b;
+  --color-danger: #ef4444;
+
+  --color-yellow: #eab308;
+  --color-blue: #0ea5e9;
+
+  --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+  --shadow-md: 0 6px 12px rgba(0,0,0,0.08);
+  --shadow-lg: 0 12px 24px rgba(0,0,0,0.12);
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+
+  --font-primary: "Unkempt", cursive;
+
+  
+
 }

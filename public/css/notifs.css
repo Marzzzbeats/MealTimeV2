@@ -9,11 +9,11 @@
     min-width: 55px;
     min-height: 55px;
     border-radius: 50%;
-    background: linear-gradient(145deg, var(--notif-primary-light), var(--notif-primary));
+    background: linear-gradient(145deg, var(--color-accent-light), var(--color-accent));
     position: fixed;
     bottom: 2vw;
     left: 2vw;
-    box-shadow: 0 10px 25px var(--notif-shadow);
+    box-shadow: 0 10px 25px var(--shadow-md);
     cursor: pointer;
     z-index: 999;
 }
@@ -35,7 +35,7 @@
     background: var(--notif-bg-main);
     border-radius: 1.2rem;
     border: 2px solid var(--notif-border);
-    box-shadow: 0 20px 40px var(--notif-shadow);
+    box-shadow: 0 20px 40px var(--shadow-md);
     padding: 0.6rem;
 }
 

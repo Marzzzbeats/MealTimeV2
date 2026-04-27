@@ -107,11 +107,11 @@ header{
 }
 
 
-.ticket_header img {
+.down_svg {
     transition: transform 0.3s ease;
 }
 
-.ticket_li.open .ticket_header img {
+.ticket_li.open .down_svg {
     transform: rotate(180deg);
 }
 

@@ -14,7 +14,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/roots.css">
@@ -30,25 +29,26 @@
             }
         }
     ?>
-    <button id="create" class='btn createBtn'>Créer une recette</button>
-    <div class="rec">
-        <h2>Mes recettes favorites</h2>
-        <div id="fav" class='fl-row-recette'>
-
-        </div>
-    </div>
-    <div class="rec">
-        <h2>Mes recettes créées</h2>
-        <div id="created" class='fl-row-recette'>
-
-        </div>
-    </div>
-
-    <div class="screen hidden">
-        <div class="popup_form hidden">
-            <?php
+    <div id="wrapper_rec">
+        <button id="create" class='btn createBtn'>Créer une recette</button>
+        <div class="rec">
+            <h2>Mes recettes favorites</h2>
+            <div id="fav" class='fl-row-recette'>
+                
+                </div>
+            </div>
+            <div class="rec">
+                <h2>Mes recettes créées</h2>
+                <div id="created" class='fl-row-recette'>
+                    
+                    </div>
+                </div>
+                
+                <div class="screen hidden">
+                    <div class="popup_form hidden">
+                        <?php
                 echo(createHtmlCreateForm());
-            ?>
+                ?>
         </div>
     </div>
 
@@ -104,7 +104,7 @@
 </body>
 </html>
 <script src='./js/fav_recettes.js'></script>
-<link rel="stylesheet" href="./css/recettes.css">
+<link rel="stylesheet" href="./css/recettes.css?v=2">
 <?php
     require_once(__DIR__ . '/../db/db_disconnect.php');     
 ?>

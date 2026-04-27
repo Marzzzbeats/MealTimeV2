@@ -35,3 +35,7 @@
 #SearchBar input[type="submit"]:hover {
     background-color: gray;
 }
+
+#search_svg{
+    color: var(--color-text);
+}

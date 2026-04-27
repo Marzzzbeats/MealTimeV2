@@ -1,22 +1,26 @@
 
 #navbar_ul{
+    width: 90vw;
+    height: 7vh;
     position: fixed;
-    left: 10vw;
-    bottom: 4vh;
+    left: 5vw;
+    bottom: 1vh;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    height: 7vh;
-    width: 80vw;
-    background-color: darkgrey;
+    background-color: var(--color-surface);
     border-radius: 2vh;
     z-index: 999;
+    color: var(--color-text);
+    box-shadow: var(--shadow-lg);
 }
 
 #navbar_ul li {
     width: 19.8%;
     height: 90%;
     border-radius: 2vh;
+    padding: 0;
+    margin: 0;
 }
 
 #navbar_ul li a{
@@ -30,12 +34,14 @@
     font-weight: bold;
     text-transform: uppercase;
     text-decoration: none;
+    padding: 0;
+    margin: 0;
 }
 
 #navbar_ul li a:hover{
-    color: gray;
+    color: var(--color-text-light);
 }
 
 .selected{
-    background-color: rgb(255, 255, 255);
+    background-color: var(--color-primary-light);
 }
