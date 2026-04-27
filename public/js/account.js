@@ -125,6 +125,8 @@ async function afficheAbonnements(user){
     div_popup_abonnements.id = 'div_abonnements';
     div_popup_abonnements.classList.add('popup_form');
     abonnements_abo.forEach((abonnement)=>{
+        let a = document.createElement('a');
+        a.setAttribute('href', `https://l1.dptinfo-usmb.fr/~grp9/public/profil.php?owner=${abonnement.id}`);
         let div_affichage_abonnement = document.createElement('div');
         div_affichage_abonnement.classList.add('line_abo');
         let id_abo = abonnement.id;
@@ -138,7 +140,8 @@ async function afficheAbonnements(user){
         let texte_abonnement = document.createTextNode(`${prenom} ${nom}`);
         div_affichage_abonnement.appendChild(texte_abonnement);
         div_affichage_abonnement.appendChild(pp);
-        div_popup_abonnements.appendChild(div_affichage_abonnement);
+        a.appendChild(div_affichage_abonnement);
+        div_popup_abonnements.appendChild(a);
     })
     abonnements_dom.appendChild(div_popup_abonnements);
 }
@@ -151,6 +154,8 @@ async function afficheAbonnes(user){
     div_popup_abonnes.id = 'div_abonnes';
     div_popup_abonnes.classList.add('popup_form');
     abonnes_abo.forEach((abo)=>{
+        let a = document.createElement('a');
+        a.setAttribute('href', `https://l1.dptinfo-usmb.fr/~grp9/public/profil.php?owner=${abo.id}`);
         let div_affichage_abonne = document.createElement('div');
         div_affichage_abonne.classList.add('line_abo');
         let id_abo = abo.id;
@@ -165,6 +170,8 @@ async function afficheAbonnes(user){
         div_affichage_abonne.appendChild(texte_abonne);
         div_affichage_abonne.appendChild(pp);
         div_popup_abonnes.appendChild(div_affichage_abonne);
+        a.appendChild(div_affichage_abonne);
+        div_popup_abonnes.appendChild(a);
     })
     abonnes_dom.appendChild(div_popup_abonnes);
 }
