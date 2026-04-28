@@ -28,13 +28,14 @@ async function getSemaine(user){
 }
 
 
-async function getRecettesfav(user){
+async function getRecettesfav(user, saison, prix, sante){
     let user_id = user.id;
+    console.log(saison, prix, sante);
+    console.log(JSON.stringify({saison, prix, sante}));
     try{
-        const res = await fetch(`../api/semaine/get_recette_favoris.php?user_id=${user_id}`);
-        let recettes = await res.json();
-        console.log(recettes);
-        return recettes;
+        const response = await fetch(`../api/semaine/get_recette_favoris.php?user_id=${user_id}&saison=${saison}&prix=${prix}&sante=${sante}`);
+        let data = await response.json();
+        return data;
     }catch(err){
         console.error(err.message);
     }
@@ -46,7 +47,7 @@ async function getAllRecettesfav(user){
     try{
         const res = await fetch(`../api/semaine/get_all_fav.php?user_id=${user_id}`);
         let recettes = await res.json();
-        console.log(recettes);
+        // console.log(recettes);
         return recettes;
     }catch(err){
         console.error(err.message);
@@ -117,13 +118,16 @@ async function get_semaine_titre(semaine){
 }
 
 
-function get_semaine_id(semaine, recettes){
+function get_semaine_id(semaine){
     semaine = semaine?.[0] ?? null;
     let tableau_id_recettes = [];
     for (let i = 1; i <= 14; i++) {
         let id = semaine[`id_plat_${i}`];
-        tableau_id_recettes.push(id);
+        tableau_id_recettes.push(id)
+        console.log(id);
     }
+    console.log(tableau_id_recettes);
+    console.log(semaine);
     return tableau_id_recettes;
 }
 
@@ -156,18 +160,63 @@ async function compare_semaine_favoris(semaine, recettes){
 
 async function verifie_semaine(user){
     let semaine = await getSemaine(user);
-    return semaine != null;
+    res = true;
+    if(semaine.length == 0 || semaine == null){
+        res = false;
+    }
+    return res;
+}
+
+
+async function verifie_saison(user, saison, prix, sante) {
+    if (saison == "all"){
+        recettes = await getAllRecettesfav(user);
+    }
+    else{
+        recettes = await getRecettesfav(user, saison, prix, sante);
+    }
+    return recettes
+}
+
+async function createSemaine(user, saison, prix, sante){
+    console.log(saison, prix, sante);
+    const tabRecette = document.getElementById("tableau");
+    recettes = await verifie_saison(user, saison, prix, sante);
+    console.log(recettes);
+
+    if(recettes.length < 14 && !tabRecette.querySelector(".Err4")){
+        const Err4 = document.createElement("h2");
+        Err4.classList.add("Erreur4");
+        Err4.textContent = "Vous n'avez pas assez de recettes correspondant à ces critères dans vos favoris."
+        tabRecette.appendChild(Err4);
+    }
+    recettes_shuffle = recettes_random(recettes);
+    let p1 = recettes_shuffle[0]['recette_id'];
+    let p2 = recettes_shuffle[1]['recette_id'];
+    let p3 = recettes_shuffle[2]['recette_id'];
+    let p4 = recettes_shuffle[3]['recette_id'];
+    let p5 = recettes_shuffle[4]['recette_id'];
+    let p6 = recettes_shuffle[5]['recette_id'];
+    let p7 = recettes_shuffle[6]['recette_id'];
+    let p8 = recettes_shuffle[7]['recette_id'];
+    let p9 = recettes_shuffle[8]['recette_id'];
+    let p10 = recettes_shuffle[9]['recette_id'];
+    let p11 = recettes_shuffle[10]['recette_id'];
+    let p12 = recettes_shuffle[11]['recette_id'];
+    let p13 = recettes_shuffle[12]['recette_id'];
+    let p14 = recettes_shuffle[13]['recette_id'];
+    await addSemaine(user,p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11,p12,p13,p14);
 }
 
 
 async function creer_tableau_semaine(tableau_nom_recettes, tableau_id_recettes) {
     let indice1 = 0;
     let indice2 = 0;
-    const table = document.getElementById("tableau");
+    const tableau = document.getElementById("tableau");
     const h1 = document.createElement("h1");
     const hello = document.createTextNode("MA SEMAINE");
     h1.appendChild(hello);
-    table.appendChild(h1);
+    tableau.appendChild(h1);
     const nb_jours = 7;
     const nb_repas = 4;
 
@@ -214,11 +263,11 @@ async function creer_tableau_semaine(tableau_nom_recettes, tableau_id_recettes) 
         table.appendChild(tr);
     }
     div.appendChild(table);
-    table.appendChild(div);
+    tableau.appendChild(div);
 }
 
 
-function createForm(){
+function createForm(user){
     const CreateSemaineForm = document.getElementById("CreateSemaineForm");
     const Titre = document.createElement("h1");
     const titre = document.createTextNode("Paramètres de la semaine");
@@ -273,23 +322,33 @@ function createForm(){
     
     CreateSemaineForm.appendChild(btn);
 
-    CreateSemaineForm.addEventListener("submit", async () => {
+    CreateSemaineForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
         const saison = select1.value;
         const prix = select2.value;
         const sante = select3.value;
-
-
-        await addSemaine(user,p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11,p12,p13,p14);
-        alert("Semaine crée en fonction de vos paramètres.")
+        console.log(saison, prix, sante);
+        if(await verifie_semaine(user)){
+            deleteSemaine(user);
+        };
+        await createSemaine(user, saison, prix, sante);
+        
+        alert("Semaine créée en fonction de vos paramètres.");
+        
+        let semaine = getSemaine(user);
+        let tableau_nom_recettes = await get_semaine_titre(semaine);
+        let tableau_id_recettes = await get_semaine_id(semaine);
+        CreateSemaineForm.style.display = "none";
+        await creer_tableau_semaine(tableau_nom_recettes, tableau_id_recettes);
     });
 }
 
 
 document.addEventListener("DOMContentLoaded", async () => {
     let user = await init();
-    createForm();
     const CreateSemaineForm = document.getElementById("CreateSemaineForm");
     CreateSemaineForm.style.display = "none";
+    const tabRecette = document.getElementById("tableau");
     
     if(await verifie_semaine(user)){
         let recettes = await getAllRecettesfav(user);
@@ -303,6 +362,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             const nb_manquant = document.createTextNode("Il vous manque "+nb_recettes_manquant+" recettes favorites pour programmer une semaine complète.");
             Err1.appendChild(err1);
             Err1.appendChild(nb_manquant);
+            tabRecette.appendChild(Err1);
         }
         
         else if(!(await compare_semaine_favoris(semaine, recettes))){
@@ -312,17 +372,18 @@ document.addEventListener("DOMContentLoaded", async () => {
             const nv_semaine = document.createTextNode("Une nouvelle semaine va être chargée.");
             Err2.appendChild(err2);
             Err2.appendChild(nv_semaine);
+            tabRecette.appendChild(Err2);
         }
         
         else{
             let tableau_nom_recettes = await get_semaine_titre(semaine);
-            let tableau_id_recettes = get_semaine_id(semaine, recettes);
+            let tableau_id_recettes = await get_semaine_id(semaine);
             await creer_tableau_semaine(tableau_nom_recettes, tableau_id_recettes);
         }
     }
     
     else{
-        let recettes = getRecettesfav(user);
+        let recettes = getAllRecettesfav(user);
         if(recettes.length < 14){
             const Err3 = document.createElement("h2");
             const err3 = document.createTextNode("Vous n'avez pas assez de recettes en favoris !");
@@ -330,29 +391,12 @@ document.addEventListener("DOMContentLoaded", async () => {
             const nb_manquant = document.createTextNode("Il vous manque "+nb_recettes_manquant+" recettes favorites pour programmer une semaine complète.");
             Err3.appendChild(err3);
             Err3.appendChild(nb_manquant);
+            tabRecette.appendChild(Err3);
         }
         
         else{
-            recettes_shuffle = recettes_random(recettes);
-            let p1 = recettes_shuffle[0]['recette_id'];
-            let p2 = recettes_shuffle[1]['recette_id'];
-            let p3 = recettes_shuffle[2]['recette_id'];
-            let p4 = recettes_shuffle[3]['recette_id'];
-            let p5 = recettes_shuffle[4]['recette_id'];
-            let p6 = recettes_shuffle[5]['recette_id'];
-            let p7 = recettes_shuffle[6]['recette_id'];
-            let p8 = recettes_shuffle[7]['recette_id'];
-            let p9 = recettes_shuffle[8]['recette_id'];
-            let p10 = recettes_shuffle[9]['recette_id'];
-            let p11 = recettes_shuffle[10]['recette_id'];
-            let p12 = recettes_shuffle[11]['recette_id'];
-            let p13 = recettes_shuffle[12]['recette_id'];
-            let p14 = recettes_shuffle[13]['recette_id'];
             CreateSemaineForm.style.display = "flex";
-            let semaine = getSemaine(user);
-            let tableau_nom_recettes = await get_semaine_titre(semaine);
-            let tableau_id_recettes = get_semaine_id(semaine, recettes);
-            await creer_tableau_semaine(tableau_nom_recettes, tableau_id_recettes);
+            createForm(user);
         }
     }
 });

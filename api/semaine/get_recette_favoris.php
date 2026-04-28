@@ -11,7 +11,11 @@ ini_set('display_errors', '1');
 header("Content-Type: application/json");
 
 $user_id = $_GET['user_id'];
-$recettes = getRecettesFavoris($conn, $user_id, $prix, $sante, $saison);
+$saison = $_GET["saison"];
+$prix = $_GET["prix"];
+$sante = $_GET["sante"];
+$recettes = getRecettesFavoris($conn, $user_id, $saison, $prix, $sante);
 echo(json_encode($recettes));
+
 
 ?>
