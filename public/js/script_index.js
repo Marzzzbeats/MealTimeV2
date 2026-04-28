@@ -65,7 +65,7 @@ async function manage_session() {
 function createAllCards(recettes){
     const container = document.getElementById("container");
     let top = recettes.slice(0, 20);
-    let rest = recettes.slice(0);
+    let rest = recettes.slice(20);
 
     container.appendChild(createTopCards(top));
     container.appendChild(createCards(rest));
