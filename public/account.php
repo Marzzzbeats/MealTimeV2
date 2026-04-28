@@ -13,16 +13,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/rcp_form.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Unkempt&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="./css/reset.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="./css/roots.css?v=<?php echo time(); ?>">
-    <link rel="stylesheet" href="./css/style.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="./css/rcp_form.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="./css/navbar.css?v=<?php echo time(); ?>">
-    <link rel="stylesheet" href="./css/searchbar.css?v=<?php echo time(); ?>">
-    <link rel="stylesheet" href="./css/notifs.css?v=<?php echo time(); ?>">
-    <link rel="stylesheet" href="./css/pdp.css?v=<?php echo time(); ?>">
-    <link rel="stylesheet" href="./css/recettes.css">
-    <link rel="stylesheet" href="./css/profil.css">
+    <link rel="stylesheet" href="./css/recettes.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="./css/profil.css?v=<?php echo time(); ?>">
 
     <title>MealTime</title>
 </head>

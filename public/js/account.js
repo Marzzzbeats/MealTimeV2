@@ -13,6 +13,16 @@ async function init(){
     }
 }
 
+function formatNumber(n) {
+  if (n >= 1_000_000) {
+    return (n / 1_000_000).toFixed(1).replace(/\.0$/, "") + "M";
+  }
+  if (n >= 1_000) {
+    return (n / 1_000).toFixed(1).replace(/\.0$/, "") + "K";
+  }
+  return n.toString();
+}
+
 async function afficheHead(user){
     const div_pp = document.querySelector('#div_nom_pp');
     const user_id = user.id;
@@ -36,7 +46,7 @@ async function afficheHead(user){
     const text = document.createTextNode('Abonnements : ');
     const result = await fetch(`https://l1.dptinfo-usmb.fr/~grp9/api/sub/get_abonnements.php?id=${user_id}&action=nbAbo`);
     const nb_abonnements = await result.json();
-    const text2 = document.createTextNode(`${nb_abonnements.nb_abo}`);
+    const text2 = document.createTextNode(formatNumber(nb_abonnements.nb_abo));
     div_abonnements.appendChild(text);
     div_abonnements.appendChild(text2);
     abonnements_btn.appendChild(div_abonnements);
@@ -49,7 +59,7 @@ async function afficheHead(user){
     const text_a = document.createTextNode('Abonnés : ');
     const result_a = await fetch(`https://l1.dptinfo-usmb.fr/~grp9/api/sub/get_abo.php?id=${user_id}&action=nbAbo`);
     const nb_abonnes = await result_a.json();
-    const text2_a = document.createTextNode(`${nb_abonnes.nb_abo}`);
+    const text2_a = document.createTextNode(formatNumber(nb_abonnes.nb_abo));
     div_abonnes.appendChild(text_a);
     div_abonnes.appendChild(text2_a);
     abonnes_btn.appendChild(div_abonnes);
