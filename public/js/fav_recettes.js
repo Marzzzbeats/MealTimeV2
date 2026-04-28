@@ -240,31 +240,31 @@ async function afficheRecettes(user){
 } 
 
 
-const form = document.querySelector(".popup_form");
+const forms = document.querySelectorAll(".popup_form");
 const btn = document.querySelector("#create");
-const close = document.querySelector("#close");
-const screen = document.querySelector(".screen");
+const screens = document.querySelectorAll(".screen");
+
 btn.addEventListener('click', ()=>{
     form.classList.remove('hidden');
     screen.classList.remove('hidden');
 })
 
-close.addEventListener('click', ()=>{
-    form.classList.add('hidden');
-    screen.classList.add('hidden');
+screen.forEach(screen => {
+    screen.addEventListener('click', ()=>{
+        forms.forEach(form=>{
+            form.classList.add('hidden');
+        })
+        screen.classList.add('hidden');
+    })
 })
 
-screen.addEventListener('click', ()=>{
-    form.classList.add('hidden');
-    screen.classList.add('hidden');
+forms.forEach(form=>{
+    form.addEventListener('click', (e)=>{
+        e.stopPropagation();
+    })
 })
-
-form.addEventListener('click', (e)=>{
-    e.stopPropagation();
-})
-
 
 document.addEventListener('DOMContentLoaded', async ()=>{
     let user_data = await init();
     afficheRecettes(user_data);
-});
+})

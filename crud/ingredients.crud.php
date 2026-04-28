@@ -42,5 +42,16 @@
         $res = mysqli_query($conn, $sql);
         return $res;
     }
+
+    function getIngredientsRecette($conn, $id){
+        $sql = "SELECT nom FROM relation_recette_ingredient JOIN ingredients ON relation_recette_ingredient.id_ingredient = ingredients.id WHERE relation_recette_ingredient.id_recette = $id";
+        $res = mysqli_query($conn, $sql);
+        $tab = rsToAssoc($res);
+        $result = "";
+        foreach($tab as $ing){
+            $result.=" $ing['nom'],";
+        }
+        return $res;
+    }
         
 ?>

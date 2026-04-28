@@ -13,7 +13,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/rcp_form.css">
     <link rel="stylesheet" href="./css/reset.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="./css/roots.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="./css/style.css?v=<?php echo time(); ?>">
@@ -23,6 +22,7 @@
     <link rel="stylesheet" href="./css/pdp.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="./css/recettes.css">
     <link rel="stylesheet" href="./css/profil.css">
+    <link rel="stylesheet" href="./css/rcp_form.css">
 
     <title>MealTime</title>
 </head>
