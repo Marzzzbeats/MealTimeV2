@@ -7,7 +7,6 @@
     require_once(__DIR__ . '/../views/create_view.php');
     require_once(__DIR__ . '/../crud/favoris.crud.php');
     require_once(__DIR__ . '/../crud/ingredients.crud.php');
-    require_once(__DIR__ . '/../views/')
     ?>
 
 <!DOCTYPE html>

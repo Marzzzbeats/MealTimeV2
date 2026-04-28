@@ -49,7 +49,8 @@
         $tab = rsToAssoc($res);
         $result = "";
         foreach($tab as $ing){
-            $result.=" $ing['nom'],";
+            $i = $ing['nom'];
+            $result.=" $i,";
         }
         return $res;
     }

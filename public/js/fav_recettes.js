@@ -249,16 +249,16 @@ btn.addEventListener('click', ()=>{
     screen.classList.remove('hidden');
 })
 
-screen.forEach(screen => {
+screens.forEach((screen) => {
     screen.addEventListener('click', ()=>{
-        forms.forEach(form=>{
+        forms.forEach((form)=>{
             form.classList.add('hidden');
         })
         screen.classList.add('hidden');
     })
 })
 
-forms.forEach(form=>{
+forms.forEach((form)=>{
     form.addEventListener('click', (e)=>{
         e.stopPropagation();
     })
