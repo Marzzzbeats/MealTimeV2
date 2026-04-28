@@ -108,23 +108,15 @@ function createCaroussel(sens,  recettes){
 function createTopCard(recette){
     const wrapper = document.createElement("div");
     wrapper.classList.add("cardWrapper");
-
-    const card = document.createElement("div");
-    card.classList.add("cardTopElm");
-    card.classList.add("cardElm");
-
-    const titre = document.createElement("p");
-    titre.classList.add("titre_recette");
-    titre.textContent = recette.titre;
+    wrapper.classList.add("cardTopWrapper");
 
     cardVisu(recette).forEach(elm => {
-        card.appendChild(elm);
+        wrapper.appendChild(elm);
     });
-    card.addEventListener("click", () => {
+    wrapper.querySelector(".cardElm").classList.add("cardTopElm");
+    wrapper.addEventListener("click", () => {
         redirectRecette(recette.owner, recette.id);
     });
-    wrapper.appendChild(titre);
-    wrapper.appendChild(card);
     return wrapper
 }
 
@@ -141,25 +133,21 @@ function createCard(recette){
     const wrapper = document.createElement("div");
     wrapper.classList.add("cardWrapper");
     
-    const titre = document.createElement("p");
-    titre.classList.add("titre_recette");
-    titre.textContent = recette.titre;
-
-    const card = document.createElement("div");
-    card.classList.add("cardElm");
     cardVisu(recette).forEach(elm => {
-        card.appendChild(elm);
+        wrapper.appendChild(elm);
     });
     wrapper.addEventListener("click", () => {
         redirectRecette(recette.owner, recette.id);
     });
 
-    wrapper.appendChild(card);
-    wrapper.appendChild(titre);
     return wrapper;
 }
 
 function cardVisu(recette){
+    const titre = document.createElement("p");
+    titre.classList.add("titre_recette");
+    titre.textContent = recette.titre;
+
     const recette_img = document.createElement("img");
     recette_img.src = `./api/recettes/api_image_recette.php?id=${recette.id}`;
     recette.atl = "image de la recette";
@@ -167,9 +155,10 @@ function cardVisu(recette){
     
     const upvote = document.createElement("p");
     upvote.classList.add("upvote_p");
-    upvote.classList.add("badge");
     upvote.textContent = recette.upvote;
 
+    const card = document.createElement("div");
+    card.classList.add("cardElm");
     const season_img = document.createElement("img");
     season_img.classList.add("season_img");
     if(recette.saison == "all"){
@@ -186,9 +175,8 @@ function cardVisu(recette){
         season_img.alt = "Saison invalide";
     }
 
-
-
-    return [recette_img, season_img, upvote];
+    card.appendChild(recette_img);
+    return [titre, upvote, card, season_img];
 }
 
 function redirectRecette(user_id, id_recette){

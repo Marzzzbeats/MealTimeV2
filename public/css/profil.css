@@ -1,3 +1,7 @@
+body{
+    font-family: var(--font-primary);
+}
+
 .pp {
     width: 20vh;
     height: 20vh;
@@ -51,4 +55,11 @@
     border: solid blue 3px;
     object-fit: cover;      /* ecrase pas l'image */
     object-position: center;
+}
+
+#div_nom_pp{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }

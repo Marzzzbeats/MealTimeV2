@@ -139,8 +139,9 @@ function createticketHead(ticket){
     const category = document.createElement("p");
     category.textContent = ticket.category;
 
-    const expand_btn = document.createElement("img");
-    expand_btn.src = "./svgs/down.svg";
+    const expand_btn = document.createElement("div");
+    expand_btn.classList.add("down_svg");
+    expand_btn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M480-345 240-585l56-56 184 183 184-183 56 56-240 240Z"/></svg>`
 
     const img_container = document.createElement("div");
     img_container.appendChild(expand_btn);

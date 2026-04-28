@@ -1,19 +1,27 @@
+body{
+    width: 100vw;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .ticket_form{
-    width: 40%;
+    width: 60vw;
     margin: 5vh auto;
     display: flex;
     flex-direction: column;
     gap: 1vw;
-    background-color: var(--card-main);
     padding: 2vw;
     border-radius: 1vw;
-    border: solid 0.1vw var(--border-main);
-    box-shadow: 0 0.3vw 1vw rgba(0,0,0,0.05);
+    background: linear-gradient(to bottom,var(--color-surface),var(--color-surface-alt));
+    border: 1px solid var(--color-border);
+    box-shadow: 0.8vw 1vw 0 rgba(172,202,186,0.8), 1vw 2vw 3vw rgba(0,0,0,0.15);
 }
 
 .ticket_form label{
     font-size: 0.9vw;
-    color: var(--text-muted);
+    color: var(--color-text-light);
 }
 
 .ticket_form input,
@@ -22,9 +30,12 @@
     width: 100%;
     padding: 0.5vw;
     border-radius: 0.5vw;
-    border: solid 0.1vw var(--border-main);
+    border: 1px solid var(--color-border);
     font-size: 0.9vw;
+    background: var(--color-surface);
+    box-shadow:inset 0 0.2vw 0.4vw rgba(0,0,0,0.1),inset 0 -0.1vw 0.2vw rgba(255,255,255,0.6);
     outline: none;
+    transition: box-shadow 0.1s ease, transform 0.1s ease;
 }
 
 .ticket_form textarea{
@@ -35,21 +46,28 @@
 .ticket_form input:focus,
 .ticket_form textarea:focus,
 .ticket_form select:focus{
-    border-color: var(--accent-primary);
+    box-shadow:inset 0 0.3vw 0.6vw rgba(0,0,0,0.15),inset 0 -0.1vw 0.2vw rgba(255,255,255,0.6),0 0 0 0.1vw var(--color-primary);
 }
 
 .ticket_form button{
     margin-top: 1vw;
     padding: 0.6vw;
-    border: none;
     border-radius: 0.6vw;
-    background-color: var(--accent-primary);
+    border: none;
+    background: linear-gradient(to bottom,var(--color-primary-light),var(--color-primary));
     color: white;
     font-size: 1vw;
+    font-weight: 600;
     cursor: pointer;
-    transition: 0.2s;
+    box-shadow:0 0.4vw 0 rgba(0,0,0,0.2),0 0.8vw 1.2vw rgba(0,0,0,0.2);
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
 }
 
 .ticket_form button:hover{
-    background-color: var(--accent-secondary);
+    transform: translateY(-0.1vw);
+}
+
+.ticket_form button:active{
+    transform: translateY(0.3vw);
+    box-shadow: inset 0 0.3vw 0.5vw rgba(0,0,0,0.3);
 }

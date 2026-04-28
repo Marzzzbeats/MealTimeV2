@@ -26,7 +26,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Unkempt&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="./public/css/reset.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="./public/css/roots.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="./public/css/style.css?v=<?php echo time(); ?>">
@@ -47,7 +51,7 @@
             $user_id = $_SESSION['id'];
             echo("<img id='pdp_img' src='https://l1.dptinfo-usmb.fr/~grp9/api/user/getProfilePic.php?id=$user_id' alt='pdp'>");
         }else{
-            echo("<img id='pdp_img' src='./public/img/photodeprofil.jpg' alt='pdp'>");   
+            echo("<img id='pdp_img' src='./public/img/AvatarDef.png' alt='pdp'>");   
         }
         ?>
         <div id="pdp_menu">
@@ -69,8 +73,8 @@
         
     <div id="header">
         <div id="SearchBar">
-            <input type="text" placeholder="Poke bowl...">
-            <input type="submit" value="Rechercher">
+            <input type="text" placeholder="Rechercher..">
+            <svg id="search_svg" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"><path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/></svg>
         </div>
     </div>
     
@@ -101,13 +105,13 @@
     </ul>
  
     <div id="notifs_div">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"><path d="M160-200v-80h80v-280q0-83 50-147.5T420-792v-28q0-25 17.5-42.5T480-880q25 0 42.5 17.5T540-820v28q80 20 130 84.5T720-560v280h80v80H160Zm320-300Zm0 420q-33 0-56.5-23.5T400-160h160q0 33-23.5 56.5T480-80ZM320-280h320v-280q0-66-47-113t-113-47q-66 0-113 47t-47 113v280Z"/></svg>
         <div id="notifs_display_div" class="hidden">
             <p id="notif_p">NOTIFICATIONS</p>
+
     </div>
 </body>
 </html>
-<script src="./public/js/script_index.js"></script>
-<link rel="stylesheet" href="./public/css/style.css"/>
 <?php
     include './db/db_disconnect.php';
 ?>

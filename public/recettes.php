@@ -7,18 +7,23 @@
     require_once(__DIR__ . '/../views/create_view.php');
     require_once(__DIR__ . '/../crud/favoris.crud.php');
     require_once(__DIR__ . '/../crud/ingredients.crud.php');
-?>
+    ?>
 
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/navbar.css">
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/roots.css">
-    <link rel="stylesheet" href="./css/rcp_form.css">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Unkempt&display=swap" rel="stylesheet">
+
+        <link rel="stylesheet" href="./css/navbar.css?v=<?php echo time(); ?>">
+        <link rel="stylesheet" href="./css/reset.css?v=<?php echo time(); ?>">
+        <link rel="stylesheet" href="./css/roots.css?v=<?php echo time(); ?>">
+        <link rel="stylesheet" href="./css/rcp_form.css?v=<?php echo time(); ?>">
+        <link rel="stylesheet" href="./css/recettes.css?v=<?php echo time(); ?>">
     <title>Mes recettes</title>
 </head>
 <body>
@@ -30,25 +35,26 @@
             }
         }
     ?>
-    <button id="create" class='btn createBtn'>Créer une recette</button>
-    <div class="rec">
-        <h2>Mes recettes favorites</h2>
-        <div id="fav" class='fl-row-recette'>
-
-        </div>
-    </div>
-    <div class="rec">
-        <h2>Mes recettes créées</h2>
-        <div id="created" class='fl-row-recette'>
-
-        </div>
-    </div>
-
-    <div class="screen hidden">
-        <div class="popup_form hidden">
-            <?php
+    <div id="wrapper_rec">
+        <button id="create" class='btn createBtn'>Créer une recette</button>
+        <div class="rec">
+            <h2>Mes recettes favorites</h2>
+            <div id="fav" class='fl-row-recette'>
+                
+                </div>
+            </div>
+            <div class="rec">
+                <h2>Mes recettes créées</h2>
+                <div id="created" class='fl-row-recette'>
+                    
+                    </div>
+                </div>
+                
+                <div class="screen hidden">
+                    <div class="popup_form hidden">
+                        <?php
                 echo(createHtmlCreateForm());
-            ?>
+                ?>
         </div>
     </div>
 
@@ -104,7 +110,6 @@
 </body>
 </html>
 <script src='./js/fav_recettes.js'></script>
-<link rel="stylesheet" href="./css/recettes.css">
 <?php
     require_once(__DIR__ . '/../db/db_disconnect.php');     
 ?>

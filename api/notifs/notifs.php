@@ -11,8 +11,12 @@
 ?>
 
 <?php
-$id = $_GET["user_id"];
-$data = getUnreadNotifs($conn, $id);
-echo(json_encode($data));
+if(isset($_GET["user_id"])){
+    $id = $_GET["user_id"];
+    $data = getUnreadNotifs($conn, $id);
+    if($data){
+        echo(json_encode($data));
+    }
+}
 
 ?>

@@ -1,14 +1,9 @@
-
 body{
     width: 100vw;
     height: 100vh;
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: var(--bg-main);
-    /* color: var(--text-main); */
+    background-color: var(--color-surface);
+    color: var(--color-text);
 }
-
-
-
 
 #logo{
     position: absolute;
@@ -26,7 +21,7 @@ body{
 
 #header{
     width: 100vw;
-    height: 20vh;
+    height: 15vh;
     padding-bottom: 3vh;
     display: flex;
     align-items: flex-end;
@@ -58,8 +53,8 @@ body{
 .carousselTop{
     width: 95%;
     display: flex;
-    overflow-x: auto;
-    margin-bottom: 2vw;
+    overflow-x: hidden;
+    margin-bottom: 0.5vw;
 }
 
 .carousselTop::-webkit-scrollbar{
@@ -86,10 +81,6 @@ body{
     animation-play-state: paused;
 }
 
-
-
-
-
 @keyframes carousselToLeft{
     from {transform: translateX(0);}
     to {transform: translateX(-100%);}
@@ -108,28 +99,52 @@ body{
 }
 
 .cardWrapper{
+    display: flex;
+    justify-content: center;
     position: relative;
+    width: 8vw;
+    height: 11vw;
+    padding: 0.2vw;
+
+    border-radius: var(--radius-md);
+
+    background-color: var(--color-surface);
+
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--color-border);
+
+    font-size: 1.5rem;
+    overflow: hidden;
+
+    transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.cardWrapper:hover{
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+    cursor: pointer;
+}
+
+.cardWrapper.cardTopWrapper{
+    width: 10vw;
+    height: 13vw;
+    border: 1px solid var(--color-border);
+    background-color: var(--color-surface);
 }
 
 .cardElm{
+    top: 0;
+    left: 0;
     width: 8vw;
     height: 8vw;
-    padding: 1vw;
-    border: solid 3px var(--accent-secondary);
-    font-size: 1.5rem;
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
     overflow: hidden;
-    color: rgb(255, 255, 255);
+    border-radius: 10px;
+    position: relative;
 }
 
 .cardElm.cardTopElm{
     width: 10vw;
     height: 10vw;
-    border: solid 3px var(--accent-primary);
 }
 
 .recette_img{
@@ -138,24 +153,50 @@ body{
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover; /* ecrase pas l'image */
+    object-fit: cover;
     object-position: center;
 }
 
 .season_img{
     position: absolute;
-    top: 0;
-    right: 0;
-    width: 25%;
+    bottom: 0.2vw;
+    right: 0.2vw;
+    width: 20%;
     height: auto;
     border-radius: 10px;
-    background-color: whitesmoke;
+
+    background-color: var(--color-surface-alt);
+    border: 1px solid var(--color-border);
+
     padding: 2px;
     z-index: 10;
 }
 
-.cardElm p {
-    z-index: 9;
+.cardTopWrapper .season_img{
+    width: 20%;
+}
+
+.cardWrapper .upvote_p{
+    width: 20%;
+    height: calc(20/100*8vw);
+    text-align: center;
+    align-content: center;
+    padding: 2px;
+    margin: 0;
+    position: absolute;
+    bottom: 0.2vw;
+    left: 0.2vw;
+    font-size: 1rem;
+
+    background-color: var(--color-surface-alt);
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+
+    border-radius: var(--radius-sm);
+}
+
+.cardTopWrapper .upvote_p{
+    height: calc(20/100*10vw);
 }
 
 #searchResults{
@@ -169,39 +210,42 @@ body{
     width: 95%;
     text-align: center;
     font-size: 3rem;
+    color: var(--color-text-light);
 }
 
 .hidden{
     display: none;
 }
 
-.upvote_p{
+.cardWrapper .titre_recette{
+    height: calc(25/100*8vw);
     position: absolute;
-    bottom: 0.5vw;
-    left: 0.5vw;
-    font-size: 5rem;
-}
-
-
-
-.titre_recette{
-    position: absolute;
-    bottom: 0.5vw;
+    bottom: 0.2vw;
     left: 50%;
     transform: translateX(-50%);
     z-index: 20;
     max-width: 85%;
-    background-color: #ffeaa7;
-    color: #6c5ce7;
+
+    background-color: var(--color-accent);
+    color: var(--color-surface);
+
     padding: 0.3vw 0.6vw;
     border-radius: 0.5vw;
+
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-size: 0.8vw;
+
+    font-size: 1vw;
+
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.2s ease;
+    align-content: center;
+}
+
+.cardTopWrapper .titre_recette{
+    height: calc(20/100*10vw);
 }
 
 .cardWrapper:hover .titre_recette{
@@ -212,8 +256,9 @@ body{
     opacity: 0;
 }
 
-
-
+.cardWrapper:hover .season_img{
+    opacity: 0;
+}
 
 #userName_p{
     position: absolute;
@@ -221,14 +266,6 @@ body{
     left: 1vw;
     font-size: 1.5rem;
     text-align: center;
-}
-
-.badge {
-    padding: 5px 10px;
-    border-radius: 10px;
-    font-size: 0.8em;
-    width: fit-content;
-    font-weight: bold;
-    background-color: #ffeaa7;
-    color: #6c5ce7;
+    display: none;
+    color: var(--color-text);
 }

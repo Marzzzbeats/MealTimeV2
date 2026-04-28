@@ -163,17 +163,17 @@ async function createNotif(notif, num){
     return notif_div;
 }
 
- async function createNotifs(){
-    const data = await loadNotifs();
+ async function createNotifs(user_id){
+    const data = await loadNotifs(user_id);
 
     const container = document.getElementById("notifs_display_div");
     const notifsBtn = document.getElementById("notifs_div");
 
     if (!data || data.length === 0) {
-        notifsBtn.classList.add("hidden");
+        notifsBtn.style.display = "none";
         return;
     } else {
-        notifsBtn.classList.remove("hidden");
+        notifsBtn.style.display = "flex";
     }
     
     for(let i=0; i<data.length; i++){
@@ -184,11 +184,28 @@ async function createNotif(notif, num){
     update_notif_size();
 }
 
+async function init(){
+    try{
+        const res = await fetch('./lib/auth_check.php');
+        if(res.ok){
+            let data = await res.json();
+            const user = data.user;
+            if(!data.active && user.role !== "admin"){
+                window.location.href='./public/login.php?status=forbidden';
+            }
+            return user;
+        }
+    }catch(err){
+        console.error(err.message);
+    }
+}
 
 
 
-document.addEventListener("DOMContentLoaded", () => {
-    createNotifs().then(() => {
+
+document.addEventListener("DOMContentLoaded", async() => {
+    let user = await init();
+    createNotifs(user.id).then(() => {
         
         const notifsDiv = document.getElementById("notifs_div");
         const notifsDislpayDiv = document.getElementById("notifs_display_div");
@@ -203,9 +220,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.addEventListener("click", () => {
             notifsDislpayDiv.classList.add("hidden");
         });
-        
-        getUserName(2);
-        
+                
     });
 
 });

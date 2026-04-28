@@ -64,14 +64,14 @@ body {
     flex-direction: column;
     background: white;
     border-radius: 20px;
-    width: 280px;
+    width: 15vw;
     padding: 15px;
     gap: 12px;
     box-shadow: 0 6px 20px rgba(0,0,0,0.1);
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
-    border: solid #0004ff
+    border: solid var(--color-border);
 }
 
 .carte:hover {
@@ -94,6 +94,30 @@ body {
     position: absolute;
     top: 15px;
     right: 15px;
+    z-index: 100;
+}
+
+#wrapper_rec{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: scroll;
+}
+
+#fav{
+    width: 84vw;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(20vw, 1fr));
+    gap: 1vw;
+}
+
+#created{
+    width: 84vw;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(20vw, 1fr));
+    gap: 1vw;
 }
 
 #favImg {
@@ -186,5 +210,5 @@ body {
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
-    border: solid #0004ff
+    border: solid var(--color-border);
 }
