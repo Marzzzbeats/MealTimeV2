@@ -134,7 +134,7 @@ async function afficheRecettes(user){
             modif_btn.classList.add('createBtn');
             let a_modif = document.createElement('a');
             let text_modif = document.createTextNode('Modifier la recette');
-            a_modif.setAttribute('href', `./recettes.php?id=${recette_id}`);
+            a_modif.setAttribute('href', `./recettes.php?id=${recette_id}&action=modif`);
             modif_btn.appendChild(text_modif);
             a_modif.appendChild(modif_btn);
             div_btn.appendChild(a_modif)

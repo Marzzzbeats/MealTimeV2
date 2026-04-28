@@ -7,6 +7,7 @@
     require_once(__DIR__ . '/../views/create_view.php');
     require_once(__DIR__ . '/../crud/favoris.crud.php');
     require_once(__DIR__ . '/../crud/ingredients.crud.php');
+    require_once(__DIR__ . '/../views/')
     ?>
 
 <!DOCTYPE html>
@@ -53,8 +54,24 @@
                 <div class="screen hidden">
                     <div class="popup_form hidden">
                         <?php
-                echo(createHtmlCreateForm());
-                ?>
+                            echo(createHtmlCreateForm());
+                        ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="screen hidden">
+        <div class="popup_form hidden">
+            <?php
+                if(isset($_GET['action']) && isset($_GET['id'])){
+                    $action = $_GET['action'];
+                    $id = $_GET['id'];
+                    if($action == 'modif'){
+                        echo(createHtmlModifForm($conn, $id));
+                    }
+                }
+            ?>
         </div>
     </div>
 

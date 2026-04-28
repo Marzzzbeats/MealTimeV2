@@ -36,4 +36,11 @@
             $res3 = mysqli_query($conn, $sql2);
         }
     }
+
+    function deleteIngredientsRecette($conn, $id){
+        $sql = "DELETE FROM relation_recette_ingredient WHERE id_recette = $id";
+        $res = mysqli_query($conn, $sql);
+        return $res;
+    }
+        
 ?>
