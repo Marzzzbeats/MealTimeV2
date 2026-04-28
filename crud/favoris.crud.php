@@ -133,6 +133,7 @@
         return $res;
     }
 
+    /*
     function getRecettesFavorisFormulaire($conn, $user_id, $prix, $sante, $saison){
         //Récupère les recettes favorites du user en fonction des entrées en paramètre
         if ($saison === 'all') {
@@ -144,6 +145,6 @@
         $tab = rsToAssoc($res);
         return $tab;
     }
-
+    */
 ?>
 
