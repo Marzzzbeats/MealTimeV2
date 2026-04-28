@@ -105,17 +105,12 @@ body{
     width: 8vw;
     height: 11vw;
     padding: 0.2vw;
-
     border-radius: var(--radius-md);
-
     background-color: var(--color-surface);
-
     box-shadow: var(--shadow-md);
     border: 1px solid var(--color-border);
-
     font-size: 1.5rem;
     overflow: hidden;
-
     transition: transform var(--transition), box-shadow var(--transition);
 }
 
@@ -187,11 +182,9 @@ body{
     bottom: 0.2vw;
     left: 0.2vw;
     font-size: 1rem;
-
     background-color: var(--color-surface-alt);
     border: 1px solid var(--color-border);
     color: var(--color-text);
-
     border-radius: var(--radius-sm);
 }
 
@@ -225,19 +218,14 @@ body{
     transform: translateX(-50%);
     z-index: 20;
     max-width: 85%;
-
     background-color: var(--color-accent);
     color: var(--color-surface);
-
     padding: 0.3vw 0.6vw;
     border-radius: 0.5vw;
-
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-
     font-size: 1vw;
-
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.2s ease;

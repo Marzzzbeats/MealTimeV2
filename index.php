@@ -46,14 +46,16 @@
 </head>
 <body>
     <div id="pdp">
-        <?php
-        if(isset($_SESSION['id'])){
-            $user_id = $_SESSION['id'];
-            echo("<img id='pdp_img' src='https://l1.dptinfo-usmb.fr/~grp9/api/user/getProfilePic.php?id=$user_id' alt='pdp'>");
-        }else{
-            echo("<img id='pdp_img' src='./public/img/AvatarDef.png' alt='pdp'>");   
-        }
-        ?>
+        <div id="pdp_img_wrapper">    
+            <?php
+                if(isset($_SESSION['id'])){
+                    $user_id = $_SESSION['id'];
+                    echo("<img id='pdp_img' src='https://l1.dptinfo-usmb.fr/~grp9/api/user/getProfilePic.php?id=$user_id' alt='pdp'>");
+                }else{
+                    echo("<img id='pdp_img' src='./public/img/AvatarDef.png' alt='pdp'>");   
+                }
+            ?>
+        </div>
         <div id="pdp_menu">
             <div class="btn_log">
                 <a href="./index.php?action=disconnect" id="logout" class="button hidden">Déconnexion</a>

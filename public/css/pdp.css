@@ -4,9 +4,20 @@
     left: 1vw;
 }
 
+#pdp_img_wrapper{
+    width: 2.5vw;
+    height: 2.5vw;
+    overflow: hidden;
+    border-radius: 50%;
+    object-fit: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 #pdp_img{
-    width: 3vw;
-    height: 3vw;
+    width: 140%;
+    height: 140%;
     border-radius: 50%;
     cursor: pointer;
     z-index: 12;
