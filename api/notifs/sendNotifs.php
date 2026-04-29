@@ -31,13 +31,3 @@ if($type == "deletedRecipe"){
 echo json_encode([
     "success" => $result
 ]);
-
-
-// fetch('./api/notifs/notifs.php?type=followRequest', {
-//     method: 'POST',
-//     headers: {'Content-Type': 'application/json'},
-//     body: JSON.stringify({
-//         from: 1,
-//         to: 2
-//     })
-// });

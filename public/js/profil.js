@@ -207,6 +207,7 @@ async function afficheRecettes(user, owner, id_recette){
 
 document.addEventListener('DOMContentLoaded', async ()=>{
     user = await init(owner, id_recette);
+    let user_id = user.id;
     const selected_rcp = document.querySelector('#selected_rcp');
     const sel = document.querySelector('#sel');
     selected_rcp.addEventListener('click', ()=>{
@@ -227,8 +228,7 @@ document.addEventListener('DOMContentLoaded', async ()=>{
             await fetch('./api/notifs/notifs.php?type=followRequest', {method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify(
-                    {from: user.id,
-                        to: owner}
+                    {user_id, owner}
                     )
                 }
             );
