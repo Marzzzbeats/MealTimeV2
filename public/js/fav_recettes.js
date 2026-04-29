@@ -253,12 +253,10 @@ async function sendNotifs(user){
     const abonnes = await response.json();
     abonnes.forEach(async (abo)=>{
         const id_abo = abo.id;
+        let user_id = user.id;
         await fetch('./api/notifs/notifs.php?type=newRecipe', {method: 'POST',
                 headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify(
-                    {from: user.id,
-                        to: id_abo}
-                    )
+                body: JSON.stringify({user_id, id_abo})
                 }
             );
     })
@@ -269,8 +267,6 @@ const btn = document.querySelector("#create");
 const screens = document.querySelectorAll(".screen");
 const create = document.querySelector('#create');
 const screen_created = document.querySelector('#screen_create');
-
-const submit_btn = doocument.querySelector('#submit_btn');
 
 btn.addEventListener('click', ()=>{
     create.classList.remove('hidden');
