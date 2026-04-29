@@ -44,6 +44,7 @@ async function init(owner, id_recette){
                     const sub_btn = document.createElement('button');
                     sub_btn.classList.add('btn');
                     sub_btn.classList.add('delBtn');
+                    sub_btn.id = 'sub_btn';
                     const text_btn = document.createTextNode('Se désabonner');
                     sub_btn.appendChild(text_btn);
                     lien.appendChild(sub_btn)
@@ -218,4 +219,19 @@ document.addEventListener('DOMContentLoaded', async ()=>{
         })
     }
 
+    const sub = document.querySelector('#sub_btn');
+    sub.addEventListener('click', async ()=>{
+        const response1 = await fetch(`https://l1.dptinfo-usmb.fr/~grp9/api/sub/is_sub.php?id=${user.id}&account_id=${owner}`);
+        const is_abo = await response1.json();
+        if(!is_abo.result){
+            await fetch('./api/notifs/notifs.php?type=followRequest', {method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(
+                    {from: user.id,
+                        to: owner}
+                    )
+                }
+            );
+        }
+    })          
 })

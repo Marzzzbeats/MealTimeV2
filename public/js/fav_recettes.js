@@ -248,12 +248,29 @@ async function afficheRecettes(user){
     })
 } 
 
+async function sendNotifs(user){
+    const response = await fetch(`https://l1.dptinfo-usmb.fr/~grp9/api/sub/get_abo.php?id=${user.id}&action=abonnes`);
+    const abonnes = await response.json();
+    abonnes.forEach(async (abo)=>{
+        const id_abo = abo.id;
+        await fetch('./api/notifs/notifs.php?type=newRecipe', {method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(
+                    {from: user.id,
+                        to: id_abo}
+                    )
+                }
+            );
+    })
+}
 
 const forms = document.querySelectorAll(".popup_form");
 const btn = document.querySelector("#create");
 const screens = document.querySelectorAll(".screen");
 const create = document.querySelector('#create');
 const screen_created = document.querySelector('#screen_create');
+
+const submit_btn = doocument.querySelector('#submit_btn');
 
 btn.addEventListener('click', ()=>{
     create.classList.remove('hidden');
@@ -270,13 +287,22 @@ screens.forEach((screen) => {
     })
 })
 
-forms.forEach((form)=>{
-    form.addEventListener('click', (e)=>{
-        e.stopPropagation();
-    })
-})
+
 
 document.addEventListener('DOMContentLoaded', async ()=>{
     let user_data = await init();
     afficheRecettes(user_data);
+
+    forms.forEach((form)=>{
+    form.addEventListener('click', (e)=>{
+        e.stopPropagation();
+    })
+
+    form.addEventListener("submit", async ()=>{
+        
+    });
 })
+})
+
+
+submit_btn.add

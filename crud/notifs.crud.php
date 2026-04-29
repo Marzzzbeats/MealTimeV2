@@ -90,7 +90,7 @@
     }
 
     function notifFollowRequest($conn, $from, $to){
-        $message = "vous a envoyé une demande";
+        $message = "vous s'est abonné à votre compte";
         return addNotif($conn, $from, $to, "followRequest", $message);
     }
 

@@ -19,7 +19,7 @@
         $html .= "</select></p>";
         $html .= "<p>* Obligatoire </p>";
         $html .= "<input type='hidden' name='action' id='action' value='create' />";
-        $html .= "<button type='submit' class='btn createBtn'>Créer la recette</button>";
+        $html .= "<button type='submit' class='btn createBtn' id='submit_btn'>Créer la recette</button>";
         $html .= "</form>";
         return $html;
     }
