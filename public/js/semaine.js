@@ -305,15 +305,14 @@ async function creer_tableau_semaine(nomsRecettes, idsRecettes) {
 
 
 function createForm(user) {
+    const div_form = document.querySelector('#div_form');
     const form = document.getElementById("CreateSemaineForm");
-    form.classList.add("week-form");
+    form.classList.add("popup_form");
 
     const title = document.createElement("h1");
     title.textContent = "Paramètres de la semaine";
-    title.classList.add("form-title");
 
     const fieldsWrapper = document.createElement("div");
-    fieldsWrapper.classList.add("form-fields");
 
     function createSelectField(labelText, id, options) {
         const field = document.createElement("div");
@@ -349,7 +348,8 @@ function createForm(user) {
     const submitBtn = document.createElement("button");
     submitBtn.textContent = "Valider ces paramètres";
     submitBtn.type = "submit";
-    submitBtn.classList.add("form-submit");
+    submitBtn.classList.add('btn');
+    submitBtn.classList.add('createBtn');
 
     fieldsWrapper.appendChild(saisonField);
     fieldsWrapper.appendChild(prixField);
@@ -380,10 +380,12 @@ function createForm(user) {
         const noms = await get_semaine_titre(semaine);
         const ids = await get_semaine_id(semaine);
 
-        form.style.display = "none";
+        div_form.classList.add('hidden');
+        form.classList.add('hidden');
         document.getElementById("Erreurs").textContent = "";
 
         await creer_tableau_semaine(noms, ids);
+        window.location = "https://l1.dptinfo-usmb.fr/~grp9/public/semaine.php";
     });
 }
 
@@ -391,9 +393,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.log("load");
     let user = await init();
 
+    const div_form = document.querySelector('#div_form');
     const CreateSemaineForm = document.getElementById("CreateSemaineForm");
+    const new_week = document.querySelector('#new_week');
+    const screen = document.querySelector('.screen');
     createForm(user);
-    CreateSemaineForm.style.display = "none";
 
     const erreurs = document.getElementById("Erreurs");
 
@@ -416,11 +420,13 @@ document.addEventListener("DOMContentLoaded", async () => {
         if(recettes.length < 14){
             deleteSemaine(user);
             erreurs.textContent = Err1;
+            div_form.classList.add('hidden');
         }
         
         else if(!(await compare_semaine_favoris(semaine, recettes))){
             deleteSemaine(user);
             erreurs.textContent = Err2;
+            div_form.classList.add('hidden');
             setTimeout(() => {
                 location.reload()
             }, 3500);
@@ -438,12 +444,28 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         if(recettes.length < 14){
             erreurs.textContent = Err3;
+            div_form.classList.add('hidden');
         }
         
         else{
-            CreateSemaineForm.style.display = "flex";
+            div_form.classList.remove('hidden');
+            CreateSemaineForm.classList.remove('hidden');
         }
     }
+
+    new_week.addEventListener('click', ()=>{
+        div_form.classList.remove('hidden');
+        CreateSemaineForm.classList.remove('hidden');
+    })
+
+    screen.addEventListener('click', ()=>{
+        div_form.classList.add('hidden');
+    })
+
+    CreateSemaineForm.addEventListener('click', (e)=>{
+        e.stopPropagation();
+    })
+
 });
 
 

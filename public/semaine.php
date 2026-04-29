@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="./css/roots.css">
     <link rel="stylesheet" href="./css/navbar.css">
     <link rel="stylesheet" href="./css/semaine.css?v=2">
+    <link rel="stylesheet" href="./css/rcp_form.css">
 
     <title>MA SEMAINE</title>
 
@@ -29,12 +30,13 @@
     ?>
     <script src="./js/semaine.js"></script>
    
-    <form id="CreateSemaineForm"></form>
+    <div id='div_form' class='screen hidden'><form id="CreateSemaineForm"></form></div>
 
     <p id="Erreurs"></p>
 
     <div id='tableau'></div>
     
+    <button class='createBtn btn' id="new_week">Créer une nouvelle semaine</button>
     
     <ul id="navbar_ul">
             <li><a href="./account.php">Profil</a></li>
