@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="./css/recettes.css">
     <link rel="stylesheet" href="./css/navbar.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="./css/profil.css">
+    <link rel="stylesheet" href="./css/rcp_form.css">
 
 
     <title>MealTime</title>
@@ -30,6 +31,8 @@
         <div id='user_recettes'></div>
         <div id="created" class='fl-row-recette'></div>
     </div>
+
+    <div id='selected_rcp' class='screen hidden'></div>
 
     <ul id="navbar_ul">
         <li><a href="./account.php">Profil</a></li>
