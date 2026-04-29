@@ -401,7 +401,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     
     let recettes = await getAllRecettesfav(user);
     let nb_recettes_manquant = 14 - recettes.length;
-    const nb_manquant = `Il vous manque ${nb_recettes_manquant} recettes favorites pour programmer une semaine complète.`;
+    const nb_manquant = ` Il vous manque ${nb_recettes_manquant} recettes favorites pour programmer une semaine complète.`;
     
     const Err1 = "Vous n'avez pas assez de recettes en favoris !" + nb_manquant
     const Err2 = "Vous avez retiré de vos favoris une recette présente dans votre semaine. Une nouvelle semaine va être chargée.";
@@ -421,6 +421,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         else if(!(await compare_semaine_favoris(semaine, recettes))){
             deleteSemaine(user);
             erreurs.textContent = Err2;
+            setTimeout(() => {
+                location.reload()
+            }, 3500);
         }
         
         else{
