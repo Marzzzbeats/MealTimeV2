@@ -7,14 +7,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Unkempt&display=swap" rel="stylesheet">
-<<<<<<< HEAD
-    
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/navbar.css">
-    <link rel="stylesheet" href="css/searchbar.css">
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/roots.css">
-=======
 
     <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/roots.css">
@@ -22,7 +14,6 @@
     <link rel="stylesheet" href="./css/semaine.css?v=2">
     <link rel="stylesheet" href="./css/rcp_form.css">
 
->>>>>>> dev6
     <title>MA SEMAINE</title>
 
 </head>
