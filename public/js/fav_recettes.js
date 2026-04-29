@@ -270,8 +270,6 @@ const screens = document.querySelectorAll(".screen");
 const create = document.querySelector('#create');
 const screen_created = document.querySelector('#screen_create');
 
-const submit_btn = doocument.querySelector('#submit_btn');
-
 btn.addEventListener('click', ()=>{
     create.classList.remove('hidden');
     screen_created.classList.remove('hidden');
