@@ -180,7 +180,7 @@ function cardVisu(recette){
 }
 
 function redirectRecette(user_id, id_recette){
-    window.location = `https://l1.dptinfo-usmb.fr/~perivolas/mealtime/public/profil.php?owner=${user_id}&id_recette=${id_recette}`;
+    window.location = `https://l1.dptinfo-usmb.fr/~grp9/public/profil.php?owner=${user_id}&id_recette=${id_recette}`;
     console.log("clicked");
 }
 

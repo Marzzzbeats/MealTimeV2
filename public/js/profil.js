@@ -8,6 +8,7 @@ async function init(owner, id_recette){
         if(res.ok){
             let data = await res.json();
             if(data.connected == true && data.user != null){
+                console.log('ok');
                 const user = data.user;
                 const div_npp = document.querySelector('#div_nom_pp');
                 const data2 = await fetch(`https://l1.dptinfo-usmb.fr/~grp9/api/user/get_user_info.php?id=${owner}`);
