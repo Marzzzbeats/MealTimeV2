@@ -192,7 +192,6 @@ body {
 
 #create{
     display: flex;
-    max-width: 15%;
     align-self: center;
     font-size: x-large;
     margin : 10px

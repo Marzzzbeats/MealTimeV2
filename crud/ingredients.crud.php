@@ -50,7 +50,7 @@
         $result = "";
         foreach($tab as $ing){
             $i = $ing['nom'];
-            $result.=" $i,";
+            $result = rtrim($result, ',');
         }
         return $result;
     }
@@ -62,7 +62,7 @@
         $result = "";
         foreach($tab as $ing){
             $i = $ing['quantite'];
-            $result.=" $i,";
+            $result = rtrim($result, ',');
         }
         return $result;
     }

@@ -116,7 +116,7 @@ async function afficheRecettes(user){
         let text_indh = document.createTextNode(str_indh);
         div_indh.appendChild(text_indh);
         div.appendChild(div_indh);
-        //Bouton supprimer
+        //Boutons
         if(user.id == recette.owner){
             let div_btn = document.createElement('div');
             div_btn.classList.add('fl-row');
@@ -233,6 +233,15 @@ async function afficheRecettes(user){
             delete_btn.appendChild(text_del);
             a_delete.appendChild(delete_btn);
             div_btn.appendChild(a_delete)
+            let modif_btn = document.createElement('button');
+            modif_btn.classList.add('btn');
+            modif_btn.classList.add('createBtn');
+            let a_modif = document.createElement('a');
+            let text_modif = document.createTextNode('Modifier la recette');
+            a_modif.setAttribute('href', `./recettes.php?id=${recette_id}&action=modif`);
+            modif_btn.appendChild(text_modif);
+            a_modif.appendChild(modif_btn);
+            div_btn.appendChild(a_modif)
             div.appendChild(div_btn);
         }
         div_created.appendChild(div);

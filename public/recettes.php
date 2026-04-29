@@ -7,7 +7,8 @@
     require_once(__DIR__ . '/../views/create_view.php');
     require_once(__DIR__ . '/../crud/favoris.crud.php');
     require_once(__DIR__ . '/../crud/ingredients.crud.php');
-    ?>
+    require_once(__DIR__ . '/../views/modif_views.php');
+?>
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -37,6 +38,7 @@
             }else if($status == 'modifSuccess'){
                 echo('<div class="alert">Modifications bien enregistrées</div>');
             }
+        }
     ?>
     <div id="wrapper_rec">
         <button id="create" class='btn createBtn'>Créer une recette</button>
@@ -52,15 +54,15 @@
                     
                     </div>
                 </div>
-                
-                <div class="screen hidden" id="screen_create">
-                    <div class="popup_form hidden" id="create">
-                        <?php
-                            echo(createHtmlCreateForm());
-                        ?>
-                    </div>
-                </div>
             </div>
+        </div>
+    </div>
+
+    <div class="screen hidden" id="screen_create">
+        <div class="popup_form hidden" id="create">
+            <?php
+                echo(createHtmlCreateForm());
+            ?>
         </div>
     </div>
 
@@ -104,9 +106,10 @@
                 addIngredientRecette($conn, $id_recette, $ing, $qte);
                 header('Location: ./recettes.php?status=success');
                 exit;
-            }else if($action == 'modif' && isset($_GET['owner'])){
+            }else if($action == 'modif' && isset($_POST['owner'])){
+                $id = $_POST['id'];
                 $user = $_SESSION['id'];
-                $owner = $_GET['owner'];
+                $owner = $_POST['owner'];
                 if($owner != $user){
                     header('Location: https://l1.dptinfo-usmb.fr/~grp9/public/recettes.php?status=forbidden');
                     exit;
@@ -118,8 +121,8 @@
                 $description = $_POST['description'];
                 $ing = $_POST['ingredients'];
                 $qte = $_POST['quantite'];
-                updateRecette($conn, $id, $saison, $price_ind, $health_ind, $titre, $description);
-                deleteIngredientsRecette($conn, $id)
+                updateRecettes($conn, $id, $saison, $price_ind, $health_ind, $titre, $description);
+                deleteIngredientsRecette($conn, $id);
                 addIngredientRecette($conn, $id, $ing, $qte);
                 header('Location: ./recettes.php?status=modifSuccess');
                 exit;
