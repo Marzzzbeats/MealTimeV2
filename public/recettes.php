@@ -32,8 +32,11 @@
             $status = $_GET['status'];
             if($status == 'success'){
                 echo('<div class="alert">Recette bien enregistrée dans la base</div>');
+            }else if($status == 'forbidden'){
+                echo("<div class='alert'>Cette recette n'est pas à vous, vous ne pouvez pas la modifier</div>");
+            }else if($status == 'modifSuccess'){
+                echo('<div class="alert">Modifications bien enregistrées</div>');
             }
-        }
     ?>
     <div id="wrapper_rec">
         <button id="create" class='btn createBtn'>Créer une recette</button>
@@ -50,8 +53,8 @@
                     </div>
                 </div>
                 
-                <div class="screen hidden">
-                    <div class="popup_form hidden">
+                <div class="screen hidden" id="screen_create">
+                    <div class="popup_form hidden" id="create">
                         <?php
                             echo(createHtmlCreateForm());
                         ?>
@@ -60,20 +63,19 @@
             </div>
         </div>
     </div>
-    <div class="screen hidden">
-        <div class="popup_form hidden">
-            <?php
-                if(isset($_GET['action']) && isset($_GET['id'])){
-                    $action = $_GET['action'];
-                    $id = $_GET['id'];
-                    if($action == 'modif'){
-                        echo(createHtmlModifForm($conn, $id));
-                    }
-                }
-            ?>
-        </div>
-    </div>
 
+    <?php
+        if(isset($_GET['action']) && isset($_GET['id'])){
+            $action = $_GET['action'];
+            $id = $_GET['id'];
+            if($action == 'modif'){
+                echo('<div class="screen"><div class="popup_form">');
+                echo(createHtmlModifForm($conn, $id));
+                echo('</div></div>');
+            }
+        }
+    ?>
+        
     <?php
 
         if(isset($_POST['action'])){
@@ -101,6 +103,25 @@
                 addUpVote($conn, $id_recette);
                 addIngredientRecette($conn, $id_recette, $ing, $qte);
                 header('Location: ./recettes.php?status=success');
+                exit;
+            }else if($action == 'modif' && isset($_GET['owner'])){
+                $user = $_SESSION['id'];
+                $owner = $_GET['owner'];
+                if($owner != $user){
+                    header('Location: https://l1.dptinfo-usmb.fr/~grp9/public/recettes.php?status=forbidden');
+                    exit;
+                }
+                $saison = $_POST['saison'];
+                $price_ind = $_POST['price_ind'];
+                $health_ind = $_POST['health_ind'];
+                $titre = $_POST['titre'];
+                $description = $_POST['description'];
+                $ing = $_POST['ingredients'];
+                $qte = $_POST['quantite'];
+                updateRecette($conn, $id, $saison, $price_ind, $health_ind, $titre, $description);
+                deleteIngredientsRecette($conn, $id)
+                addIngredientRecette($conn, $id, $ing, $qte);
+                header('Location: ./recettes.php?status=modifSuccess');
                 exit;
             }
         }

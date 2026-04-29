@@ -243,11 +243,14 @@ async function afficheRecettes(user){
 const forms = document.querySelectorAll(".popup_form");
 const btn = document.querySelector("#create");
 const screens = document.querySelectorAll(".screen");
+const create = document.querySelector('#create');
+const screen_created = document.querySelector('#screen_create');
 
 btn.addEventListener('click', ()=>{
-    form.classList.remove('hidden');
-    screen.classList.remove('hidden');
+    create.classList.remove('hidden');
+    screen_created.classList.remove('hidden');
 })
+
 
 screens.forEach((screen) => {
     screen.addEventListener('click', ()=>{

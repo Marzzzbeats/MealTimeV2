@@ -21,8 +21,8 @@
 		return mysqli_insert_id($conn);
 	}
 
-	function updateRecettes($conn, $id, $image, $saison, $price_ind, $health_ind, $titre, $description){
-		$sql="UPDATE `recettes` SET `image`='$image', `saison`='$saison', `price_ind`='$price_ind', `health_ind`='$health_ind', `titre`='$titre', `description`='$description' WHERE id = $id"; 
+	function updateRecettes($conn, $id, $saison, $price_ind, $health_ind, $titre, $description){
+		$sql="UPDATE `recettes` SET `saison`='$saison', `price_ind`='$price_ind', `health_ind`='$health_ind', `titre`='$titre', `description`='$description' WHERE id = $id"; 
 		global $debeug ;
 		if($debeug) echo $sql ; 
 		$res=mysqli_query($conn, $sql) ; 
@@ -60,7 +60,7 @@
 	}
 
 	function getRecetteById($conn, $id){
-		$sql = "SELECT * FROM recettes JOIN relation_recette_ingredient ON recettes.id = relation_recette_ingredient.id_recette JOIN ingredients ON relation_recette_ingredient.id_ingredient = ingredients.id WHERE recettes.id = $id";
+		$sql = "SELECT * FROM recettes WHERE id = $id";
 		$res = mysqli_query($conn, $sql);
 		$tab = rsToAssoc($res);
 		return $tab[0];

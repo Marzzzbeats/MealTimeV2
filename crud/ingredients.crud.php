@@ -52,7 +52,21 @@
             $i = $ing['nom'];
             $result.=" $i,";
         }
-        return $res;
+        return $result;
     }
-        
+
+    function getQuantiteRecette($conn, $id){
+        $sql = "SELECT quantite FROM relation_recette_ingredient JOIN ingredients ON relation_recette_ingredient.id_ingredient = ingredients.id WHERE relation_recette_ingredient.id_recette = $id";
+        $res = mysqli_query($conn, $sql);
+        $tab = rsToAssoc($res);
+        $result = "";
+        foreach($tab as $ing){
+            $i = $ing['quantite'];
+            $result.=" $i,";
+        }
+        return $result;
+    }
+    
+
+
 ?>
