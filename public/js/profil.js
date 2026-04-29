@@ -219,19 +219,4 @@ document.addEventListener('DOMContentLoaded', async ()=>{
             e.stopPropagation();
         })
     }
-
-    const sub = document.querySelector('#sub_btn');
-    sub.addEventListener('click', async ()=>{
-        const response1 = await fetch(`https://l1.dptinfo-usmb.fr/~grp9/api/sub/is_sub.php?id=${user.id}&account_id=${owner}`);
-        const is_abo = await response1.json();
-        if(!is_abo.result){
-            await fetch('./api/notifs/notifs.php?type=followRequest', {method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify(
-                    {user_id, owner}
-                    )
-                }
-            );
-        }
-    })          
 })

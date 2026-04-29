@@ -295,7 +295,7 @@ document.addEventListener('DOMContentLoaded', async ()=>{
     })
 
     form.addEventListener("submit", async ()=>{
-        
+        await sendNotifs(user);
     });
 })
 })

@@ -1,4 +1,5 @@
 <?php
+    require_once(__DIR__ . '/../lib/user_utils.php');
 
     function getNotifs($conn){
         //Récupère tous les notifications
@@ -31,7 +32,7 @@
         if(!$conn){
             header('Location: notifs.php?status=connError');
         }
-        $sql="SELECT * FROM notifs WHERE to = $user_id";
+        $sql="SELECT * FROM notifs WHERE a = $user_id";
         $result = mysqli_query($conn, $sql);
         if(!$result){
             header('Location: notifs.php?status=notifErr2'); //Gestion d'erreur de requêtre SQL (se referer à la section gestion d'erreurs de notifs.php)
@@ -114,14 +115,5 @@
         $sql="SELECT * FROM notifs WHERE a = $user_id AND vu = 0 ORDER BY id DESC";
         $result = mysqli_query($conn, $sql);
         return rsToAssoc($result);
-    }
-
-    function rsToAssoc($rs){
-        //Change un résultSet en tableau associatif
-        $tab=[] ; 
-        while($row=mysqli_fetch_assoc($rs)){
-            $tab[]=$row ;	
-        }
-        return $tab;
     }
 ?>
