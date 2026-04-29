@@ -42,4 +42,10 @@ $res = mysqli_query($conn,$sql);
 return rsToAssoc($res);
 }
 
+function getRecetteByIdNoJoin($conn, $id){
+		$sql = "SELECT id, titre FROM recettes WHERE recettes.id = $id";
+		$res = mysqli_query($conn, $sql);
+		$tab = rsToAssoc($res);
+		return $tab[0];
+}
 ?>
