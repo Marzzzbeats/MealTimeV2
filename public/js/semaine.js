@@ -47,7 +47,6 @@ async function getAllRecettesfav(user){
     try{
         const res = await fetch(`../api/semaine/get_all_fav.php?user_id=${user_id}`);
         let recettes = await res.json();
-        // console.log(recettes);
         return recettes;
     }catch(err){
         console.error(err.message);
@@ -184,11 +183,9 @@ async function createSemaine(user, saison, prix, sante){
     recettes = await verifie_saison(user, saison, prix, sante);
     console.log(recettes);
 
-    if(recettes.length < 14 && !tabRecette.querySelector(".Err4")){
-        const Err4 = document.createElement("h2");
-        Err4.classList.add("Erreur4");
-        Err4.textContent = "Vous n'avez pas assez de recettes correspondant à ces critères dans vos favoris."
-        tabRecette.appendChild(Err4);
+
+    if(recettes.length < 14){
+        document.getElementById("Erreurs").textContent = "Vous n'avez pas assez de recettes correspondant à ces critères dans vos favoris."
     }
     recettes_shuffle = recettes_random(recettes);
     let p1 = recettes_shuffle[0]['recette_id'];
@@ -209,170 +206,221 @@ async function createSemaine(user, saison, prix, sante){
 }
 
 
-async function creer_tableau_semaine(tableau_nom_recettes, tableau_id_recettes) {
-    let indice1 = 0;
-    let indice2 = 0;
-    const tableau = document.getElementById("tableau");
-    const h1 = document.createElement("h1");
-    const hello = document.createTextNode("MA SEMAINE");
-    h1.appendChild(hello);
-    tableau.appendChild(h1);
-    const nb_jours = 7;
-    const nb_repas = 4;
 
-    const div = document.createElement("div");
-    let table = document.createElement("table");
+async function creer_tableau_semaine(nomsRecettes, idsRecettes) {
+    const container = document.getElementById("tableau");
 
-    const tr = document.createElement("tr");
+    const titre = document.createElement("p");
+    titre.textContent = "MA SEMAINE";
+    titre.id = "planning-title";
+    container.appendChild(titre);
+
+    const wrapper = document.createElement("div");
+    wrapper.id = "planning-wrapper";
+
+    const table = document.createElement("table");
+    table.id = "planning-table";
+
     const jours = ['LUNDI', 'MARDI', 'MERCREDI', 'JEUDI', 'VENDREDI', 'SAMEDI', 'DIMANCHE'];
 
-    for (let y = 0; y < 7; y++) {
-        const td = document.createElement("td");
-        td.textContent = jours[y];
-        td.classList.add("repa", "jour", "ligne_jour");
-        tr.appendChild(td);
-    }
-    table.appendChild(tr);
+    const thead = document.createElement("thead");
+    const headerRow = document.createElement("tr");
 
-    for (let i = 0; i < nb_repas; i++) {
-        const tr = document.createElement("tr");
-        let jour = "";
-        for (let j = 0; j < nb_jours; j++) {
+    jours.forEach(jour => {
+        const th = document.createElement("th");
+        
+        const p = document.createElement("p");
+        p.textContent = jour;
+        p.classList.add("planning-day-text");
+
+        th.appendChild(p);
+        th.classList.add("planning-day-header");
+
+        headerRow.appendChild(th);
+    });
+
+    thead.appendChild(headerRow);
+    table.appendChild(thead);
+
+    const tbody = document.createElement("tbody");
+
+    const nbRepas = 2;
+    let indexNom = 0;
+    let indexImage = 0;
+
+    for (let i = 0; i < nbRepas; i++) {
+        const row = document.createElement("tr");
+        row.classList.add("planning-row");
+
+        for (let j = 0; j < 7; j++) {
             const td = document.createElement("td");
-            if ((i === 1) || (i === 3)) {
-                if (tableau_nom_recettes[indice1] !== null) {
-                    jour = document.createTextNode(tableau_nom_recettes[indice1]);
-                    indice1++;
-                } else {
-                    jour = document.createTextNode('repas');
-                }
-                td.appendChild(jour);
-                td.classList.add("repa");
-                tr.appendChild(td);
+            td.classList.add("planning-cell");
+
+            const mealWrapper = document.createElement("div");
+            mealWrapper.classList.add("meal-wrapper");
+
+            const imgWrapper = document.createElement("div");
+            imgWrapper.classList.add("meal-image-wrapper");
+
+            const img = document.createElement("img");
+            img.classList.add("meal-image");
+
+            const id = idsRecettes[indexImage];
+            img.src = `https://l1.dptinfo-usmb.fr/~grp9/api/recettes/api_image_recette.php?id=${id}`;
+            indexImage++;
+
+            imgWrapper.appendChild(img);
+
+            const textWrapper = document.createElement("div");
+            textWrapper.classList.add("meal-text-wrapper");
+
+            const p = document.createElement("p");
+            p.classList.add("meal-text");
+
+            if (nomsRecettes[indexNom] !== null && nomsRecettes[indexNom] !== undefined) {
+                p.textContent = nomsRecettes[indexNom];
             } else {
-                
-                let img = document.createElement('img');
-                console.log(`https://l1.dptinfo-usmb.fr/~grp9/api/recettes/api_image_recette.php?id=${tableau_id_recettes[indice2]}`);
-                await img.setAttribute('src', `https://l1.dptinfo-usmb.fr/~grp9/api/recettes/api_image_recette.php?id=${tableau_id_recettes[indice2]}`);
-                indice2++;
-                img.classList.add("image");
-                td.appendChild(img);
-                tr.appendChild(td);
+                p.textContent = "Repas";
             }
+            indexNom++;
+
+            textWrapper.appendChild(p);
+
+            mealWrapper.appendChild(imgWrapper);
+            mealWrapper.appendChild(textWrapper);
+
+            td.appendChild(mealWrapper);
+            row.appendChild(td);
         }
-        table.appendChild(tr);
+
+        tbody.appendChild(row);
     }
-    div.appendChild(table);
-    tableau.appendChild(div);
+
+    table.appendChild(tbody);
+    wrapper.appendChild(table);
+    container.appendChild(wrapper);
 }
 
 
-function createForm(user){
-    const CreateSemaineForm = document.getElementById("CreateSemaineForm");
-    const Titre = document.createElement("h1");
-    const titre = document.createTextNode("Paramètres de la semaine");
-    Titre.appendChild(titre);
 
-    const Label1 = document.createElement("label");
-    const label1 = document.createTextNode("Saison :");
-    Label1.appendChild(label1);
-    const select1 = document.createElement("select");
-    ["printemps", "ete", "automne", "hiver", "all"].forEach(elem => {
-        const option = document.createElement("option");
-        option.value = elem;
-        option.textContent = elem;
-        select1.appendChild(option);
-    });
-    
-    const Label2 = document.createElement("label");
-    const label2 = document.createTextNode("Prix maximum :");
-    Label2.appendChild(label2);
-    const select2 = document.createElement("select");
-    [5,4,3,2,1].forEach(elem => {
-        const option = document.createElement("option");
-        option.value = elem;
-        option.textContent = elem;
-        select2.appendChild(option);
-    });
-    
-    const Label3 = document.createElement("label");
-    const label3 = document.createTextNode("Indice de santé minimum :");
-    Label3.appendChild(label3);
-    const select3 = document.createElement("select");
-    [5,4,3,2,1].forEach(elem => {
-        const option = document.createElement("option");
-        option.value = elem;
-        option.textContent = elem;
-        select3.appendChild(option);
-    });
 
-    const btn = document.createElement("button");
-    btn.textContent = "Valider ces paramètres";
+function createForm(user) {
+    const form = document.getElementById("CreateSemaineForm");
+    form.classList.add("week-form");
 
-    CreateSemaineForm.appendChild(Titre);
-    
-    CreateSemaineForm.appendChild(Label1);
-    CreateSemaineForm.appendChild(select1);
-    
-    CreateSemaineForm.appendChild(Label2);
-    CreateSemaineForm.appendChild(select2);
-    
-    CreateSemaineForm.appendChild(Label3);
-    CreateSemaineForm.appendChild(select3);
-    
-    CreateSemaineForm.appendChild(btn);
+    const title = document.createElement("h1");
+    title.textContent = "Paramètres de la semaine";
+    title.classList.add("form-title");
 
-    CreateSemaineForm.addEventListener("submit", async (e) => {
+    const fieldsWrapper = document.createElement("div");
+    fieldsWrapper.classList.add("form-fields");
+
+    function createSelectField(labelText, id, options) {
+        const field = document.createElement("div");
+        field.classList.add("form-field");
+
+        const label = document.createElement("label");
+        label.textContent = labelText;
+        label.setAttribute("for", id);
+        label.classList.add("form-label");
+
+        const select = document.createElement("select");
+        select.id = id;
+        select.name = id;
+        select.classList.add("form-select");
+
+        options.forEach(opt => {
+            const option = document.createElement("option");
+            option.value = opt;
+            option.textContent = opt;
+            select.appendChild(option);
+        });
+
+        field.appendChild(label);
+        field.appendChild(select);
+
+        return { field, select };
+    }
+
+    const { field: saisonField, select: saisonSelect } = createSelectField("Saison :", "saison", ["printemps", "ete", "automne", "hiver", "all"]);
+    const { field: prixField, select: prixSelect } = createSelectField("Prix maximum :", "prix", [5, 4, 3, 2, 1]);
+    const { field: santeField, select: santeSelect } = createSelectField("Indice de santé minimum :", "sante", [5, 4, 3, 2, 1]);
+
+    const submitBtn = document.createElement("button");
+    submitBtn.textContent = "Valider ces paramètres";
+    submitBtn.type = "submit";
+    submitBtn.classList.add("form-submit");
+
+    fieldsWrapper.appendChild(saisonField);
+    fieldsWrapper.appendChild(prixField);
+    fieldsWrapper.appendChild(santeField);
+
+    form.appendChild(title);
+    form.appendChild(fieldsWrapper);
+    form.appendChild(submitBtn);
+
+    form.addEventListener("submit", async (e) => {
         e.preventDefault();
-        const saison = select1.value;
-        const prix = select2.value;
-        const sante = select3.value;
+
+        const saison = saisonSelect.value;
+        const prix = prixSelect.value;
+        const sante = santeSelect.value;
+
         console.log(saison, prix, sante);
-        if(await verifie_semaine(user)){
+
+        if (await verifie_semaine(user)) {
             deleteSemaine(user);
-        };
+        }
+
         await createSemaine(user, saison, prix, sante);
-        
+
         alert("Semaine créée en fonction de vos paramètres.");
-        
-        let semaine = getSemaine(user);
-        let tableau_nom_recettes = await get_semaine_titre(semaine);
-        let tableau_id_recettes = await get_semaine_id(semaine);
-        CreateSemaineForm.style.display = "none";
-        await creer_tableau_semaine(tableau_nom_recettes, tableau_id_recettes);
+
+        const semaine = await getSemaine(user);
+        const noms = await get_semaine_titre(semaine);
+        const ids = await get_semaine_id(semaine);
+
+        form.style.display = "none";
+        document.getElementById("Erreurs").textContent = "";
+
+        await creer_tableau_semaine(noms, ids);
     });
 }
-
 
 document.addEventListener("DOMContentLoaded", async () => {
+    console.log("load");
     let user = await init();
+
     const CreateSemaineForm = document.getElementById("CreateSemaineForm");
+    createForm(user);
     CreateSemaineForm.style.display = "none";
+
+    const erreurs = document.getElementById("Erreurs");
+
     const tabRecette = document.getElementById("tableau");
     
+    let recettes = await getAllRecettesfav(user);
+    let nb_recettes_manquant = 14 - recettes.length;
+    const nb_manquant = `Il vous manque ${nb_recettes_manquant} recettes favorites pour programmer une semaine complète.`;
+    
+    const Err1 = "Vous n'avez pas assez de recettes en favoris !" + nb_manquant
+    const Err2 = "Vous avez retiré de vos favoris une recette présente dans votre semaine. Une nouvelle semaine va être chargée.";
+    const Err3 = "Vous n'avez pas assez de recettes en favoris !" + nb_manquant
+    
+    
+
     if(await verifie_semaine(user)){
-        let recettes = await getAllRecettesfav(user);
-        let semaine = await getSemaine(user);
-        
+        console.log("semaine OK");
+        let semaine = await getSemaine(user)
+
         if(recettes.length < 14){
             deleteSemaine(user);
-            const Err1 = document.createElement("h2");
-            const err1 = document.createTextNode("Vous n'avez pas assez de recettes en favoris !");
-            let nb_recettes_manquant = 14 - recettes.length;
-            const nb_manquant = document.createTextNode("Il vous manque "+nb_recettes_manquant+" recettes favorites pour programmer une semaine complète.");
-            Err1.appendChild(err1);
-            Err1.appendChild(nb_manquant);
-            tabRecette.appendChild(Err1);
+            erreurs.textContent = Err1;
         }
         
         else if(!(await compare_semaine_favoris(semaine, recettes))){
             deleteSemaine(user);
-            const Err2 = document.createElement("h2");
-            const err2 = document.createTextNode("Vous avez retiré de vos favoris une recette présente dans votre semaine.");
-            const nv_semaine = document.createTextNode("Une nouvelle semaine va être chargée.");
-            Err2.appendChild(err2);
-            Err2.appendChild(nv_semaine);
-            tabRecette.appendChild(Err2);
+            erreurs.textContent = Err2;
         }
         
         else{
@@ -383,20 +431,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
     
     else{
-        let recettes = getAllRecettesfav(user);
+        console.log('semaine pas OK');
+
         if(recettes.length < 14){
-            const Err3 = document.createElement("h2");
-            const err3 = document.createTextNode("Vous n'avez pas assez de recettes en favoris !");
-            let nb_recettes_manquant = 14 - recettes.length;
-            const nb_manquant = document.createTextNode("Il vous manque "+nb_recettes_manquant+" recettes favorites pour programmer une semaine complète.");
-            Err3.appendChild(err3);
-            Err3.appendChild(nb_manquant);
-            tabRecette.appendChild(Err3);
+            erreurs.textContent = Err3;
         }
         
         else{
             CreateSemaineForm.style.display = "flex";
-            createForm(user);
         }
     }
 });
