@@ -79,3 +79,24 @@
     background: #00c853;
     cursor: pointer;
 }
+
+.hidden{
+    display: none;
+}
+
+.btn {
+    border: none;
+    padding: 8px 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+}
+
+.createBtn{
+    background: linear-gradient(135deg, #79ff54, #0ffe17);
+    color: white;
+}

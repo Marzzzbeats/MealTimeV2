@@ -16,10 +16,18 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Unkempt&display=swap" rel="stylesheet">
     
+<<<<<<< HEAD
     <link rel="stylesheet" href="./css/reset.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="./css/roots.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="./css/navbar.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="./css/searchbar.css?v=<?php echo time(); ?>">
+=======
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/searchbar.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/roots.css">
+>>>>>>> dev6
     <title>Tickets</title>
 
     <script src="./js/ticketsMake.js?v=<?php echo time(); ?>" defer></script>

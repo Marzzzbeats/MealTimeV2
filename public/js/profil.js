@@ -89,6 +89,7 @@ async function getRecettes(owner){
 }
 
 async function afficheRecettes(user, owner, id_recette){
+    const selected_rcp = document.querySelector('#selected_rcp');
     const div_created = document.querySelector('#created');
     div_created.classList.add("fl-row-recette");
     const created = await getRecettes(owner);
@@ -191,10 +192,29 @@ async function afficheRecettes(user, owner, id_recette){
             div_btn.appendChild(a_delete)
             div.appendChild(div_btn);
         }
+        if(id_recette == recette.id_recette){
+            const clone = div.cloneNode(true);
+            clone.classList.add('selected_rcp');
+            clone.id = 'sel';
+            selected_rcp.appendChild(clone);
+            selected_rcp.classList.remove('hidden');
+        }
         div_created.appendChild(div);
     })
 } 
 
 document.addEventListener('DOMContentLoaded', async ()=>{
     user = await init(owner, id_recette);
+    const selected_rcp = document.querySelector('#selected_rcp');
+    const sel = document.querySelector('#sel');
+    selected_rcp.addEventListener('click', ()=>{
+        selected_rcp.classList.add('hidden');
+    })
+
+    if(sel){
+        sel.addEventListener('click', (e)=>{
+            e.stopPropagation();
+        })
+    }
+
 })

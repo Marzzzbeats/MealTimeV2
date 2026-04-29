@@ -1,18 +1,21 @@
-body{
+body {
     font-family: var(--font-primary);
+    background: var(--color-bg);
+    color: var(--color-text);
 }
 
 .pp {
     width: 20vh;
     height: 20vh;
     border-radius: 50%;
-    border: solid blue 3px;
-    object-fit: cover;      /* ecrase pas l'image */
+    border: 2px solid var(--color-border);
+    object-fit: cover;
     object-position: center;
     margin: 1.5vh;
+    box-shadow: var(--shadow-sm);
 }
 
-.pp_img{
+.pp_img {
     width: 15vh;
     height: 15vh;
     object-fit: cover;
@@ -23,43 +26,130 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: whitesmoke;
-    border: 2px solid rgb(0, 17, 255);
-    border-radius: 15px;
-    width: fit-content;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
     text-align: center;
-    padding: 20px; 
-    max-width: 90%; 
-    gap: 15px;
-    align-self: center;
+    padding: 2vh;
+    gap: 1.5vh;
     width: 50%;
+    max-width: 90%;
 }
 
-.line_abo{
+.line_abo {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     width: 20vw;
     height: 10vh;
-    border: solid blue 2px;
-    border-radius: 15px;
-    align-items: center;
-    padding: 2vw;
+    padding: 1.5vw;
+    background: var(--color-surface-alt);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    transition: background var(--transition);
 }
 
-.pp_abo{
+.line_abo:hover {
+    background: var(--color-primary-soft);
+}
+
+.pp_abo {
     width: 5vh;
     height: 5vh;
     border-radius: 50%;
-    border: solid blue 3px;
-    object-fit: cover;      /* ecrase pas l'image */
+    border: 1px solid var(--color-border);
+    object-fit: cover;
     object-position: center;
 }
 
-#div_nom_pp{
+#div_nom_pp {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
+    gap: 0.5vw;
+}
+
+.popup_form {
+    height: 60vh;
+    overflow-y: scroll;
+}
+
+#infos h1 {
+    font-size: 1.4rem;
+    color: var(--color-text);
+    font-weight: 700;
+}
+
+#infos p {
+    font-size: 0.9rem;
+    color: var(--color-text-light);
+}
+
+#titre_info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 10vh;
+}
+
+#infos {
+    width: 60%;
+    max-width: 700px;
+    margin-top: 2vh;
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+    padding: 1.5vw;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+}
+
+#infos>div {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8vw 1vw;
+    background: var(--color-surface-alt);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    transition: background var(--transition);
+}
+
+#infos>div:hover {
+    background: var(--color-primary-soft);
+}
+
+#infos>div div {
+    display: flex;
+    align-items: center;
+    gap: 0.5vw;
+}
+
+#infos p,
+#infos span,
+#infos div {
+    color: var(--color-text);
+    font-size: 0.95rem;
+}
+
+#infos button {
+    padding: 0.4vw 0.8vw;
+    background: var(--color-primary);
+    color: white;
+    border: none;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: background var(--transition);
+}
+
+#infos button:hover {
+    background: var(--color-primary-dark);
 }
